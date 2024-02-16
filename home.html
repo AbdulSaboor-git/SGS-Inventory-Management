@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Inventory System</title>
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            flex-direction: column; /* Adjusted to a column layout */
+            align-items: flex-start; /* Align items to the start of the container */
+        }
+
+        /* Add styles for item name */
+        li span.item-name {
+            font-size: 18px; /* Adjust the font size as needed */
+            font-weight: bold;
+        }
+
+        /* Add styles for sale price */
+        li span.sale-price {
+            font-size: 14px; /* Adjust the font size as needed */
+            color: #555; /* Dark gray text color */
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: transform 0.3s ease-in-out;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Add responsive styles for form */
+        @media only screen and (max-width: 600px) {
+            form {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* Add more professional styling for form elements */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555; /* Dark gray text color */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button.cancel {
+            background-color: #6c757d;
+        }
+
+        button.cancel:hover {
+            background-color: #5a6268;
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Add more styling to the details container */
+        .item-details {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            transition: max-height 0.3s ease-in-out;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments for details container */
+        @media only screen and (max-width: 600px) {
+            .item-details {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* Add more professional styling to the context menu */
+        .context-menu {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .context-menu div {
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .context-menu div:hover {
+            background-color: #e2e2e2;
+        }
+
+        /* Add responsive styles for smaller screens */
+        @media only screen and (max-width: 768px) {
+            h1, h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Add more spacing for larger screens */
+        @media only screen and (min-width: 1200px) {
+            body {
+                margin: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>SGS Inventory System</h1>
+
+    <!-- Button to toggle the "Add Item" form -->
+    <button onclick="toggleAddItemForm()">Add Item</button>
+
+    <!-- Form for adding/editing items -->
+    <form id="addItemForm">
+        <h2>Add/Edit Item</h2>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" required>
+
+        <label for="purchasePrice">Purchase Price:</label>
+        <input type="number" id="purchasePrice" name="purchasePrice" required>
+
+        <label for="salePrice">Sale Price:</label>
+        <input type="number" id="salePrice" name="salePrice" required>
+
+        <label for="governmentSalePrice">Government Sale Price:</label>
+        <input type="number" id="governmentSalePrice" name="governmentSalePrice" required>
+
+        <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
+        <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
+    </form>
+
+    <!-- List for displaying item names with sales prices -->
+    <h2>Inventory</h2>
+    <ul id="inventoryList">
+        <!-- Items will be dynamically added here -->
+    </ul>
+
+    <!-- Display detailed information for a selected item -->
+    <div class="details-container" id="itemDetails"></div>
+
+    <script>
+        // Sample data for illustration (replace with your actual data)
+        var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [
+    { id: 1, itemName: 'Item 1', purchasePrice: 10, salePrice: 20, governmentSalePrice: 15 },
+    { id: 2, itemName: 'Item 2', purchasePrice: 15, salePrice: 25, governmentSalePrice: 18 },
+];
+
+        var editingItemId = null;
+
+        function displayInventoryList() {
+            var inventoryList = document.getElementById('inventoryList');
+            inventoryList.innerHTML = '';
+
+            inventoryData.forEach(function (item) {
+                var listItem = document.createElement('li');
+                
+                // Create span elements for item name and sale price
+                var itemNameSpan = document.createElement('span');
+                itemNameSpan.className = 'item-name';
+                itemNameSpan.textContent = item.itemName;
+                
+                var salePriceSpan = document.createElement('span');
+                salePriceSpan.className = 'sale-price';
+                salePriceSpan.textContent = `Rs. ${item.salePrice}`;
+
+                // Append the spans to the list item
+                listItem.appendChild(itemNameSpan);
+                listItem.appendChild(salePriceSpan);
+
+                // Add event listener for left-click to show item details
+                listItem.addEventListener('click', function () {
+                    toggleItemDetails(item);
+                });
+
+                // Add event listeners for right-click
+                listItem.addEventListener('contextmenu', function (event) {
+                    event.preventDefault();
+                    showContextMenu(event, item);
+                });
+
+                inventoryList.appendChild(listItem);
+            });
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+
+        }
+
+        function showContextMenu(event, item) {
+            var contextMenu = document.createElement('div');
+            contextMenu.className = 'context-menu';
+            contextMenu.innerHTML = `
+                <div onclick="editItem(${item.id})">Edit</div>
+                <div onclick="deleteItem(${item.id})">Delete</div>
+            `;
+            contextMenu.style.position = 'absolute';
+            contextMenu.style.top = `${event.clientY}px`;
+            contextMenu.style.left = `${event.clientX}px`;
+
+            document.body.appendChild(contextMenu);
+
+            // Close the context menu when clicking outside
+            document.addEventListener('click', function closeContextMenu() {
+                document.body.removeChild(contextMenu);
+                document.removeEventListener('click', closeContextMenu);
+            });
+        }
+
+        function editItem(itemId) {
+            // Implement the edit logic based on the item ID
+            var itemToEdit = inventoryData.find(function (item) {
+                return item.id === itemId;
+            });
+
+            // Populate the form with the item details for editing
+            document.getElementById('itemName').value = itemToEdit.itemName;
+            document.getElementById('purchasePrice').value = itemToEdit.purchasePrice;
+            document.getElementById('salePrice').value = itemToEdit.salePrice;
+            document.getElementById('governmentSalePrice').value = itemToEdit.governmentSalePrice;
+
+            // Set the editingItemId to the current item's ID
+            editingItemId = itemId;
+
+            // Change the button text to 'Update'
+            document.getElementById('saveButton').textContent = 'Update Item';
+
+            // Show the form
+            toggleAddItemForm();
+        }
+
+        function deleteItem(itemId) {
+            // Implement the delete logic based on the item ID
+            var indexToDelete = inventoryData.findIndex(function (item) {
+                return item.id === itemId;
+            });
+
+            if (indexToDelete !== -1) {
+                inventoryData.splice(indexToDelete, 1);
+                displayInventoryList();
+            }
+        }
+
+        function toggleItemDetails(item) {
+            var itemDetails = document.getElementById('itemDetails');
+
+            // Check if details div is already present
+            var existingDetails = document.querySelector('.item-details');
+            if (existingDetails) {
+                // If details are present and belong to the same item, remove them to close
+                if (existingDetails.innerHTML.includes(item.itemName)) {
+                    existingDetails.parentNode.removeChild(existingDetails);
+                    return; // Exit the function to avoid opening details again
+                } else {
+                    // If details belong to a different item, remove them to replace with new details
+                    existingDetails.parentNode.removeChild(existingDetails);
+                }
+            }
+
+            // Create a new div for item details
+            var detailsDiv = document.createElement('div');
+            detailsDiv.className = 'item-details';
+
+            // Populate the details div with item information
+            detailsDiv.innerHTML = `
+                <h2>Item Details</h2>
+                <p>Item Name: ${item.itemName}</p>
+                <p>Purchase Price: ${item.purchasePrice}</p>
+                <p>Sale Price: ${item.salePrice}</p>
+                <p>Government Sale Price: ${item.governmentSalePrice}</p>
+            `;
+
+            // Add event listeners for right-click (context menu)
+            detailsDiv.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                showContextMenu(event, item);
+            });
+
+            // Insert the details div after the clicked item
+            var clickedItem = event.target;
+            clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
+        }
+
+        function toggleAddItemForm() {
+            var addItemForm = document.getElementById('addItemForm');
+            addItemForm.style.display = addItemForm.style.display === 'none' ? 'block' : 'none';
+
+            // If the form is displayed, hide the item details
+            if (addItemForm.style.display === 'block') {
+                document.getElementById('itemDetails').style.maxHeight = null;
+            }
+        }
+
+        function cancelAddEdit() {
+            clearAddItemForm();
+            editingItemId = null;
+            // Change the button text back to 'Save'
+            document.getElementById('saveButton').textContent = 'Save Item';
+            toggleAddItemForm();
+        }
+
+        function clearAddItemForm() {
+            document.getElementById('itemName').value = '';
+            document.getElementById('purchasePrice').value = '';
+            document.getElementById('salePrice').value = '';
+            document.getElementById('governmentSalePrice').value = '';
+        }
+
+        function saveItem() {
+            var itemName = document.getElementById('itemName').value;
+            var purchasePrice = document.getElementById('purchasePrice').value;
+            var salePrice = document.getElementById('salePrice').value;
+            var governmentSalePrice = document.getElementById('governmentSalePrice').value;
+
+            if (editingItemId !== null) {
+                // Editing an existing item
+                updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice);
+            } else {
+                // Adding a new item
+                addItem(itemName, purchasePrice, salePrice, governmentSalePrice);
+            }
+
+            displayInventoryList();
+            cancelAddEdit();
+        }
+
+        function addItem(itemName, purchasePrice, salePrice, governmentSalePrice) {
+            var newItem = {
+                id: inventoryData.length + 1,
+                itemName: itemName,
+                purchasePrice: purchasePrice,
+                salePrice: salePrice,
+                governmentSalePrice: governmentSalePrice
+            };
+
+            inventoryData.push(newItem);
+        }
+
+        function updateItem(itemId, itemName, purchasePrice, salePrice, governmentSalePrice) {
+            var itemToUpdate = inventoryData.find(function (item) {
+                return item.id === itemId;
+            });
+
+            if (itemToUpdate) {
+                itemToUpdate.itemName = itemName;
+                itemToUpdate.purchasePrice = purchasePrice;
+                itemToUpdate.salePrice = salePrice;
+                itemToUpdate.governmentSalePrice = governmentSalePrice;
+            }
+        }
+
+        // Initial display of inventory list
+        displayInventoryList();
+    </script>
+
+</body>
+</html>
