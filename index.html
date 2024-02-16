@@ -212,10 +212,7 @@
 
     <script>
         // Sample data for illustration (replace with your actual data)
-        var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [
-    { id: 1, itemName: 'Item 1', purchasePrice: 10, salePrice: 20, governmentSalePrice: 15 },
-    { id: 2, itemName: 'Item 2', purchasePrice: 15, salePrice: 25, governmentSalePrice: 18 },
-];
+        var inventoryData = JSON.parse(localStorage.getItem('inventoryData'));
 
         var editingItemId = null;
 
