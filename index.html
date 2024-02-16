@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Inventory System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -196,7 +197,7 @@
 
     <!-- Button to toggle the "Add Item" form -->
     <button onclick="toggleAddItemForm()">Add Item</button>
-
+    <button onclick="document.getElementById('fileInput').click()">Add Data from File</button>
     <!-- Form for adding/editing items -->
     <form id="addItemForm">
         <h2>Add/Edit Item</h2>
@@ -224,8 +225,8 @@
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-
-    <script>
+    <input type="file" id="fileInput" accept=".csv"  onchange="loadDataFromFile()">
+        <script>
         // Sample data for illustration (replace with your actual data)
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
@@ -396,6 +397,7 @@
             var clickedItem = event.target;
             clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
         }
+       
 
         function toggleAddItemForm() {
             enable();
@@ -462,7 +464,30 @@
             }
         }
 
-        displayInventoryList();
+        function loadDataFromFile() {
+            inventoryData = [];
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+
+    if (file) {
+        Papa.parse(file, {
+            header: false,
+            dynamicTyping: true,
+            complete: function (results) {
+                results.data.forEach(function (values) {
+                    var itemName = values[0].trim();
+                    var purchasePrice = parseInt(values[1].trim());
+                    var salePrice = parseInt(values[2].trim());
+                    var governmentSalePrice = parseInt(values[3].trim());
+                    addItem(itemName, purchasePrice, salePrice, governmentSalePrice);
+                });
+            },
+        });
+    }
+    displayInventoryList();
+}
+
+
     </script>
 
 </body>
