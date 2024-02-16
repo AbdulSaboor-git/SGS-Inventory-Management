@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Inventory System</title>
     <style>
-       body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
             background-color: #f8f9fa;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             color: #007bff;
             margin-bottom: 20px;
+            margin-top: 0px;
         }
 
         ul {
@@ -31,22 +33,21 @@
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
-            display: flex;
-            flex-direction: column; /* Adjusted to a column layout */
-            align-items: flex-start; /* Align items to the start of the container */
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        /* Add styles for item name */
         li span.item-name {
-            font-size: 18px; /* Adjust the font size as needed */
-            font-weight: bold;
+            font-size: 18px;
+            font-weight:bold;
         }
 
-        /* Add styles for sale price */
         li span.sale-price {
-            font-size: 14px; /* Adjust the font size as needed */
-            color: #555; /* Dark gray text color */
+            font-size: 14px;
+            color: #555;
         }
+
         li:hover {
             background-color: #f0f0f0;
         }
@@ -54,7 +55,7 @@
         form {
             max-width: 600px;
             margin: 20px auto;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -63,7 +64,6 @@
             animation: fadeInUp 0.5s ease-out;
         }
 
-        /* Add responsive styles for form */
         @media only screen and (max-width: 600px) {
             form {
                 max-width: 100%;
@@ -71,12 +71,11 @@
             }
         }
 
-        /* Add more professional styling for form elements */
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: #555; /* Dark gray text color */
+            color: #555;
         }
 
         input {
@@ -98,6 +97,7 @@
             font-size: 14px;
             transition: background-color 0.3s;
             margin-right: 5px;
+            margin-bottom: 10px;
         }
 
         button:hover {
@@ -115,22 +115,22 @@
         .details-container {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
-        /* Add more styling to the details container */
         .item-details {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #007bff;
+            margin: 10px auto;
+            padding: 20px;
             border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: max-height 0.3s ease-in-out;
             animation: fadeIn 0.5s ease-out;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            text-align: left;
+            overflow: auto;
         }
 
-        /* Responsive adjustments for details container */
         @media only screen and (max-width: 600px) {
             .item-details {
                 max-width: 100%;
@@ -138,7 +138,6 @@
             }
         }
 
-        /* Add more professional styling to the context menu */
         .context-menu {
             background-color: #fff;
             border: 1px solid #ccc;
@@ -159,19 +158,31 @@
             background-color: #e2e2e2;
         }
 
-        /* Add responsive styles for smaller screens */
         @media only screen and (max-width: 768px) {
-            h1, h2 {
+            h1,
+            h2 {
                 font-size: 24px;
             }
         }
 
-        /* Add more spacing for larger screens */
         @media only screen and (min-width: 1200px) {
             body {
                 margin: 40px;
             }
         }
+
+        /* Styles for the table view of item details */
+        .item-details table {
+            width: 100%;
+            border-collapse:collapse;
+            margin-top: 0px;
+        }
+
+        .item-details td         {
+            padding: 0px;
+            text-align: left;
+        }
+
     </style>
 </head>
 
@@ -186,16 +197,16 @@
     <form id="addItemForm">
         <h2>Add/Edit Item</h2>
         <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName" name="itemName" required>
+        <input type="text" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="purchasePrice">Purchase Price:</label>
-        <input type="number" id="purchasePrice" name="purchasePrice" required>
+        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText()" disabled="true" required>
 
         <label for="salePrice">Sale Price:</label>
-        <input type="number" id="salePrice" name="salePrice" required>
+        <input type="number" id="salePrice" name="salePrice" disabled="true" required>
 
         <label for="governmentSalePrice">Government Sale Price:</label>
-        <input type="number" id="governmentSalePrice" name="governmentSalePrice" required>
+        <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true" required>
 
         <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
@@ -212,9 +223,34 @@
 
     <script>
         // Sample data for illustration (replace with your actual data)
-        var inventoryData = JSON.parse(localStorage.getItem('inventoryData'));
+        var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
         var editingItemId = null;
+
+        function enable(){
+           var itemName = document.getElementById('itemName').value;
+    var purchasePriceField = document.getElementById('purchasePrice');
+    var governmentSalePriceField = document.getElementById('governmentSalePrice');
+
+    if (itemName.trim() !== '') {
+        // If name is entered, enable purchase price and government sale price
+        purchasePriceField.removeAttribute('disabled');
+        governmentSalePriceField.removeAttribute('disabled');
+    } else {
+        // If name is empty, disable purchase price and government sale price
+        purchasePriceField.setAttribute('disabled', 'true');
+        governmentSalePriceField.setAttribute('disabled', 'true');
+    }
+        }
+
+        function setText() {
+            var inputField1 = document.getElementById('salePrice');
+            var inputField2 = document.getElementById('purchasePrice');
+            var purchaseValue = parseInt(inputField2.value);
+            var saleValue = purchaseValue + (purchaseValue * 0.07);
+            saleValue = Math.round(saleValue / 10) * 10;
+            inputField1.value = saleValue;
+        }
 
         function displayInventoryList() {
             var inventoryList = document.getElementById('inventoryList');
@@ -222,26 +258,22 @@
 
             inventoryData.forEach(function (item) {
                 var listItem = document.createElement('li');
-                
-                // Create span elements for item name and sale price
+
                 var itemNameSpan = document.createElement('span');
                 itemNameSpan.className = 'item-name';
                 itemNameSpan.textContent = item.itemName;
-                
+
                 var salePriceSpan = document.createElement('span');
                 salePriceSpan.className = 'sale-price';
                 salePriceSpan.textContent = `Rs. ${item.salePrice}`;
 
-                // Append the spans to the list item
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
 
-                // Add event listener for left-click to show item details
                 listItem.addEventListener('click', function () {
                     toggleItemDetails(item);
                 });
 
-                // Add event listeners for right-click
                 listItem.addEventListener('contextmenu', function (event) {
                     event.preventDefault();
                     showContextMenu(event, item);
@@ -250,10 +282,10 @@
                 inventoryList.appendChild(listItem);
             });
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
-
         }
 
         function showContextMenu(event, item) {
+            closeAllContextMenus();
             var contextMenu = document.createElement('div');
             contextMenu.className = 'context-menu';
             contextMenu.innerHTML = `
@@ -266,37 +298,37 @@
 
             document.body.appendChild(contextMenu);
 
-            // Close the context menu when clicking outside
             document.addEventListener('click', function closeContextMenu() {
                 document.body.removeChild(contextMenu);
                 document.removeEventListener('click', closeContextMenu);
             });
         }
 
+        function closeAllContextMenus() {
+            var existingContextMenus = document.querySelectorAll('.context-menu');
+            existingContextMenus.forEach(function (menu) {
+                document.body.removeChild(menu);
+            });
+        }
+
         function editItem(itemId) {
-            // Implement the edit logic based on the item ID
             var itemToEdit = inventoryData.find(function (item) {
                 return item.id === itemId;
             });
 
-            // Populate the form with the item details for editing
             document.getElementById('itemName').value = itemToEdit.itemName;
             document.getElementById('purchasePrice').value = itemToEdit.purchasePrice;
             document.getElementById('salePrice').value = itemToEdit.salePrice;
             document.getElementById('governmentSalePrice').value = itemToEdit.governmentSalePrice;
 
-            // Set the editingItemId to the current item's ID
             editingItemId = itemId;
 
-            // Change the button text to 'Update'
             document.getElementById('saveButton').textContent = 'Update Item';
 
-            // Show the form
             toggleAddItemForm();
         }
 
         function deleteItem(itemId) {
-            // Implement the delete logic based on the item ID
             var indexToDelete = inventoryData.findIndex(function (item) {
                 return item.id === itemId;
             });
@@ -309,40 +341,48 @@
 
         function toggleItemDetails(item) {
             var itemDetails = document.getElementById('itemDetails');
-
-            // Check if details div is already present
+            var govPrice= document.getElementById('governmentSalePrice');
             var existingDetails = document.querySelector('.item-details');
+            
             if (existingDetails) {
-                // If details are present and belong to the same item, remove them to close
                 if (existingDetails.innerHTML.includes(item.itemName)) {
                     existingDetails.parentNode.removeChild(existingDetails);
-                    return; // Exit the function to avoid opening details again
+                    return;
                 } else {
-                    // If details belong to a different item, remove them to replace with new details
                     existingDetails.parentNode.removeChild(existingDetails);
                 }
             }
 
-            // Create a new div for item details
             var detailsDiv = document.createElement('div');
             detailsDiv.className = 'item-details';
 
-            // Populate the details div with item information
             detailsDiv.innerHTML = `
                 <h2>Item Details</h2>
-                <p>Item Name: ${item.itemName}</p>
-                <p>Purchase Price: ${item.purchasePrice}</p>
-                <p>Sale Price: ${item.salePrice}</p>
-                <p>Government Sale Price: ${item.governmentSalePrice}</p>
+                <table>
+                    <tr>
+                        <td>Item Name:</td>
+                        <td>${item.itemName}</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase Price:</td>
+                        <td>Rs. ${item.purchasePrice}</td>
+                    </tr>
+                    <tr>
+                        <td>Sale Price:</td>
+                        <td>Rs. ${item.salePrice}</td>
+                    </tr>
+                    <tr>
+                        <td>Government Sale Price:</td>
+                        <td>${item.governmentSalePrice.trim() !== '' ? `Rs. ${item.governmentSalePrice}` : 'N/A'}</td>
+                    </tr>
+                </table>
             `;
 
-            // Add event listeners for right-click (context menu)
             detailsDiv.addEventListener('contextmenu', function (event) {
                 event.preventDefault();
                 showContextMenu(event, item);
             });
 
-            // Insert the details div after the clicked item
             var clickedItem = event.target;
             clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
         }
@@ -351,7 +391,6 @@
             var addItemForm = document.getElementById('addItemForm');
             addItemForm.style.display = addItemForm.style.display === 'none' ? 'block' : 'none';
 
-            // If the form is displayed, hide the item details
             if (addItemForm.style.display === 'block') {
                 document.getElementById('itemDetails').style.maxHeight = null;
             }
@@ -360,7 +399,6 @@
         function cancelAddEdit() {
             clearAddItemForm();
             editingItemId = null;
-            // Change the button text back to 'Save'
             document.getElementById('saveButton').textContent = 'Save Item';
             toggleAddItemForm();
         }
@@ -379,10 +417,8 @@
             var governmentSalePrice = document.getElementById('governmentSalePrice').value;
 
             if (editingItemId !== null) {
-                // Editing an existing item
                 updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice);
             } else {
-                // Adding a new item
                 addItem(itemName, purchasePrice, salePrice, governmentSalePrice);
             }
 
@@ -415,9 +451,9 @@
             }
         }
 
-        // Initial display of inventory list
         displayInventoryList();
     </script>
 
 </body>
+
 </html>
