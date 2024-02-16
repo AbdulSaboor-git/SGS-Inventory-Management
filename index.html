@@ -10,6 +10,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
             background-color: #f8f9fa;
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
         }
 
         h1,
@@ -200,7 +204,7 @@
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="purchasePrice">Purchase Price:</label>
-        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText()" disabled="true" required>
+        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()" disabled="true" required>
 
         <label for="salePrice">Sale Price:</label>
         <input type="number" id="salePrice" name="salePrice" disabled="true" required>
@@ -209,7 +213,7 @@
         <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true" required>
 
         <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
-        <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
+        <button type="button" class="cancel"  onclick="cancelAddEdit()">Cancel</button>
     </form>
 
     <!-- List for displaying item names with sales prices -->
@@ -229,18 +233,24 @@
 
         function enable(){
            var itemName = document.getElementById('itemName').value;
-    var purchasePriceField = document.getElementById('purchasePrice');
-    var governmentSalePriceField = document.getElementById('governmentSalePrice');
+           var saveButton1 = document.getElementById('saveButton');
+            var purchasePriceField = document.getElementById('purchasePrice');
+            var governmentSalePriceField = document.getElementById('governmentSalePrice');
 
-    if (itemName.trim() !== '') {
-        // If name is entered, enable purchase price and government sale price
-        purchasePriceField.removeAttribute('disabled');
-        governmentSalePriceField.removeAttribute('disabled');
-    } else {
-        // If name is empty, disable purchase price and government sale price
-        purchasePriceField.setAttribute('disabled', 'true');
-        governmentSalePriceField.setAttribute('disabled', 'true');
-    }
+            if (itemName.trim() !== '') {
+                purchasePriceField.removeAttribute('disabled');
+                governmentSalePriceField.removeAttribute('disabled');
+                if (purchasePriceField.value.trim() !== '') {
+                saveButton1.removeAttribute('disabled');
+                } else {
+                    saveButton1.setAttribute('disabled', true);
+                }
+            } else {
+                purchasePriceField.setAttribute('disabled', true);
+                governmentSalePriceField.setAttribute('disabled', true);
+                saveButton1.setAttribute('disabled', true);
+            }
+            
         }
 
         function setText() {
@@ -388,6 +398,7 @@
         }
 
         function toggleAddItemForm() {
+            enable();
             var addItemForm = document.getElementById('addItemForm');
             addItemForm.style.display = addItemForm.style.display === 'none' ? 'block' : 'none';
 
