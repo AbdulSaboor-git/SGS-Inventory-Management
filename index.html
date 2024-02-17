@@ -283,13 +283,7 @@ inventoryData.sort(function (a, b) {
                 salePriceSpan.textContent = `Rs. ${item.salePrice}`;
 
                 // Add an edit button
-                var editButton = document.createElement('button');
-                editButton.className = 'edit-button'; // Add this line
-                editButton.textContent = 'Edit';
-                editButton.addEventListener('click', function (event) {
-                    event.stopPropagation();
-                    editItem(item.id);
-                });
+                
 
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
@@ -354,6 +348,13 @@ inventoryData.sort(function (a, b) {
 
             detailsDiv.innerHTML = `
                 <h2>Item Details</h2>
+var editButton = document.createElement('button');
+                editButton.className = 'edit-button'; // Add this line
+                editButton.textContent = 'Edit';
+                editButton.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    editItem(item.id);
+                });
                 <table>
                     <tr>
                         <td>Item Name:</td>
