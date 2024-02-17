@@ -22,6 +22,7 @@
         nav {
             overflow: hidden;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         nav a {
@@ -41,6 +42,14 @@
 
         nav a:hover {
             background-color: #0056b3;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 30px;
+            border: 2px solid;
+            padding: 10px;
+            border-radius: 100px;
         }
 
         h1,
@@ -107,7 +116,7 @@
 
         li span.item-name {
             color: #646464;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
         }
 
@@ -279,7 +288,7 @@
 
 <body>
 
-    <h1>SGS Inventory System</h1>
+    <h1 class="title">SGS INVENTORY SYSTEM</h1>
 
     <!-- Button to toggle the "Add Item" form -->
 
@@ -291,8 +300,6 @@
     </nav>
 
     <!-- Search bar -->
-    <h3>Search:</h3>
-    <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
 
 
     <!-- Form for adding/editing items -->
@@ -314,9 +321,11 @@
         <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
+    <h3>Search:</h3>
+    <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
 
     <!-- List for displaying item names with sales prices -->
-    <h2>INVENTORY</h2>
+    <h3>INVENTORY</h3>
     <ul id="inventoryList">
         <!-- Items will be dynamically added here -->
     </ul>
