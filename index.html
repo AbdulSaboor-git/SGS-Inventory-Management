@@ -350,7 +350,13 @@
         }
 
         function empty() {
+            // Clear both the HTML list and the inventoryData array
+            var myList = document.getElementById("inventoryList");
+            while (myList.firstChild) {
+                myList.removeChild(myList.firstChild);
+            }
             inventoryData = [];
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
             displayList();
         }
 
