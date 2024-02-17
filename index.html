@@ -46,14 +46,31 @@
             position: relative;
         }
 
+        button.details {
+            background-color: #c66b6b00;
+            color: #007bff;
+            cursor: pointer;
+            height: 63px;
+            width: 100%;
+            position: absolute;
+            right: -5px;
+            top: 0px;
+            bottom: 0px;
+        }
+
+        button.details:hover {
+            background-color: #0057b300;
+        }
+
         li span.item-name {
+            color: #00578d;
             font-size: 18px;
             font-weight: bold;
         }
 
         li span.sale-price {
             font-size: 14px;
-            color: #555;
+            color: #646464;
         }
 
         li:hover {
@@ -131,10 +148,11 @@
             padding: 20px;
             border-radius: 8px;
             background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             transition: max-height 0.3s ease-in-out;
             animation: fadeIn 0.5s ease-out;
             max-width: 100%;
+            width: 80%;
             text-align: left;
             overflow: auto;
         }
@@ -168,22 +186,49 @@
         }
 
         .item-details td {
-            padding: 0px;
-            text-align: left;
+            color: #646464;
+            border: 1px solid;
+            border-color: #0088ff;
+            padding: 5px;
+            text-align: center;
+
         }
 
-        button.edit-delete-button {
+        button.edit-button {
             color: #ffffff;
-            background-color: #007bff;
+            background-color: #26911a;
             border: none;
             border-radius: 20px;
             cursor: pointer;
             width: 65px;
             font-size: 14px;
             transition: background-color 0.3s;
-            margin-top: 10px;
-            margin-right: 13px;
+            margin-top: 16px;
+            margin-right: 10px;
+            margin-left: 1px;
             margin-bottom: 0px;
+        }
+
+        button.delete-button {
+            color: #ffffff;
+            background-color: #e52626;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 65px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            margin-top: 16px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+        }
+
+        button.delete-button:hover {
+            background-color: #c72121;
+        }
+
+        button.edit-button:hover {
+            background-color: #1f7c15;
         }
     </style>
 </head>
@@ -274,6 +319,8 @@
             });
             inventoryData.forEach(function (item) {
                 var listItem = document.createElement('li');
+                var listItem2 = document.createElement('button');
+                listItem2.className = 'details';
 
                 var itemNameSpan = document.createElement('span');
                 itemNameSpan.className = 'item-name';
@@ -283,15 +330,13 @@
                 salePriceSpan.className = 'sale-price';
                 salePriceSpan.textContent = `Rs. ${item.salePrice}`;
 
-                // Add an edit button
-
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
+                listItem.appendChild(listItem2);
 
-                listItem.addEventListener('click', function () {
+                listItem2.addEventListener('click', function () {
                     toggleItemDetails(item);
                 });
-
                 inventoryList.appendChild(listItem);
             });
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
@@ -315,6 +360,17 @@
             toggleAddItemForm();
         }
 
+        function deleteItem(itemId) {
+            var indexToDelete = inventoryData.findIndex(function (item) {
+                return item.id === itemId;
+            });
+
+            if (indexToDelete !== -1) {
+                inventoryData.splice(indexToDelete, 1);
+                displayInventoryList();
+            }
+        }
+
         function empty() {
             // Clear both the HTML list and the inventoryData array
             var myList = document.getElementById("inventoryList");
@@ -330,7 +386,6 @@
 
         function toggleItemDetails(item) {
             var itemDetails = document.getElementById('itemDetails');
-            var govPrice = document.getElementById('governmentSalePrice');
             var existingDetails = document.querySelector('.item-details');
 
 
@@ -372,7 +427,7 @@
                 </table>
             `;
             var editButton = document.createElement('button');
-            editButton.className = 'edit-delete-button';
+            editButton.className = 'edit-button';
             editButton.textContent = 'Edit';
             editButton.addEventListener('click', function (event) {
                 event.stopPropagation();
@@ -381,11 +436,11 @@
 
             detailsDiv.appendChild(editButton);
             var editButton = document.createElement('button');
-            editButton.className = 'edit-delete-button';
+            editButton.className = 'delete-button';
             editButton.textContent = 'Delete';
             editButton.addEventListener('click', function (event) {
                 event.stopPropagation();
-                editItem(item.id);
+                deleteItem(item.id);
             });
 
             detailsDiv.appendChild(editButton);
