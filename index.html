@@ -10,9 +10,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
             background-color: #f8f9fa;
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
             user-select: none;
         }
 
@@ -37,14 +40,14 @@
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
-            display:flex;
+            display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
 
         li span.item-name {
             font-size: 18px;
-            font-weight:bold;
+            font-weight: bold;
         }
 
         li span.sale-price {
@@ -163,6 +166,7 @@
         }
 
         @media only screen and (max-width: 768px) {
+
             h1,
             h2 {
                 font-size: 24px;
@@ -178,15 +182,14 @@
         /* Styles for the table view of item details */
         .item-details table {
             width: 100%;
-            border-collapse:collapse;
+            border-collapse: collapse;
             margin-top: 0px;
         }
 
-        .item-details td         {
+        .item-details td {
             padding: 0px;
             text-align: left;
         }
-
     </style>
 </head>
 
@@ -196,6 +199,9 @@
 
     <!-- Button to toggle the "Add Item" form -->
     <button onclick="toggleAddItemForm()">Add Item</button>
+    <button onclick="document.getElementById('csvFileInput').click()">Import CSV</button>
+    <button onclick="downloadCSV()">Download CSV</button>
+
 
     <!-- Form for adding/editing items -->
     <form id="addItemForm">
@@ -204,7 +210,8 @@
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="purchasePrice">Purchase Price:</label>
-        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()" disabled="true" required>
+        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()" disabled="true"
+            required>
 
         <label for="salePrice">Sale Price:</label>
         <input type="number" id="salePrice" name="salePrice" disabled="true" required>
@@ -213,7 +220,7 @@
         <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true" required>
 
         <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
-        <button type="button" class="cancel"  onclick="cancelAddEdit()">Cancel</button>
+        <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
 
     <!-- List for displaying item names with sales prices -->
@@ -224,16 +231,16 @@
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile()">
     <script>
         // Sample data for illustration (replace with your actual data)
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
         var editingItemId = null;
 
-        function enable(){
-           var itemName = document.getElementById('itemName').value;
-           var saveButton1 = document.getElementById('saveButton');
+        function enable() {
+            var itemName = document.getElementById('itemName').value;
+            var saveButton1 = document.getElementById('saveButton');
             var purchasePriceField = document.getElementById('purchasePrice');
             var governmentSalePriceField = document.getElementById('governmentSalePrice');
 
@@ -241,7 +248,7 @@
                 purchasePriceField.removeAttribute('disabled');
                 governmentSalePriceField.removeAttribute('disabled');
                 if (purchasePriceField.value.trim() !== '') {
-                saveButton1.removeAttribute('disabled');
+                    saveButton1.removeAttribute('disabled');
                 } else {
                     saveButton1.setAttribute('disabled', true);
                 }
@@ -250,7 +257,7 @@
                 governmentSalePriceField.setAttribute('disabled', true);
                 saveButton1.setAttribute('disabled', true);
             }
-            
+
         }
 
         function setText() {
@@ -351,9 +358,9 @@
 
         function toggleItemDetails(item) {
             var itemDetails = document.getElementById('itemDetails');
-            var govPrice= document.getElementById('governmentSalePrice');
+            var govPrice = document.getElementById('governmentSalePrice');
             var existingDetails = document.querySelector('.item-details');
-            
+
             if (existingDetails) {
                 if (existingDetails.innerHTML.includes(item.itemName)) {
                     existingDetails.parentNode.removeChild(existingDetails);
@@ -461,8 +468,69 @@
                 itemToUpdate.governmentSalePrice = governmentSalePrice;
             }
         }
+        function handleCSVFile() {
+            inventoryData = [];
+            var fileInput = document.getElementById('csvFileInput');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var csvData = e.target.result;
+                    parseCSVData(csvData);
+                };
+
+                reader.readAsText(file);
+            }
+        }
+
+        function parseCSVData(csvData) {
+            var lines = csvData.split('\n');
+            var headers = lines[0].split(',');
+
+            for (var i = 1; i < lines.length; i++) {
+                var data = lines[i].split(',');
+                var newItem = {};
+
+                for (var j = 0; j < headers.length; j++) {
+                    newItem[headers[j].trim()] = data[j].trim();
+                }
+
+                newItem.id = inventoryData.length + 1;
+                inventoryData.push(newItem);
+            }
+            displayInventoryList();
+        }
 
         displayInventoryList();
+
+        function saveCSVToLocalStorage(csvData) {
+            localStorage.setItem('inventoryData', csvData);
+        }
+
+        function downloadCSV() {
+            var csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "itemName,purchasePrice,salePrice,governmentSalePrice\n";
+
+            inventoryData.forEach(function (item) {
+                csvContent += `${item.itemName},${item.purchasePrice},${item.salePrice},${item.governmentSalePrice}\n`;
+            });
+
+            var encodedURI = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedURI);
+            link.setAttribute("download", "inventory_data.csv");
+            document.body.appendChild(link);
+            link.click();
+        }
+
+        function importCSV() {
+            // Simulate importing CSV data as a string
+            var importedCSVData = 'item_name, purchase_price, sale_price\nLaptop, 800, 1000\nPhone, 300, 400';
+            saveCSVToLocalStorage(importedCSVData);
+            alert("CSV data imported successfully!");
+        }
     </script>
 
 </body>
