@@ -172,17 +172,18 @@
             text-align: left;
         }
 
-        button.edit-button {
-            color: white;
+        button.edit-delete-button {
+            color: #ffffff;
+            background-color: #007bff;
             border: none;
-            border-radius: 100px;
+            padding: 10px;
+            border-radius: 40px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 13px;
             transition: background-color 0.3s;
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
+            margin-top: 10px;
+            margin-right: 13px;
+            margin-bottom: 0px;
         }
     </style>
 </head>
@@ -199,7 +200,7 @@
 
 
     <!-- Form for adding/editing items -->
-    <form id="addItemForm">
+    <form id="addItemForm" style="display: none">
         <h2>Add/Edit Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
@@ -280,17 +281,9 @@
                 salePriceSpan.textContent = `Rs. ${item.salePrice}`;
 
                 // Add an edit button
-                var editButton = document.createElement('button');
-                editButton.className = 'edit-button'; // Add this line
-                editButton.textContent = 'Edit';
-                editButton.addEventListener('click', function (event) {
-                    event.stopPropagation();
-                    editItem(item.id);
-                });
 
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
-                listItem.appendChild(editButton);
 
                 listItem.addEventListener('click', function () {
                     toggleItemDetails(item);
@@ -337,6 +330,8 @@
             var govPrice = document.getElementById('governmentSalePrice');
             var existingDetails = document.querySelector('.item-details');
 
+
+
             if (existingDetails) {
                 if (existingDetails.innerHTML.includes(item.itemName)) {
                     existingDetails.parentNode.removeChild(existingDetails);
@@ -348,6 +343,8 @@
 
             var detailsDiv = document.createElement('div');
             detailsDiv.className = 'item-details';
+
+
 
             detailsDiv.innerHTML = `
                 <h2>Item Details</h2>
@@ -370,26 +367,50 @@
                     </tr>
                 </table>
             `;
+            var editButton = document.createElement('button');
+            editButton.className = 'edit-delete-button';
+            editButton.textContent = 'Edit';
+            editButton.addEventListener('click', function (event) {
+                event.stopPropagation();
+                editItem(item.id);
+            });
 
+            detailsDiv.appendChild(editButton);
+            var editButton = document.createElement('button');
+            editButton.className = 'edit-delete-button';
+            editButton.textContent = 'Delete';
+            editButton.addEventListener('click', function (event) {
+                event.stopPropagation();
+                editItem(item.id);
+            });
+
+            detailsDiv.appendChild(editButton);
             var clickedItem = event.target;
             clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
         }
 
         function toggleAddItemForm() {
             enable();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
             var addItemForm = document.getElementById('addItemForm');
-            addItemForm.style.display = addItemForm.style.display === 'none' ? 'block' : 'none';
+            addItemForm.style.display = 'block';
 
-            if (addItemForm.style.display === 'block') {
+            if (addItemForm.style.display !== 'none') {
                 document.getElementById('itemDetails').style.maxHeight = null;
             }
+
+
         }
 
         function cancelAddEdit() {
             clearAddItemForm();
             editingItemId = null;
             document.getElementById('saveButton').textContent = 'Save Item';
-            toggleAddItemForm();
+            var addItemForm = document.getElementById('addItemForm');
+            addItemForm.style.display = 'none';
         }
 
         function clearAddItemForm() {
