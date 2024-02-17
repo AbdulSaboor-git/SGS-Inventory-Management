@@ -356,8 +356,10 @@
                 myList.removeChild(myList.firstChild);
             }
             inventoryData = [];
+            localStorage.clear();
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
             displayList();
+            location.reload();
         }
 
         function toggleItemDetails(item) {
