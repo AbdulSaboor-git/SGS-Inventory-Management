@@ -19,11 +19,37 @@
             user-select: none;
         }
 
+        nav {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            width: 25%;
+            font-size: 15px;
+            box-sizing: border-box;
+            border: 5px solid;
+            background-color: #007bff;
+            border-radius: 30px;
+            color: white;
+            padding: 6px;
+        }
+
+        nav a:hover {
+            background-color: #0056b3;
+        }
+
         h1,
-        h2 {
+        h2,
+        h3 {
             color: #007bff;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             margin-top: 0px;
+            margin-left: 2px;
         }
 
         ul {
@@ -32,9 +58,10 @@
             margin: 0;
         }
 
+
         li {
             background-color: #fff;
-            border: 1px solid #007bff;
+            border: 1px solid #007bff85;
             border-radius: 8px;
             margin-bottom: 10px;
             padding: 10px;
@@ -46,6 +73,22 @@
             position: relative;
         }
 
+        #searchBar {
+            margin-bottom: 25px;
+            padding: 8px;
+            width: 100%;
+            font-size: 15px;
+            color: #646464;
+            border: 1px solid #007bff85;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Style for placeholder text in the search bar */
+        #searchBar::placeholder {
+            color: #aaa;
+        }
+
         button.details {
             background-color: #c66b6b00;
             color: #007bff;
@@ -54,7 +97,7 @@
             width: 100%;
             position: absolute;
             right: -5px;
-            top: 0px;
+            top: -10px;
             bottom: 0px;
         }
 
@@ -63,7 +106,7 @@
         }
 
         li span.item-name {
-            color: #00578d;
+            color: #646464;
             font-size: 18px;
             font-weight: bold;
         }
@@ -122,7 +165,8 @@
             font-size: 14px;
             transition: background-color 0.3s;
             margin-right: 5px;
-            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         button:hover {
@@ -200,8 +244,8 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            width: 65px;
-            font-size: 14px;
+            width: 60px;
+            font-size: 13px;
             transition: background-color 0.3s;
             margin-top: 16px;
             margin-right: 10px;
@@ -215,8 +259,8 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            width: 65px;
-            font-size: 14px;
+            width: 60px;
+            font-size: 13px;
             transition: background-color 0.3s;
             margin-top: 16px;
             margin-right: 10px;
@@ -238,10 +282,17 @@
     <h1>SGS Inventory System</h1>
 
     <!-- Button to toggle the "Add Item" form -->
-    <button onclick="toggleAddItemForm()">Add Item</button>
-    <button onclick="document.getElementById('csvFileInput').click()">Import CSV</button>
-    <button onclick="downloadCSV()">Download CSV</button>
-    <button onclick="empty()">Clear Inventory</button>
+
+    <nav>
+        <a href="#" onclick="toggleAddItemForm()">Add Item</a>
+        <a href="#" onclick="document.getElementById('csvFileInput').click()">Import CSV</a>
+        <a href="#" onclick="downloadCSV()">Save CSV</a>
+        <a href="#" onclick="empty()">Clear Data</a>
+    </nav>
+
+    <!-- Search bar -->
+    <h3>Search:</h3>
+    <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
 
 
     <!-- Form for adding/editing items -->
@@ -265,7 +316,7 @@
     </form>
 
     <!-- List for displaying item names with sales prices -->
-    <h2>Inventory</h2>
+    <h2>INVENTORY</h2>
     <ul id="inventoryList">
         <!-- Items will be dynamically added here -->
     </ul>
@@ -310,14 +361,24 @@
             inputField1.value = saleValue;
         }
 
+        function searchItems() {
+            displayInventoryList();
+        }
         function displayInventoryList() {
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
 
+            // Filtered items based on the search query
+            var searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            var filteredItems = inventoryData.filter(function (item) {
+                return item.itemName.toLowerCase().includes(searchQuery);
+            });
+
             inventoryData.sort(function (a, b) {
                 return a.itemName.localeCompare(b.itemName);
             });
-            inventoryData.forEach(function (item) {
+
+            filteredItems.forEach(function (item) {
                 var listItem = document.createElement('li');
                 var listItem2 = document.createElement('button');
                 listItem2.className = 'details';
