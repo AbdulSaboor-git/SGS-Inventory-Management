@@ -231,11 +231,11 @@
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile()">
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile(),displayList()">
     <script>
         // Sample data for illustration (replace with your actual data)
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
-
+        displayList();
         var editingItemId = null;
 
         function enable() {
@@ -307,7 +307,6 @@
             contextMenu.className = 'context-menu';
             contextMenu.innerHTML = `
                 <div onclick="editItem(${item.id})">Edit</div>
-                <div onclick="deleteItem(${item.id})">Delete</div>
             `;
             contextMenu.style.position = 'absolute';
             contextMenu.style.top = `${event.clientY}px`;
@@ -352,7 +351,7 @@
 
             if (indexToDelete !== -1) {
                 inventoryData.splice(indexToDelete, 1);
-                displayInventoryList();
+                displayList();
             }
         }
 
@@ -440,7 +439,7 @@
                 addItem(itemName, purchasePrice, salePrice, governmentSalePrice);
             }
 
-            displayInventoryList();
+            displayList();
             cancelAddEdit();
         }
 
@@ -479,6 +478,7 @@
                 reader.onload = function (e) {
                     var csvData = e.target.result;
                     parseCSVData(csvData);
+                    saveCSVToLocalStorage(csvData);
                 };
 
                 reader.readAsText(file);
@@ -500,10 +500,12 @@
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
             }
-            displayInventoryList();
+            displayList();
         }
 
-        displayInventoryList();
+        function displayList() {
+            displayInventoryList();
+        }
 
         function saveCSVToLocalStorage(csvData) {
             localStorage.setItem('inventoryData', csvData);
@@ -525,12 +527,6 @@
             link.click();
         }
 
-        function importCSV() {
-            // Simulate importing CSV data as a string
-            var importedCSVData = 'item_name, purchase_price, sale_price\nLaptop, 800, 1000\nPhone, 300, 400';
-            saveCSVToLocalStorage(importedCSVData);
-            alert("CSV data imported successfully!");
-        }
     </script>
 
 </body>
