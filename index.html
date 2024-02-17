@@ -201,6 +201,7 @@
     <button onclick="toggleAddItemForm()">Add Item</button>
     <button onclick="document.getElementById('csvFileInput').click()">Import CSV</button>
     <button onclick="downloadCSV()">Download CSV</button>
+    <button onclick="empty()">Clear Inventory</button>
 
 
     <!-- Form for adding/editing items -->
@@ -231,7 +232,7 @@
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile(),displayList()">
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile()">
     <script>
         // Sample data for illustration (replace with your actual data)
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
@@ -308,10 +309,14 @@
             contextMenu.innerHTML = `
                 <div onclick="editItem(${item.id})">Edit</div>
             `;
-            contextMenu.style.position = 'absolute';
-            contextMenu.style.top = `${event.clientY}px`;
-            contextMenu.style.left = `${event.clientX}px`;
+            var posX = event.clientX;
+            var posY = event.clientY;
+            var maxX = window.innerWidth - contextMenu.offsetWidth;
+            var maxY = window.innerHeight - contextMenu.offsetHeight;
 
+            contextMenu.style.position = 'absolute';
+            contextMenu.style.top = `${Math.min(posY, maxY)}px`;
+            contextMenu.style.left = `${Math.min(posX, maxX)}px`;
             document.body.appendChild(contextMenu);
 
             document.addEventListener('click', function closeContextMenu() {
@@ -344,15 +349,9 @@
             toggleAddItemForm();
         }
 
-        function deleteItem(itemId) {
-            var indexToDelete = inventoryData.findIndex(function (item) {
-                return item.id === itemId;
-            });
-
-            if (indexToDelete !== -1) {
-                inventoryData.splice(indexToDelete, 1);
-                displayList();
-            }
+        function empty() {
+            inventoryData = [];
+            displayList();
         }
 
         function toggleItemDetails(item) {
@@ -478,7 +477,7 @@
                 reader.onload = function (e) {
                     var csvData = e.target.result;
                     parseCSVData(csvData);
-                    saveCSVToLocalStorage(csvData);
+                    displayList();
                 };
 
                 reader.readAsText(file);
@@ -499,16 +498,12 @@
 
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
+                displayList();
             }
-            displayList();
         }
 
         function displayList() {
             displayInventoryList();
-        }
-
-        function saveCSVToLocalStorage(csvData) {
-            localStorage.setItem('inventoryData', csvData);
         }
 
         function downloadCSV() {
