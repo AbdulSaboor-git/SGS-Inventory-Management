@@ -43,6 +43,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            position: relative;
         }
 
         li span.item-name {
@@ -145,26 +146,6 @@
             }
         }
 
-        .context-menu {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .context-menu div {
-            padding: 8px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .context-menu div:hover {
-            background-color: #e2e2e2;
-        }
-
         @media only screen and (max-width: 768px) {
 
             h1,
@@ -189,6 +170,19 @@
         .item-details td {
             padding: 0px;
             text-align: left;
+        }
+
+        button.edit-button {
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
         }
     </style>
 </head>
@@ -285,16 +279,21 @@
                 salePriceSpan.className = 'sale-price';
                 salePriceSpan.textContent = `Rs. ${item.salePrice}`;
 
+                // Add an edit button
+                var editButton = document.createElement('button');
+                editButton.className = 'edit-button'; // Add this line
+                editButton.textContent = 'Edit';
+                editButton.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    editItem(item.id);
+                });
+
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
+                listItem.appendChild(editButton);
 
                 listItem.addEventListener('click', function () {
                     toggleItemDetails(item);
-                });
-
-                listItem.addEventListener('contextmenu', function (event) {
-                    event.preventDefault();
-                    showContextMenu(event, item);
                 });
 
                 inventoryList.appendChild(listItem);
@@ -302,35 +301,6 @@
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
         }
 
-        function showContextMenu(event, item) {
-            closeAllContextMenus();
-            var contextMenu = document.createElement('div');
-            contextMenu.className = 'context-menu';
-            contextMenu.innerHTML = `
-                <div onclick="editItem(${item.id})">Edit</div>
-            `;
-            var posX = event.clientX;
-            var posY = event.clientY;
-            var maxX = window.innerWidth - contextMenu.offsetWidth;
-            var maxY = window.innerHeight - contextMenu.offsetHeight;
-
-            contextMenu.style.position = 'absolute';
-            contextMenu.style.top = `${Math.min(posY, maxY)}px`;
-            contextMenu.style.left = `${Math.min(posX, maxX)}px`;
-            document.body.appendChild(contextMenu);
-
-            document.addEventListener('click', function closeContextMenu() {
-                document.body.removeChild(contextMenu);
-                document.removeEventListener('click', closeContextMenu);
-            });
-        }
-
-        function closeAllContextMenus() {
-            var existingContextMenus = document.querySelectorAll('.context-menu');
-            existingContextMenus.forEach(function (menu) {
-                document.body.removeChild(menu);
-            });
-        }
 
         function editItem(itemId) {
             var itemToEdit = inventoryData.find(function (item) {
@@ -400,11 +370,6 @@
                     </tr>
                 </table>
             `;
-
-            detailsDiv.addEventListener('contextmenu', function (event) {
-                event.preventDefault();
-                showContextMenu(event, item);
-            });
 
             var clickedItem = event.target;
             clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
