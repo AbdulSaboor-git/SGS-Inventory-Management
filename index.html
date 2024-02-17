@@ -269,6 +269,9 @@
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
 
+            inventoryData.sort(function (a, b) {
+                return a.itemName.localeCompare(b.itemName);
+            });
             inventoryData.forEach(function (item) {
                 var listItem = document.createElement('li');
 
@@ -348,6 +351,7 @@
 
             detailsDiv.innerHTML = `
                 <h2>Item Details</h2>
+
                 <table>
                     <tr>
                         <td>Item Name:</td>
