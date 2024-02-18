@@ -407,7 +407,7 @@
             // Clear feedback message after a few seconds
             setTimeout(function () {
                 feedbackPopup.style.display = 'none';
-            }, 2000);
+            }, 1200);
         }
 
         function enable() {
@@ -522,7 +522,6 @@
 
 
         function empty() {
-            // Clear both the HTML list and the inventoryData array
             var myList = document.getElementById("inventoryList");
             while (myList.firstChild) {
                 myList.removeChild(myList.firstChild);
@@ -559,19 +558,19 @@
 
                 <table>
                     <tr>
-                        <td>Item Name:</td>
+                        <td>Item Name</td>
                         <td>${item.itemName}</td>
                     </tr>
                     <tr>
-                        <td>Purchase Price:</td>
+                        <td>Purchase Price</td>
                         <td>Rs. ${item.purchasePrice}</td>
                     </tr>
                     <tr>
-                        <td>Sale Price:</td>
+                        <td>Sale Price</td>
                         <td>Rs. ${item.salePrice}</td>
                     </tr>
                     <tr>
-                        <td>Government Sale Price:</td>
+                        <td>Government Sale Price</td>
                         <td>${item.governmentSalePrice.trim() !== '' ? `Rs. ${item.governmentSalePrice}` : 'N/A'}</td>
                     </tr>
                 </table>
@@ -672,6 +671,7 @@
             displayFeedbackPopup("Item updated successfully!", true);
 
         }
+
         function handleCSVFile() {
             empty();
             var fileInput = document.getElementById('csvFileInput');
@@ -683,17 +683,16 @@
                 reader.onload = function (e) {
                     var csvData = e.target.result;
                     parseCSVData(csvData);
-                    displayList();
                 };
-
                 reader.readAsText(file);
             }
+
         }
 
         function parseCSVData(csvData) {
             var lines = csvData.split('\n');
             var headers = lines[0].split(',');
-
+            var flag = false;
             for (var i = 1; i < lines.length; i++) {
                 var data = lines[i].split(',');
                 var newItem = {};
@@ -726,6 +725,7 @@
             link.setAttribute("download", "inventory_data.csv");
             document.body.appendChild(link);
             link.click();
+
         }
 
     </script>
