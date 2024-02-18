@@ -347,7 +347,7 @@
         <a href="#" onclick="toggleAddItemForm()">Add Item</a>
         <a href="#" onclick="document.getElementById('csvFileInput').click()">Load Data</a>
         <a href="#" onclick="downloadCSV()">Save Data</a>
-        <a href="#" onclick="empty()">Clear Data</a>
+        <a href="#" onclick="clearInventoryList()">Clear Data</a>
     </nav>
 
     <!-- Search bar -->
@@ -511,15 +511,22 @@
                 if (indexToDelete !== -1) {
                     inventoryData.splice(indexToDelete, 1);
                     displayInventoryList();
-                    displayFeedbackPopup("Item deleted successfully!", true); // Pass true for success
+                    displayFeedbackPopup("Item deleted successfully!", true);
                 } else {
-                    displayFeedbackPopup("Item deletion failed!", false); // Pass false for error
+                    displayFeedbackPopup("Item deletion failed!", false);
                 }
             } else {
-                displayFeedbackPopup("Item deletion canceled!", false); // Pass false for error
+                displayFeedbackPopup("Item deletion canceled!", false);
             }
         }
 
+        function clearInventoryList() {
+            var confirmDelete = confirm("Are you sure you want to clear all data?");
+
+            if (confirmDelete) {
+                empty();
+            }
+        }
 
         function empty() {
             var myList = document.getElementById("inventoryList");
