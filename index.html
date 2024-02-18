@@ -270,8 +270,12 @@
             border-color: #0088ff;
             padding: 5px;
             text-align: center;
-
         }
+
+        .item-details td.m {
+            font-weight: bold;
+        }
+
 
         button.edit-button {
             color: #ffffff;
@@ -565,19 +569,19 @@
 
                 <table>
                     <tr>
-                        <td>Item Name</td>
+                        <td class="m">Item Name</td>
                         <td>${item.itemName}</td>
                     </tr>
                     <tr>
-                        <td>Purchase Price</td>
+                        <td class="m">Purchase Price</td>
                         <td>Rs. ${item.purchasePrice}</td>
                     </tr>
                     <tr>
-                        <td>Sale Price</td>
+                        <td class="m">Sale Price</td>
                         <td>Rs. ${item.salePrice}</td>
                     </tr>
                     <tr>
-                        <td>Government Sale Price</td>
+                        <td class="m">Government Sale Price</td>
                         <td>${item.governmentSalePrice.trim() !== '' ? `Rs. ${item.governmentSalePrice}` : 'N/A'}</td>
                     </tr>
                 </table>
