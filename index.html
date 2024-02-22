@@ -1,6 +1,22 @@
 <?php
+require ("connection.php");
 
+function getData(){
+    $data=array();
+    $data[1]=$_POST['itemName'];
+    $data[2]=$_POST['purchasePrice'];
+    $data[3]=$_POST['salePrice'];
+    $data[4]=$_POST['governmentSalePrice'];
+    return $data;
+}
+
+if(isset($_POST['insert'])){
+    $info=getData();
+    $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
+    $result=odbc_exec($connection, $insert);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -362,7 +378,7 @@
 
 
     <!-- Form for adding/editing items -->
-    <form id="addItemForm" style="display: none">
+    <form id="addItemForm" style="display: none" method="POST">
         <h2>Add/Edit Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
@@ -377,7 +393,7 @@
         <label for="governmentSalePrice">Government Sale Price:</label>
         <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true" required>
 
-        <button type="button" id="saveButton" onclick="saveItem()">Save Item</button>
+        <button type="button" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
     <h3>Search:</h3>
