@@ -1,23 +1,24 @@
 <?php
 
-$connection = odbc_connect('inventory','abdsab','asdf1234');
+$connection = odbc_connect('inventory', 'abdsab', 'asdf1234');
 if (!$connection) {
     die('Connection failed: ' . odbc_errormsg());
 }
-function getData(){
-    $data[1]=$_POST['itemName'];
-    $data=array();
-    $data[2]=$_POST['purchasePrice'];
-    $data[3]=$_POST['salePrice'];
-    $data[4]=$_POST['governmentSalePrice'];
+function getData()
+{
+    $data[1] = $_POST['itemName'];
+    $data = array();
+    $data[2] = $_POST['purchasePrice'];
+    $data[3] = $_POST['salePrice'];
+    $data[4] = $_POST['governmentSalePrice'];
     return $data;
 }
-    
-    if(isset($_POST['insert'])){
-        $info=getData();
-        $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
-        $result=odbc_exec($connection, $insert);
-    }
+
+if (isset($_POST['insert'])) {
+    $info = getData();
+    $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
+    $result = odbc_exec($connection, $insert);
+}
 ?>
 
 
@@ -394,9 +395,9 @@ function getData(){
         <input type="number" id="salePrice" name="salePrice" disabled="true" required>
 
         <label for="governmentSalePrice">Government Sale Price:</label>
-        <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true" required>
+        <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
 
-        <button type="button" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
+        <button type="submit" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
     <h3>Search:</h3>
