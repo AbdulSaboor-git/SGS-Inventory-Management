@@ -1,5 +1,5 @@
 <?php
-require ("connection.php");
+require ("connect.php");
 
 function getData(){
     $data=array();
@@ -8,12 +8,12 @@ function getData(){
     $data[3]=$_POST['salePrice'];
     $data[4]=$_POST['governmentSalePrice'];
     return $data;
-}
-
-if(isset($_POST['insert'])){
-    $info=getData();
-    $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
-    $result=odbc_exec($connection, $insert);
+    
+    if(isset($_POST['insert'])){
+        $info=getData();
+        $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
+        $result=odbc_exec($connection, $insert);
+    }
 }
 ?>
 
@@ -378,7 +378,7 @@ if(isset($_POST['insert'])){
 
 
     <!-- Form for adding/editing items -->
-    <form id="addItemForm" style="display: none" method="POST">
+    <form id="addItemForm" style="display: none" method="POST" action="connect.php">
         <h2>Add/Edit Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
