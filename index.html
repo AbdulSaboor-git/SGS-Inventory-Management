@@ -646,8 +646,6 @@ if (isset($_POST['insert'])) {
             if (addItemForm.style.display !== 'none') {
                 document.getElementById('itemDetails').style.maxHeight = null;
             }
-
-
         }
 
         function cancelAddEdit() {
@@ -720,10 +718,9 @@ if (isset($_POST['insert'])) {
                 reader.onload = function (e) {
                     var csvData = e.target.result;
                     parseCSVData(csvData);
-                    displayList();
                 };
-
                 displayFeedbackPopup("Data loaded from CSV successfully!", true);
+
                 reader.readAsText(file);
             } else {
                 displayFeedbackPopup("No CSV file selected!", false);
