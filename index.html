@@ -413,7 +413,7 @@ if (isset($_POST['insert'])) {
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile()">
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()">
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
         displayList();
@@ -709,7 +709,7 @@ if (isset($_POST['insert'])) {
 
         }
 
-        function handleCSVFile() {
+        function loadDataFromCSVFile() {
             empty();
             var fileInput = document.getElementById('csvFileInput');
             var file = fileInput.files[0];
@@ -720,11 +720,16 @@ if (isset($_POST['insert'])) {
                 reader.onload = function (e) {
                     var csvData = e.target.result;
                     parseCSVData(csvData);
+                    displayList();
                 };
-                reader.readAsText(file);
-            }
 
+                displayFeedbackPopup("Data loaded from CSV successfully!", true);
+                reader.readAsText(file);
+            } else {
+                displayFeedbackPopup("No CSV file selected!", false);
+            }
         }
+
 
         function parseCSVData(csvData) {
             var lines = csvData.split('\n');
@@ -762,7 +767,6 @@ if (isset($_POST['insert'])) {
             link.setAttribute("download", "inventory_data.csv");
             document.body.appendChild(link);
             link.click();
-
         }
 
     </script>
