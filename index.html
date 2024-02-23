@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 $connection = odbc_connect('inventory', 'abdsab', 'asdf1234');
 if (!$connection) {
@@ -19,7 +19,7 @@ if (isset($_POST['insert'])) {
     $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
     $result = odbc_exec($connection, $insert);
 }
-?>
+?> -->
 
 
 <!DOCTYPE html>
@@ -366,10 +366,10 @@ if (isset($_POST['insert'])) {
 </head>
 
 <body>
-
+    <!-- 
     <div id="confirmationMessage">
         <?php echo $message; ?>
-    </div>
+    </div> -->
 
     <h1 class="title">SGS INVENTORY SYSTEM</h1>
     <div id="feedbackPopup"></div>
@@ -381,8 +381,6 @@ if (isset($_POST['insert'])) {
         <a href="#" onclick="downloadCSV()">Save Data</a>
         <a href="#" onclick="clearInventoryList()">Clear Data</a>
     </nav>
-
-    <!-- Search bar -->
 
 
     <!-- Form for adding/editing items -->
@@ -417,7 +415,6 @@ if (isset($_POST['insert'])) {
     <div class="details-container" id="itemDetails"></div>
     <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVFile()">
     <script>
-        // Sample data for illustration (replace with your actual data)
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
         displayList();
         var editingItemId = null;
@@ -476,6 +473,7 @@ if (isset($_POST['insert'])) {
         function searchItems() {
             displayInventoryList();
         }
+
         function displayInventoryList() {
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
