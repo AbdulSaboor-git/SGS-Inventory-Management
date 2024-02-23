@@ -1,0 +1,158 @@
+<?php
+$connection = odbc_connect('test','abdsab','asdf1234');
+if (!$connection) {
+    die('Connection failed: ' . odbc_errormsg());
+}
+
+function getData(){
+    $data = array();
+    $data[1] = $_POST['itemName'];
+    $data[2] = $_POST['purchasePrice'];
+    $data[3] = $_POST['salePrice'];
+    $data[4] = $_POST['governmentSalePrice'];
+    return $data;
+}
+
+$message = "2423"; // Variable to store the confirmation message
+
+if(isset($_POST['insert'])){
+    $info = getData();
+    $insert = "INSERT INTO inventory (item_name, purchase_price, sale_price, govt_sale_price) VALUES ('$info[1]', '$info[2]', '$info[3]', '$info[4]')";
+    $result = odbc_exec($connection, $insert);
+
+    if ($result) {
+        $message = "Item successfully added to the database!";
+    } else {
+        $message = "Error: Unable to add item to the database. " . odbc_errormsg();
+        // You can also add more detailed error handling here if needed
+    }
+}
+
+?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            margin-left: 2px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            margin-right: 5px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button.cancel {
+            background-color: #6c757d;
+        }
+
+        button.cancel:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Add this after the form in your HTML -->
+    <div id="confirmationMessage">
+        <?php echo $message; ?>
+    </div>
+
+    <form id="addItemForm" method="POST" action="">
+        <h2>Add/Edit Item</h2>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" required>
+
+        <label for="purchasePrice">Purchase Price:</label>
+        <input type="number" id="purchasePrice" name="purchasePrice" required>
+
+        <label for="salePrice">Sale Price:</label>
+        <input type="number" id="salePrice" name="salePrice" required>
+
+        <label for="governmentSalePrice">Government Sale Price:</label>
+        <input type="number" id="governmentSalePrice" name="governmentSalePrice">
+
+        <button type="submit" id="saveButton" name="insert">Save Item</button>
+        <button type="button" class="cancel">Cancel</button>
+    </form>
+
+    <?php
+echo "
+<form method='POST' action=''>
+    <input type='text' name='itemName' value='Test Item'>
+    <input type='number' name='purchasePrice' value='10'>
+    <input type='number' name='salePrice' value='15'>
+    <input type='number' name='governmentSalePrice' value='12'>
+    <button type='submit' name='insert'>Test Save</button>
+</form>";
+?>
+</body>
+
+</html>
