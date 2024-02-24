@@ -443,6 +443,7 @@ if (isset($_POST['insert'])) {
             var itemName = document.getElementById('itemName').value;
             var saveButton1 = document.getElementById('saveButton');
             var purchasePriceField = document.getElementById('purchasePrice');
+            var salePriceField = document.getElementById('salePrice');
             var governmentSalePriceField = document.getElementById('governmentSalePrice');
 
             if (itemName.trim() !== '') {
@@ -450,11 +451,14 @@ if (isset($_POST['insert'])) {
                 governmentSalePriceField.removeAttribute('disabled');
                 if (purchasePriceField.value.trim() !== '') {
                     saveButton1.removeAttribute('disabled');
+                    salePriceField.removeAttribute('disabled');
                 } else {
                     saveButton1.setAttribute('disabled', true);
+                    salePriceField.setAttribute('disabled', true);
                 }
             } else {
                 purchasePriceField.setAttribute('disabled', true);
+                salePriceField.setAttribute('disabled', true);
                 governmentSalePriceField.setAttribute('disabled', true);
                 saveButton1.setAttribute('disabled', true);
             }
