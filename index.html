@@ -5,363 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Inventory System</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #272727;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+    <link rel="stylesheet" type="text/css" href="styles.css">
 
-        button,
-        a,
-        li,
-        input[type="button"],
-        input[type="submit"] {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-        }
-
-
-        nav {
-            overflow: hidden;
-            width: 100%;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        nav a {
-            float: left;
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            width: 25%;
-            font-size: 17px;
-            box-sizing: border-box;
-            background-color: #FFB300;
-            border-radius: 30px;
-            color: #feffdd;
-            padding: 6px;
-            margin: 5px;
-        }
-
-
-        nav a:hover {
-            background-color: #e8a200;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 30px;
-            border: px solid;
-            padding: 10px;
-            border-radius: 100px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            background-color: #FFB300;
-            color: #feffdd;
-        }
-
-        #searchBar {
-            margin-bottom: 25px;
-            padding: 8px;
-            width: 100%;
-            font-size: 15px;
-            color: #626262;
-            border: 2px solid #FFB300;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #feffdd;
-        }
-
-        #searchBar::placeholder {
-            color: #a5a5a5;
-        }
-
-        #searchBar:focus {
-            outline: none;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: #FFB300;
-            margin-bottom: 10px;
-            margin-top: 0px;
-            margin-left: 2px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-
-        li {
-            background-color: #feffdd;
-            border: 3px solid #FFB300;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            position: relative;
-        }
-
-        button.details {
-            background-color: #00000000;
-            cursor: pointer;
-            height: 65px;
-            width: 100%;
-            position: absolute;
-            right: -4px;
-            top: -12px;
-            bottom: 0px;
-            border-radius: 8px;
-        }
-
-        button.details:hover {
-            background-color: #0057b300;
-        }
-
-        li span.item-name {
-            color: #646464;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        li span.sale-price {
-            font-size: 14px;
-            color: #646464;
-        }
-
-        li:hover {
-            background-color: #fdffb6;
-        }
-
-        form {
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            transition: transform 0.3s ease-in-out;
-            animation: fadeInUp 0.5s ease-out;
-            background-color: #feffdd;
-            border-radius: 8px;
-        }
-
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 16px;
-            border: 2px solid #ffb30080;
-            border-radius: 4px;
-            box-sizing: border-box;
-            color: #616161;
-            background-color: #eeefb4;
-
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        button {
-            background-color: #10a705;
-            color: #feffdd;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-            margin-right: 5px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        button.cancel {
-            background-color: #6c757d;
-        }
-
-        button.cancel:hover {
-            background-color: #5a6268;
-        }
-
-        button:hover {
-            background-color: #0d8205;
-        }
-
-        .details-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .item-details {
-            color: #f7f9d0;
-            margin: 10px auto;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #272727;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-            transition: max-height 0.5s ease-in-out;
-            animation: fadeIn 0.5s ease-out;
-            max-width: 100%;
-            width: 90%;
-            text-align: left;
-            overflow: auto;
-        }
-
-        .item-details table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 0px;
-        }
-
-        .item-details td {
-            border: 0.5px solid;
-            border-color: #FFB30050;
-            padding: 5px;
-            text-align: center;
-        }
-
-        .item-details td.m {
-            font-weight: bold;
-        }
-
-        button.edit-button {
-            color: #ffffff;
-            background-color: #10a705;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 60px;
-            font-size: 13px;
-            transition: background-color 0.3s;
-            margin-top: 16px;
-            margin-right: 10px;
-            margin-left: 1px;
-            margin-bottom: 0px;
-        }
-
-        button.delete-button {
-            color: #ffffff;
-            background-color: #e52626;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 60px;
-            font-size: 13px;
-            transition: background-color 0.3s;
-            margin-top: 16px;
-            margin-right: 10px;
-            margin-bottom: 0px;
-        }
-
-        button.delete-button:hover {
-            background-color: #c72121;
-        }
-
-        button.edit-button:hover {
-            background-color: #0d8205;
-        }
-
-        #feedbackPopup {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 8px;
-            display: none;
-            z-index: 999;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            max-width: 300px;
-            text-align: center;
-        }
-
-        #feedbackPopup.error {
-            background-color: #c72121;
-        }
-
-        #feedbackPopup.success {
-            background-color: #10a705;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .item-details {
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .addItemForm {
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .title {
-                font-size: 25px;
-            }
-
-            nav a {
-                font-size: 14px;
-            }
-        }
-
-        @media only screen and (max-width: 768px) {
-
-            h1,
-            h2 {
-                font-size: 24px;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            body {
-                margin: 40px;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <!-- 
-    <div id="confirmationMessage">
-        <?php echo $message; ?>
-    </div> -->
-
-    <h1 class="title">SGS INVENTORY SYSTEM</h1>
+    <div class="header">
+        <h1 class="title">SGS INVENTORY</h1>
+        <div class="dropdown">
+            <button class="dropdown-btn">&#8285;</button>
+            <div class="dropdown-content">
+                <form class="dropdownList" method="post">
+                    <input type="button" class="btn" value="Add Item" onclick="toggleAddItemForm()">
+                    <input type="button" class="btn" value="Load Data"
+                        onclick="document.getElementById('csvFileInput').click()">
+                    <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
+                    <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="feedbackPopup"></div>
-    <!-- Button to toggle the "Add Item" form -->
 
-    <nav>
-        <a href="#" onclick="toggleAddItemForm()">Add Item</a>
-        <a href="#" onclick="document.getElementById('csvFileInput').click()">Load Data</a>
-        <a href="#" onclick="downloadCSV()">Save Data</a>
-        <a href="#" onclick="clearInventoryList()">Clear Data</a>
-    </nav>
-
-
-    <!-- Form for adding/editing items -->
-    <form id="addItemForm" style="display: none" method="POST">
-        <h2>Add/Edit Item</h2>
+    <form id="addItemForm" style="display: none" method="POST" autocomplete="off" spellcheck="false">
+        <h2 id="addEditHeader">Add Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
 
@@ -370,7 +37,7 @@
             required>
 
         <label for="salePrice">Sale Price:</label>
-        <input type="number" id="salePrice" name="salePrice" disabled="true" required>
+        <input type="number" id="salePrice" name="salePrice" required>
 
         <label for="governmentSalePrice">Government Sale Price:</label>
         <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
@@ -454,6 +121,29 @@
             displayInventoryList();
         }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            var dropdownBtn = document.querySelector('.dropdown-btn');
+            var dropdownContent = document.querySelector('.dropdown-content');
+
+            dropdownBtn.addEventListener('click', function (event) {
+                event.stopPropagation();
+                dropdownContent.classList.toggle('show');
+            });
+
+            window.addEventListener('click', function () {
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+
+            document.body.addEventListener('click', function () {
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                }
+            });
+        });
+
+
         function displayInventoryList() {
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
@@ -507,6 +197,7 @@
             editingItemId = itemId;
 
             document.getElementById('saveButton').textContent = 'Update Item';
+            document.getElementById('addEditHeader').textContent = 'Edit Item';
             toggleAddItemForm();
         }
 
