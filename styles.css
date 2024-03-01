@@ -169,11 +169,11 @@ button {
 }
 
 button.cancel {
-    background-color: #6c757d;
+    background-color: #575157;
 }
 
 button.cancel:hover {
-    background-color: #5a6268;
+    background-color: #433e43;
 }
 
 button:hover {
