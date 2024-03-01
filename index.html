@@ -11,7 +11,7 @@
 
 <body>
     <div class="header">
-        <h1 class="title">SGS INVENTORY</h1>
+        <h1 class="title">SGS - INVENTORY</h1>
         <div class="dropdown">
             <button class="dropdown-btn">&#8285;</button>
             <div class="dropdown-content">
@@ -21,6 +21,7 @@
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
                     <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
+                    <input type="button" class="logout_btn" value="Logout">
                 </form>
             </div>
         </div>
@@ -28,7 +29,7 @@
     <div id="feedbackPopup"></div>
 
     <form id="addItemForm" style="display: none" method="POST" autocomplete="off" spellcheck="false">
-        <h2 id="addEditHeader">Add Item</h2>
+        <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" oninput="enable()" required>
 

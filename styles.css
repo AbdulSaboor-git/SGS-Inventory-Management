@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
-    background-color: #272727;
+    background-color: #10002b;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -19,18 +19,32 @@ input[type="submit"] {
 
 .title {
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
     color: #ffffe4;
-    padding-top: 13.5px;
+    padding-top: 9px;
 }
 
 .header {
-    background-color: #FFB300;
+    background-color: #7b2cbf;
     height: 65px;
     position: relative;
     display: block;
     border-radius: 100px;
     margin-bottom: 25px;
+}
+
+h1,
+h2,
+h3 {
+    color: #f0618e;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-left: 2px;
+}
+
+.addEditHeader{
+    color: #bc4749;
+
 }
 
 .dropdown {
@@ -75,7 +89,7 @@ input[type="submit"] {
 
 input.logout_btn,
 input.btn {
-    background-color: #feffdd;
+    background-color: #e8d4f5;
     display: block;
     width: 100%;
     padding: 10px;
@@ -84,7 +98,7 @@ input.btn {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    color: #10a705;
+    color: #7b2cbf;
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 14px;
@@ -95,7 +109,7 @@ input.logout_btn {
 }
 
 .btn:hover {
-    background-color: #d6faca;
+    background-color: #d1f9c4;
 }
 
 .logout_btn:hover {
@@ -113,7 +127,7 @@ form {
     padding: 20px;
     transition: transform 0.3s ease-in-out;
     animation: fadeInUp 0.5s ease-out;
-    background-color: #feffdd;
+    background-color: #f1e1fc;
     border-radius: 8px;
 }
 
@@ -128,11 +142,11 @@ input {
     width: 100%;
     padding: 10px;
     margin-bottom: 16px;
-    border: 2px solid #ffb30080;
+    border: 2px solid #bc474980;
     border-radius: 4px;
     box-sizing: border-box;
     color: #616161;
-    background-color: #eeefb4;
+    background-color: #e7c3fc;
 
 }
 
@@ -172,11 +186,11 @@ button:hover {
     padding: 8px;
     width: 100%;
     font-size: 15px;
-    color: #626262;
-    border: 2px solid #FFB300;
+    color: #303030;
+    border: 2px solid #e0afa0;
     border-radius: 8px;
     box-sizing: border-box;
-    background-color: #feffdd;
+    background-color: #f1e1fc;
 }
 
 #searchBar::placeholder {
@@ -187,14 +201,6 @@ button:hover {
     outline: none;
 }
 
-h1,
-h2,
-h3 {
-    color: #ffb300;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    margin-left: 2px;
-}
 
 ul {
     list-style: none;
@@ -204,8 +210,8 @@ ul {
 
 
 li {
-    background-color: #feffdd;
-    border: 3px solid #FFB300;
+    background-color: #f1e1fc;
+    border: 3px solid #e0afa0;
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 10px;
@@ -235,18 +241,18 @@ button.details:hover {
 }
 
 li span.item-name {
-    color: #626262;
+    color: #303030;
     font-size: 16px;
     font-weight: bold;
 }
 
 li span.sale-price {
     font-size: 14px;
-    color: #626262;
+    color: #303030;
 }
 
 li:hover {
-    background-color: #fdffb6;
+    background-color: #e7c3fc;
 }
 
 
@@ -262,7 +268,7 @@ li:hover {
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
-    background-color: #272727;
+    background-color: #10002b;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
     transition: max-height 0.5s ease-in-out;
     animation: fadeIn 0.5s ease-out;
@@ -362,7 +368,8 @@ button.edit-button:hover {
     }
 
     .title {
-        font-size: 25px;
+        padding-top: 12px;
+        font-size: 30px;
     }
 }
 
