@@ -6,6 +6,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    transition: background-color 0.3s;
 }
 
 button,
@@ -15,13 +16,15 @@ input[type="button"],
 input[type="submit"] {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    transition: background-color 0.3s;
 }
 
 .title {
     text-align: center;
     font-size: 35px;
-    color: #ffffe4;
+    color: #edd9ff;
     padding-top: 9px;
+    transition: padding-top 0.3s, font-size 0.3s;
 }
 
 .header {
@@ -31,6 +34,7 @@ input[type="submit"] {
     display: block;
     border-radius: 100px;
     margin-bottom: 25px;
+    transition: background-color 0.3s;
 }
 
 h1,
@@ -60,7 +64,7 @@ h3 {
     cursor: pointer;
     font-size: 23px;
     background-color: #FFB30000;
-
+    transition: background-color 0.3s;
 }
 
 .dropdown-btn:hover {
@@ -113,7 +117,7 @@ input.logout_btn {
 }
 
 .logout_btn:hover {
-    background-color: #fad0ca;
+    background-color: #f7c1c1;
 }
 
 .addItemForm {
@@ -126,8 +130,9 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: transform 0.3s ease-in-out;
-    animation: fadeInUp 0.5s ease-out;
-    background-color: #f1e1fc;
+    animation: fadeInUp 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    background-color: #f5ebfb;
     border-radius: 8px;
 }
 
@@ -145,8 +150,8 @@ input {
     border: 2px solid #bc474980;
     border-radius: 4px;
     box-sizing: border-box;
-    color: #616161;
-    background-color: #ebd7f7;
+    color: #303030;
+    background-color: #e3c8f2;
 
 }
 
@@ -156,7 +161,7 @@ input:focus {
 
 button {
     background-color: #10a705;
-    color: #feffdd;
+    color: #fff;
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
@@ -190,7 +195,7 @@ button:hover {
     border: 2px solid #e0afa0;
     border-radius: 8px;
     box-sizing: border-box;
-    background-color: #f1e1fc;
+    background-color: #f5ebfb;
 }
 
 #searchBar::placeholder {
@@ -210,13 +215,13 @@ ul {
 
 
 li {
-    background-color: #f1e1fc;
+    background-color: #f5ebfb;
     border: 3px solid #e0afa0;
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -263,7 +268,7 @@ li:hover {
 }
 
 .item-details {
-    color: #f7f9d0;
+    color: #f5ebfb;
     margin: 10px auto;
     margin-bottom: 20px;
     padding: 20px;
@@ -287,7 +292,7 @@ li:hover {
 
 .item-details td {
     border: 0.5px solid;
-    border-color: #FFB30050;
+    border-color: #f0618e50;
     padding: 5px;
     text-align: center;
 }
@@ -297,7 +302,7 @@ li:hover {
 }
 
 button.edit-button {
-    color: #ffffff;
+    color: #fff;
     background-color: #10a705;
     border: none;
     border-radius: 20px;
@@ -312,7 +317,7 @@ button.edit-button {
 }
 
 button.delete-button {
-    color: #ffffff;
+    color: #fff;
     background-color: #e52626;
     border: none;
     border-radius: 20px;
@@ -346,6 +351,7 @@ button.edit-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     max-width: 300px;
     text-align: center;
+    transition: background-color 0.3s;
 }
 
 #feedbackPopup.error {
