@@ -191,7 +191,7 @@ button:hover {
     width: 100%;
     font-size: 15px;
     color: #303030;
-    border: 2px solid #e0afa0;
+    border: 2px solid #db88d0;
     border-radius: 8px;
     box-sizing: border-box;
     background-color: #f5ebfb;
@@ -215,7 +215,7 @@ ul {
 
 li {
     background-color: #f5ebfb;
-    border: 3px solid #e0afa0;
+    border: 3px solid #db88d0;
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 10px;
