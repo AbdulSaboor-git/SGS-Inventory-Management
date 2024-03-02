@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="header">
+    <div class="headerTitle">
         <h1 class="title">SGS - INVENTORY</h1>
         <div class="dropdown">
             <button class="dropdown-btn">&#8285;</button>
@@ -26,6 +26,12 @@
             </div>
         </div>
     </div>
+
+    <h3>Search:</h3>
+    <div class="SearchBar">
+        <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
+    </div>
+
     <div id="feedbackPopup"></div>
 
     <form id="addItemForm" style="display: none" method="POST" autocomplete="off" spellcheck="false">
@@ -46,8 +52,6 @@
         <button type="submit" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
-    <h3>Search:</h3>
-    <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
 
     <!-- List for displaying item names with sales prices -->
     <h3>INVENTORY</h3>

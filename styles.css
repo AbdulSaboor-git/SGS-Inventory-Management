@@ -26,7 +26,7 @@ input[type="submit"] {
     transition: padding-top 0.3s, font-size 0.3s;
 }
 
-.header {
+.headerTitle {
     background-color: #7b2cbf;
     height: 65px;
     position: relative;
@@ -40,8 +40,8 @@ h1,
 h2,
 h3 {
     color: #f0618e;
-    margin-bottom: 10px;
-    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
     margin-left: 2px;
 }
 
@@ -73,14 +73,13 @@ h3 {
 .dropdownList {
     margin: 0px auto;
     padding: 0px;
-
+    z-index: 1;
 }
- 
+
 .dropdown-content {
     display: none;
     position: absolute;
     box-sizing: content-box;
-    z-index: 1;
     right: 25px;
     min-width: 130px;
     margin-top: -25px;
@@ -184,9 +183,16 @@ button:hover {
     background-color: #0d8205;
 }
 
+.SearchBar{
+    position: sticky;
+    padding-top: 10px;
+    top: -1px;
+    z-index: 0;
+    background-color: #10002b;
+}
 
 #searchBar {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     padding: 8px;
     width: 100%;
     font-size: 15px;
@@ -214,6 +220,8 @@ ul {
 
 
 li {
+    z-index: -1;
+    margin-top: 10px;
     background-color: #f5ebfb;
     border: 3px solid #db88d0;
     border-radius: 8px;
@@ -346,7 +354,7 @@ button.edit-button:hover {
     color: #fff;
     border-radius: 8px;
     display: none;
-    z-index: 999;
+    z-index: 2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     max-width: 300px;
     text-align: center;
