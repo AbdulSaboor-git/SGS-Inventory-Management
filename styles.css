@@ -54,7 +54,7 @@ h3 {
     position: absolute;
     top: -20px;
     right: 10px;
-    z-index: 1;
+    z-index: 2;
     display: block;
     margin-top: 20px;
 }
@@ -73,7 +73,6 @@ h3 {
 .dropdownList {
     margin: 0px auto;
     padding: 0px;
-    z-index: 1;
 }
 
 .dropdown-content {
@@ -187,7 +186,7 @@ button:hover {
     position: sticky;
     padding-top: 10px;
     top: -1px;
-    z-index: 0;
+    z-index: 1;
     background-color: #10002b;
 }
 
@@ -220,7 +219,6 @@ ul {
 
 
 li {
-    z-index: -1;
     margin-top: 10px;
     background-color: #f5ebfb;
     border: 3px solid #db88d0;
