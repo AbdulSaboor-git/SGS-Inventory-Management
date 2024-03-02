@@ -20,8 +20,8 @@ input[type="submit"] {
 
 .title {
     text-align: center;
-    font-size: 35px;
-    color: #edd9ff;
+    font-size: 35px; 
+    color: #f9f2ff;
     padding-top: 9px;
     transition: padding-top 0.3s, font-size 0.3s;
 }
