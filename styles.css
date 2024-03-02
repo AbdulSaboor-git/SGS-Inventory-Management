@@ -30,11 +30,11 @@ input[type="submit"] {
 }
 
 .header {
-    top: -4px;
+    top: 0px;
     position: sticky;
     background-color: #10002b;
     z-index: 2;
-    padding-top: 5px;
+    padding-top: 7px;
     padding-bottom: 10px;
 }
 
