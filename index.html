@@ -29,25 +29,27 @@
 
     <h3>Search:</h3>
     <div class="SearchBar">
+        <input type="button" class="clearSearch" onclick="clearSearch()" value="&#x2715;"></input>
         <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
     </div>
 
     <div id="feedbackPopup"></div>
 
-    <form id="addItemForm" style="display: none" method="POST" autocomplete="off" spellcheck="false">
+    <form id="addItemForm" class="addItemForm" cstyle="display: none" method="POST" autocomplete="off"
+        spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
         <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName" name="itemName" oninput="enable()" required>
+        <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="purchasePrice">Purchase Price:</label>
-        <input type="number" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()" disabled="true"
-            required>
+        <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()"
+            disabled="true" required>
 
         <label for="salePrice">Sale Price:</label>
-        <input type="number" id="salePrice" name="salePrice" required>
+        <input type="number" class="addItemInput" id="salePrice" name="salePrice" required>
 
         <label for="governmentSalePrice">Government Sale Price:</label>
-        <input type="number" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
+        <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
 
         <button type="submit" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
         <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
@@ -124,6 +126,12 @@
 
         function searchItems() {
             displayInventoryList();
+        }
+
+        function clearSearch() {
+            var searchBar = document.getElementById('searchBar');
+            searchBar.value = '';
+            searchItems();
         }
 
         document.addEventListener("DOMContentLoaded", function () {
