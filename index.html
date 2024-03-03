@@ -131,7 +131,8 @@
         function clearSearch() {
             var searchBar = document.getElementById('searchBar');
             searchBar.value = '';
-toggleClearSearch()
+var clearSearch = document.getElementById('clearSearch');
+            clearSearch.style.display = 'none';
             searchItems();
         }
 
