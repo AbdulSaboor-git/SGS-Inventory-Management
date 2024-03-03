@@ -30,7 +30,7 @@
     <h3>Search:</h3>
     <div class="SearchBar">
         <input type="button" style="display:none"  id="clearSearch" class="clearSearch" onclick="clearSearch()" value="&#x2715;"></input>
-        <input type="text" oninput="toggleClearSearch()" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
+        <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems(),toggleClearSearch()">
     </div>
 
     <div id="feedbackPopup"></div>
