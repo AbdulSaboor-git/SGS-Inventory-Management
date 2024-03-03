@@ -29,7 +29,8 @@
 
     <h3>Search:</h3>
     <div class="SearchBar">
-        <input type="button" style="display:none"  id="clearSearch" class="clearSearch" onclick="clearSearch()" value="&#x2715;"></input>
+        <input type="button" style="display:none" id="clearSearch" class="clearSearch" onclick="clearSearch()"
+            value="&#x2715;"></input>
         <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems(),toggleClearSearch()">
     </div>
 
@@ -83,7 +84,6 @@
 
             feedbackPopup.style.display = 'block';
 
-            // Clear feedback message after a few seconds
             setTimeout(function () {
                 feedbackPopup.style.display = 'none';
             }, 2200);
@@ -131,19 +131,20 @@
         function clearSearch() {
             var searchBar = document.getElementById('searchBar');
             searchBar.value = '';
-var clearSearch = document.getElementById('clearSearch');
+            var clearSearch = document.getElementById('clearSearch');
             clearSearch.style.display = 'none';
             searchItems();
         }
 
-function toggleClearSearch(){
-var searchBar = document.getElementById('searchBar');
-var clearSearch = document.getElementById('clearSearch');
-if(searchBar.value!==''){
-            clearSearch.style.display = 'block';
-}
-else{clearSearch.style.display = 'none';}
-}
+        function toggleClearSearch() {
+            var searchBar = document.getElementById('searchBar');
+            var clearSearch = document.getElementById('clearSearch');
+            if (searchBar.value !== '') {
+                clearSearch.style.display = 'block';
+            }
+            else { clearSearch.style.display = 'none'; }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             var dropdownBtn = document.querySelector('.dropdown-btn');
             var dropdownContent = document.querySelector('.dropdown-content');

@@ -21,7 +21,7 @@ input[type="submit"] {
 .title {
     background-color: #7b2cbf;
     text-align: center;
-    font-size: 35px; 
+    font-size: 35px;
     color: #f9f2ff;
     padding: 10px;
     transition: padding-top 0.3s, font-size 0.3s;
@@ -30,7 +30,7 @@ input[type="submit"] {
 }
 
 .header {
-    top: 0px;
+    top: 0;
     position: sticky;
     background-color: #10002b;
     z-index: 2;
@@ -47,7 +47,7 @@ h3 {
     margin-left: 2px;
 }
 
-.addEditHeader{
+.addEditHeader {
     color: #bc4749;
 
 }
@@ -87,6 +87,7 @@ h3 {
 }
 
 .dropdown-content.show {
+    animation: fadeIn 0.2s ease-in-out;
     display: block;
 }
 
@@ -96,7 +97,6 @@ input.btn {
     display: block;
     width: 100%;
     padding: 10px;
-    margin-bottom: 0px;
     border: 0px solid #E0E0E0;
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -128,9 +128,8 @@ input.logout_btn {
     margin: 20px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    animation: fadeInUp 0.5s ease-in-out;
-    box-shadow 0.3s;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
+    ;
     background-color: #f5ebfb;
     border-radius: 8px;
 }
@@ -142,7 +141,7 @@ label {
     color: #555;
 }
 
-.addItemInput{
+.addItemInput {
     width: 100%;
     padding: 10px;
     margin-bottom: 16px;
@@ -184,11 +183,11 @@ button:hover {
     background-color: #0d8205;
 }
 
-.SearchBar{
+.SearchBar {
     position: sticky;
     padding-top: 10px;
     padding-bottom: 10px;
-    top: 73px;
+    top: 81px;
     z-index: 1;
     background-color: #10002b;
 }
@@ -213,23 +212,23 @@ button:hover {
     outline: none;
 }
 
-.clearSearch{
+.clearSearch {
     background-color: #f5ebfb;
     border: 0px solid;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 17px;
-    color: #9925ffaf;
-    position:absolute;
+    font-size: 15px;
+    color: #db88d0;
+    position: absolute;
     top: 12px;
     right: 2px;
     height: 32px;
-    width:32px;
-    transition: transform 0.3s ease-in-out;
-    animation: fadeInUp 0.5s ease-in-out;
+    width: 32px;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.clearSearch:hover{
+
+.clearSearch:hover {
     background-color: #00000000;
 
 }
@@ -299,12 +298,12 @@ li:hover {
     color: #f5ebfb;
     margin: 10px auto;
     margin-bottom: 20px;
+    box-sizing: border-box;
     padding: 20px;
     border-radius: 8px;
     background-color: #10002b;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
     transition: max-height 0.5s ease-in-out;
-    animation: fadeIn 0.5s ease-out;
     max-width: 100%;
     width: 90%;
     text-align: left;
@@ -380,6 +379,8 @@ button.edit-button:hover {
     max-width: 300px;
     text-align: center;
     transition: background-color 0.3s;
+    animation: fadeIn 0.2s ease-in-out;
+
 }
 
 #feedbackPopup.error {
@@ -418,5 +419,25 @@ button.edit-button:hover {
 @media only screen and (min-width: 1200px) {
     body {
         margin: 40px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
