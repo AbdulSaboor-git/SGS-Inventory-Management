@@ -29,8 +29,8 @@
 
     <h3>Search:</h3>
     <div class="SearchBar">
-        <input type="button" class="clearSearch" onclick="clearSearch()" value="&#x2715;"></input>
-        <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
+        <input type="button" style="display:none"  id="clearSearch" class="clearSearch" onclick="clearSearch()" value="&#x2715;"></input>
+        <input type="text" oninput="toggleClearSearch()" id="searchBar" placeholder="Search by Item Name" oninput="searchItems()">
     </div>
 
     <div id="feedbackPopup"></div>
@@ -133,6 +133,14 @@
             searchBar.value = '';
             searchItems();
         }
+
+function toggleClearSearch(){
+var searchBar = document.getElementById('searchBar');
+var clearSearch = document.getElementById('clearSearch');
+if(searchBar.value!==''){
+            clearSearch.style.display = 'block';
+}
+else{clearSearch.style.display = 'block';}
 
         document.addEventListener("DOMContentLoaded", function () {
             var dropdownBtn = document.querySelector('.dropdown-btn');
