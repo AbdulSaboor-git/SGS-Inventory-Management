@@ -175,7 +175,7 @@
             inventoryData.sort(function (a, b) {
                 return a.itemName.localeCompare(b.itemName);
             });
-            // Filtered items based on the search query
+
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
             var filteredItems = inventoryData.filter(function (item) {
                 return item.itemName.toLowerCase().includes(searchQuery);
