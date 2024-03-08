@@ -238,7 +238,7 @@ button:hover {
     background-size: cover;
     color: #f0618e;
     position: absolute;
-    top: 90px;
+    top: 85px;
     right: 20px;
     z-index: 2;
     display: block;
@@ -289,9 +289,6 @@ button:hover {
     display: block;
     animation: fadeIn 0.15s ease-in-out;
 }
-
-
-
 
 ul {
     list-style: none;
@@ -470,6 +467,7 @@ button.edit-button:hover {
     .SearchBar {
         top: 76px;
     }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -483,6 +481,11 @@ button.edit-button:hover {
 @media only screen and (min-width: 1200px) {
     body {
         margin: 40px;
+    }
+
+    .filter {
+        top: 110px;
+        right: 35px;
     }
 }
 
