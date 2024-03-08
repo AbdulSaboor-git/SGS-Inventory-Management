@@ -33,7 +33,7 @@ input[type="submit"] {
     top: 0;
     position: sticky;
     background-color: #10002b;
-    z-index: 2;
+    z-index: 3;
     padding-top: 7px;
     padding-bottom: 10px;
 }
@@ -232,6 +232,66 @@ button:hover {
     background-color: #00000000;
 
 }
+
+.filter {
+    background-color: #00000000;
+    background-size: cover;
+    color: #f0618e;
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    z-index: 2;
+    display: block;
+    margin-top: 20px;
+    height: 25px;
+}
+
+.filter:hover {
+    background-color: #ccff0000;
+}
+
+.filter-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f5ebfb;
+    min-width: 120px;
+    right: 25px;
+    margin-top: -5px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border-radius: 8px;
+
+}
+
+.filter-dropdown button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #f5ebfb;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 0px solid #E0E0E0;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #7b2cbf;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 13px;
+    font-weight: 100;
+}
+
+.filter-dropdown button:hover {
+    background-color: #d1f9c4;
+}
+
+.filter-dropdown.show {
+    display: block;
+    animation: fadeIn 0.15s ease-in-out;
+}
+
+
+
 
 ul {
     list-style: none;

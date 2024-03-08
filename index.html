@@ -28,6 +28,15 @@
     </div>
 
     <h3>Search:</h3>
+    <button class="filter" id="filterButton">&#9650;&#9660;</button>
+    <div class="filterDiv">
+        <div id="filterDropdown" class="filter-dropdown">
+            <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
+            <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
+            <button onclick="sortInventory('salePrice', 'asc')">Sale Price &#9650;</button>
+            <button onclick="sortInventory('salePrice', 'desc')">Sale Price &#9660;</button>
+        </div>
+    </div>
     <div class="SearchBar">
         <input type="button" style="display:none" id="clearSearch" class="clearSearch" onclick="clearSearch()"
             value="&#x2715;"></input>
@@ -167,14 +176,52 @@
             });
         });
 
+        function sortInventory(property, order) {
+
+            if (order === 'asc') {
+                inventoryData.sort(function (a, b) {
+                    if (property === 'salePrice')
+                        return parseFloat(a[property]) - parseFloat(b[property]);
+                    else
+                        return a[property].localeCompare(b[property]);
+                });
+            } else if (order === 'desc') {
+                inventoryData.sort(function (a, b) {
+                    if (property === 'salePrice')
+                        return parseFloat(b[property]) - parseFloat(a[property]);
+                    else
+                        return b[property].localeCompare(a[property]);
+                });
+            }
+
+            displayInventoryList();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var filterButton = document.getElementById('filterButton');
+            var filterDropdown = document.getElementById('filterDropdown');
+
+            filterButton.addEventListener('click', function (event) {
+                event.stopPropagation();
+                filterDropdown.classList.toggle('show');
+            });
+
+            window.addEventListener('click', function () {
+                if (filterDropdown.classList.contains('show')) {
+                    filterDropdown.classList.remove('show');
+                }
+            });
+
+            document.body.addEventListener('click', function () {
+                if (filterDropdown.classList.contains('show')) {
+                    filterDropdown.classList.remove('show');
+                }
+            });
+        });
 
         function displayInventoryList() {
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
-
-            inventoryData.sort(function (a, b) {
-                return a.itemName.localeCompare(b.itemName);
-            });
 
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
             var filteredItems = inventoryData.filter(function (item) {
