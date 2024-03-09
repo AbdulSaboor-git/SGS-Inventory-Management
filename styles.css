@@ -167,8 +167,6 @@ button {
     font-size: 14px;
     transition: background-color 0.3s;
     margin-right: 5px;
-    margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 button.cancel {
