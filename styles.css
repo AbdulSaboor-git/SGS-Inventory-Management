@@ -41,6 +41,7 @@ input[type="submit"] {
 h1,
 h2,
 h3 {
+    font-size: 18px;
     color: #f0618e;
     margin-bottom: 0px;
     margin-top: 5px;
@@ -54,7 +55,7 @@ h3 {
 
 .dropdown {
     position: absolute;
-    top: -5px;
+    margin-top: -54px;
     right: 10px;
     z-index: 2;
     display: block;
@@ -66,7 +67,6 @@ h3 {
     font-size: 23px;
     background-color: #FFB30000;
     transition: background-color 0.3s;
-    margin-top: 30px;
     margin-bottom: 20px;
 }
 
@@ -239,13 +239,12 @@ button:hover {
     background-size: cover;
     color: #f0618e;
     position: absolute;
-    top: 85px;
+    display: inline;
+    margin-top: -25px;
     right: 20px;
     z-index: 2;
-    display: block;
-    margin-top: 20px;
     height: 25px;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .filter:hover {
@@ -257,8 +256,8 @@ button:hover {
     position: absolute;
     background-color: #f5ebfb;
     min-width: 120px;
-    right: 53px;
-    margin-top: -5px;
+    right: 56px;
+    margin-top: 4px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 8px;
@@ -468,23 +467,7 @@ button.edit-button:hover {
     }
 
     .dropdown {
-        top: -8px;
-    }
-
-    .filter {
-        font-size: 16px;
-        top: 82px;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .dropdown {
-        top: -8px;
-    }
-
-    .filter {
-        font-size: 16px;
-        top: 50px;
+        margin-top: -50px;
     }
 }
 
@@ -502,13 +485,11 @@ button.edit-button:hover {
     }
 
     .filter {
-        top: 110px;
         right: 35px;
     }
 
     .filter-dropdown {
         right: 70px;
-        margin-top: 2px;
     }
 
 }
