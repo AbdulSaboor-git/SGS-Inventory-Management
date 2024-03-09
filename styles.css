@@ -75,7 +75,6 @@ h3 {
 }
 
 .dropdownList {
-    margin: 0px auto;
     padding: 0px;
 }
 
@@ -267,8 +266,6 @@ button:hover {
 }
 
 .filter-dropdown button {
-    margin-top: 0px;
-    margin-bottom: 0px;
     background-color: #f5ebfb;
     display: block;
     width: 100%;
