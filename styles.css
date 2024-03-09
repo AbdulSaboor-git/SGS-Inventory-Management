@@ -483,6 +483,15 @@ button.edit-button:hover {
     h2 {
         font-size: 24px;
     }
+
+    .dropdown {
+        top: -8px;
+    }
+
+    .filter {
+        font-size: 16px;
+        top: 82px;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
