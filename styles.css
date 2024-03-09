@@ -470,7 +470,9 @@ button.edit-button:hover {
         margin-top: -50px;
     }
 
-    .filterDiv {}
+    .filter {
+        margin-top: -25px;
+    }
 }
 
 @media only screen and (max-width: 768px) {

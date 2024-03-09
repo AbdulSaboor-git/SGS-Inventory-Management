@@ -28,15 +28,15 @@
     </div>
 
     <h3>Search:</h3>
-    <div class="filterDiv">
-        <button class="filter" id="filterButton">&#9650;&#9660;</button>
-        <div id="filterDropdown" class="filter-dropdown">
-            <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
-            <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
-            <button onclick="sortInventory('salePrice', 'asc')">Sale Price &#9650;</button>
-            <button onclick="sortInventory('salePrice', 'desc')">Sale Price &#9660;</button>
-        </div>
+
+    <button class="filter" id="filterButton">&#9650;&#9660;</button>
+    <div id="filterDropdown" class="filter-dropdown">
+        <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
+        <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
+        <button onclick="sortInventory('salePrice', 'asc')">Sale Price &#9650;</button>
+        <button onclick="sortInventory('salePrice', 'desc')">Sale Price &#9660;</button>
     </div>
+
     <div class="SearchBar">
         <input type="button" style="display:none" id="clearSearch" class="clearSearch" onclick="clearSearch()"
             value="&#x2715;"></input>
