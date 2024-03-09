@@ -240,7 +240,7 @@ button:hover {
     color: #f0618e;
     position: absolute;
     display: inline;
-    margin-top: -25px;
+    margin-top: -28px;
     right: 20px;
     z-index: 2;
     height: 25px;
@@ -471,7 +471,7 @@ button.edit-button:hover {
     }
 
     .filter {
-        margin-top: -35px;
+        margin-top: -45px;
     }
 }
 
