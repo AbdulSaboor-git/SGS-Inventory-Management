@@ -469,6 +469,10 @@ button.edit-button:hover {
     .dropdown {
         margin-top: -50px;
     }
+
+    .filter {
+        margin-top: -35px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
