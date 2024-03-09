@@ -244,6 +244,7 @@ button:hover {
     display: block;
     margin-top: 20px;
     height: 25px;
+    font-size: 16px;
 }
 
 .filter:hover {
@@ -255,7 +256,7 @@ button:hover {
     position: absolute;
     background-color: #f5ebfb;
     min-width: 120px;
-    right: 25px;
+    right: 53px;
     margin-top: -5px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
@@ -278,7 +279,6 @@ button:hover {
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 13px;
-    font-weight: 100;
 }
 
 .filter-dropdown button:hover {
@@ -468,6 +468,10 @@ button.edit-button:hover {
         top: 76px;
     }
 
+
+    .filter-dropdown {
+        margin-top: 0px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -487,6 +491,7 @@ button.edit-button:hover {
         top: 110px;
         right: 35px;
     }
+
 }
 
 @keyframes fadeIn {
