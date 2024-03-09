@@ -471,10 +471,8 @@ button.edit-button:hover {
         margin-top: 0px;
     }
 
-    button,
-    input[type="button"],
-    input[type="submit"] {
-        margin-bottom: 5px;
+    button {
+        margin-bottom: 15px;
     }
 
 }
