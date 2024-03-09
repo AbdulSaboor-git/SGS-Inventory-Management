@@ -54,7 +54,7 @@ h3 {
 
 .dropdown {
     position: absolute;
-    top: -8px;
+    top: -5px;
     right: 10px;
     z-index: 2;
     display: block;
@@ -467,8 +467,13 @@ button.edit-button:hover {
         top: 76px;
     }
 
-    .filter-dropdown {
-        margin-top: 0px;
+    .dropdown {
+        top: -8px;
+    }
+
+    .filter {
+        font-size: 16px;
+        top: 82px;
     }
 }
 
