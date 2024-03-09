@@ -471,7 +471,12 @@ button.edit-button:hover {
     }
 
     .filter {
-        margin-top: -45px;
+        margin-top: -42px;
+    }
+
+    .filter-dropdown {
+        margin-top: -10px;
+
     }
 }
 
