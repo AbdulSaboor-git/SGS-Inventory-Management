@@ -467,10 +467,16 @@ button.edit-button:hover {
         top: 76px;
     }
 
-
     .filter-dropdown {
         margin-top: 0px;
     }
+
+    button,
+    input[type="button"],
+    input[type="submit"] {
+        margin-bottom: 5px;
+    }
+
 }
 
 @media only screen and (max-width: 768px) {
