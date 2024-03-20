@@ -48,8 +48,8 @@
 
     <form id="FilterForm" class="FilterForm" style="display: none" autocomplete="off" spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Filter Items</h2>
-        <label for="categoryFilter">By Category:</label>
-        <select name="categoryselect" id="categoryFilter" class="addItemInput" title="Select a category">
+        <label for="filterCategory">By Category:</label>
+        <select name="filterCategory" id="filterCategory" class="addItemInput" title="Select a category">
             <option value="all">All</option>
         </select>
 
@@ -70,12 +70,7 @@
         <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="category">Category:</label>
-        <select name="category" id="category" class="addItemInput">
-            <option value="general">General</option>
-            <option value="pulses">Pulses</option>
-            <option value="spices">Spices</option>
-            <option value="milk">Milk</option>
-            <option value="rice">Rice</option>
+        <select name="category" id="category" class="addItemInput" title="Select a category" required>
         </select>
 
         <label for="purchasePrice">Purchase Price:</label>
@@ -105,7 +100,8 @@
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
         var categories = ["General", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products"];
-        populateCategoryDropdown();
+        populateCategoryDropdown('category');
+        populateCategoryDropdown('filterCategory');
         displayInventoryList(inventoryData);
         var editingItemId = null;
 
@@ -128,15 +124,13 @@
             }, 2200);
         }
 
-        function populateCategoryDropdown() {
-            var categorySelect = document.getElementById('category');
-            var categorySelect2 = document.getElementById('categoryFilter');
+        function populateCategoryDropdown(targetSelect) {
+            var categorySelect = document.getElementById(targetSelect);
             categories.forEach(function (category) {
                 var option = document.createElement('option');
                 option.value = category.toLowerCase();
                 option.textContent = category;
                 categorySelect.appendChild(option);
-                categorySelect2.appendChild(option);
             });
         }
 
@@ -145,11 +139,13 @@
             var saveButton1 = document.getElementById('saveButton');
             var purchasePriceField = document.getElementById('purchasePrice');
             var salePriceField = document.getElementById('salePrice');
+            var categoryField = document.getElementById('category');
             var governmentSalePriceField = document.getElementById('governmentSalePrice');
 
             if (itemName.trim() !== '') {
                 purchasePriceField.removeAttribute('disabled');
                 governmentSalePriceField.removeAttribute('disabled');
+                categoryField.removeAttribute('disabled');
                 if (purchasePriceField.value.trim() !== '') {
                     saveButton1.removeAttribute('disabled');
                     salePriceField.removeAttribute('disabled');
@@ -162,6 +158,7 @@
                 salePriceField.setAttribute('disabled', true);
                 governmentSalePriceField.setAttribute('disabled', true);
                 saveButton1.setAttribute('disabled', true);
+                categoryField.setAttribute('disabled', true);
             }
 
         }
@@ -186,18 +183,16 @@
         }
 
         function filterItems() {
-            var category = document.getElementById('categoryFilter').value;
+            var Category = document.getElementById('filterCategory').value;
             var maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
             var minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
 
             var FilteredInv = inventoryData.filter(function (item) {
-                if (category === 'all')
+                if (Category === 'all')
                     return item.salePrice <= maxPrice && item.salePrice >= minPrice;
                 else
-                    return item.category === category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
+                    return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
-
-            console.log("Filtered Inventory:", FilteredInv);
 
             displayInventoryList(FilteredInv);
             cancelFilter();
@@ -335,6 +330,7 @@
             document.getElementById('purchasePrice').value = itemToEdit.purchasePrice;
             document.getElementById('salePrice').value = itemToEdit.salePrice;
             document.getElementById('governmentSalePrice').value = itemToEdit.governmentSalePrice;
+            document.getElementById('category').value = itemToEdit.category.toLowerCase();
 
             editingItemId = itemId;
 
@@ -412,6 +408,10 @@
                         <td>${item.itemName}</td>
                     </tr>
                     <tr>
+                        <td class="m">Category</td>
+                        <td>${item.category}</td>
+                    </tr>
+                    <tr>
                         <td class="m">Purchase Price</td>
                         <td>Rs. ${item.purchasePrice}</td>
                     </tr>
@@ -474,7 +474,7 @@
             var purchasePrice = document.getElementById('purchasePrice').value;
             var salePrice = document.getElementById('salePrice').value;
             var governmentSalePrice = document.getElementById('governmentSalePrice').value;
-            var category = document.getElementById('category').value; // Capture category value
+            var category = document.getElementById('category').value
 
             if (editingItemId !== null) {
                 updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice, category);
@@ -493,7 +493,7 @@
                 purchasePrice: purchasePrice,
                 salePrice: salePrice,
                 governmentSalePrice: governmentSalePrice,
-                category: category // Add category to the newItem object
+                category: category
             };
 
             inventoryData.push(newItem);
@@ -510,7 +510,7 @@
                 itemToUpdate.purchasePrice = purchasePrice;
                 itemToUpdate.salePrice = salePrice;
                 itemToUpdate.governmentSalePrice = governmentSalePrice;
-                itemToUpdate.category = category; // Update category value
+                itemToUpdate.category = category;
             }
             displayFeedbackPopup("Item updated successfully!", true);
         }
@@ -547,19 +547,21 @@
                 for (var j = 0; j < headers.length; j++) {
                     newItem[headers[j].trim()] = data[j].trim();
                 }
-                // Add category to newItem object
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
+
                 displayInventoryList(inventoryData);
+                populateCategoryDropdown('category');
+                populateCategoryDropdown('filterCategory');
             }
         }
 
         function downloadCSV() {
             var csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "itemName,purchasePrice,salePrice,governmentSalePrice,category\n"; // Include category header
+            csvContent += "itemName,purchasePrice,salePrice,governmentSalePrice,category\n";
 
             inventoryData.forEach(function (item) {
-                csvContent += `${item.itemName},${item.purchasePrice},${item.salePrice},${item.governmentSalePrice},${item.category}\n`; // Include category for each item
+                csvContent += `${item.itemName},${item.purchasePrice},${item.salePrice},${item.governmentSalePrice},${item.category}\n`;
             });
 
             var encodedURI = encodeURI(csvContent);
