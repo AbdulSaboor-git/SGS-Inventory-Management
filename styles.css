@@ -120,12 +120,10 @@ input.logout_btn {
     background-color: #f7c1c1;
 }
 
+.FilterForm,
 .addItemForm {
     max-width: 600px;
     display: none;
-}
-
-.addItemForm {
     margin: 20px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;

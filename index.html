@@ -21,6 +21,7 @@
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
                     <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
+                    <input type="button" class="btn" value="Filter Items" onclick="toggleFilterForm()">
                     <input type="button" class="logout_btn" value="Logout">
                 </form>
             </div>
@@ -45,11 +46,37 @@
 
     <div id="feedbackPopup"></div>
 
-    <form id="addItemForm" class="addItemForm" cstyle="display: none" method="POST" autocomplete="off"
+    <form id="FilterForm" class="FilterForm" style="display: none" autocomplete="off" spellcheck="false">
+        <h2 id="addEditHeader" class="addEditHeader">Filter Items</h2>
+        <label for="categoryFilter">By Category:</label>
+        <select name="categoryselect" id="categoryFilter" class="addItemInput" title="Select a category">
+            <option value="all">All</option>
+        </select>
+
+        <label for="minPrice">Price Greater Than:</label>
+        <input type="number" class="addItemInput" id="minPrice" name="minPrice">
+
+        <label for="maxPrice">Price Less Than:</label>
+        <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
+
+        <button type="button" id="FilterButton" onclick="filterItems()" name="filter">Filter</button>
+        <button type="reset" class="cancel" onclick="cancelFilter()">Cancel</button>
+    </form>
+
+    <form id="addItemForm" class="addItemForm" style="display: none" method="POST" autocomplete="off"
         spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
         <label for="itemName">Item Name:</label>
         <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
+
+        <label for="category">Category:</label>
+        <select name="category" id="category" class="addItemInput">
+            <option value="general">General</option>
+            <option value="pulses">Pulses</option>
+            <option value="spices">Spices</option>
+            <option value="milk">Milk</option>
+            <option value="rice">Rice</option>
+        </select>
 
         <label for="purchasePrice">Purchase Price:</label>
         <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()"
@@ -62,7 +89,7 @@
         <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
 
         <button type="submit" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
-        <button type="button" class="cancel" onclick="cancelAddEdit()">Cancel</button>
+        <button type="reset" class="cancel" onclick="cancelAddEdit()">Cancel</button>
     </form>
 
     <!-- List for displaying item names with sales prices -->
@@ -73,10 +100,13 @@
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
-    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()">
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()"
+        title="Choose a CSV file">
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
-        displayList();
+        var categories = ["General", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products"];
+        populateCategoryDropdown();
+        displayInventoryList(inventoryData);
         var editingItemId = null;
 
         function displayFeedbackPopup(message, isSuccess) {
@@ -96,6 +126,18 @@
             setTimeout(function () {
                 feedbackPopup.style.display = 'none';
             }, 2200);
+        }
+
+        function populateCategoryDropdown() {
+            var categorySelect = document.getElementById('category');
+            var categorySelect2 = document.getElementById('categoryFilter');
+            categories.forEach(function (category) {
+                var option = document.createElement('option');
+                option.value = category.toLowerCase();
+                option.textContent = category;
+                categorySelect.appendChild(option);
+                categorySelect2.appendChild(option);
+            });
         }
 
         function enable() {
@@ -133,8 +175,37 @@
             inputField1.value = saleValue;
         }
 
+        function toggleFilterForm() {
+            var filterForm = document.getElementById('FilterForm');
+            filterForm.style.display = 'block';
+        }
+
+        function cancelFilter() {
+            var filterForm = document.getElementById('FilterForm');
+            filterForm.style.display = 'none';
+        }
+
+        function filterItems() {
+            var category = document.getElementById('categoryFilter').value;
+            var maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            var minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+
+            var FilteredInv = inventoryData.filter(function (item) {
+                if (category === 'all')
+                    return item.salePrice <= maxPrice && item.salePrice >= minPrice;
+                else
+                    return item.category === category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
+            });
+
+            console.log("Filtered Inventory:", FilteredInv);
+
+            displayInventoryList(FilteredInv);
+            cancelFilter();
+        }
+
+
         function searchItems() {
-            displayInventoryList();
+            filterItems();
         }
 
         function clearSearch() {
@@ -177,7 +248,6 @@
         });
 
         function sortInventory(property, order) {
-
             if (order === 'asc') {
                 inventoryData.sort(function (a, b) {
                     if (property === 'salePrice')
@@ -193,8 +263,7 @@
                         return b[property].localeCompare(a[property]);
                 });
             }
-
-            displayInventoryList();
+            displayInventoryList(inventoryData);
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -219,12 +288,14 @@
             });
         });
 
-        function displayInventoryList() {
+        function displayInventoryList(inv) {
             var inventoryList = document.getElementById('inventoryList');
             inventoryList.innerHTML = '';
 
+            var PrintInv = inv;
+
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
-            var filteredItems = inventoryData.filter(function (item) {
+            var filteredItems = PrintInv.filter(function (item) {
                 return item.itemName.toLowerCase().includes(searchQuery);
             });
 
@@ -282,7 +353,7 @@
 
                 if (indexToDelete !== -1) {
                     inventoryData.splice(indexToDelete, 1);
-                    displayInventoryList();
+                    displayInventoryList(inventoryData);
                     displayFeedbackPopup("Item deleted successfully!", true);
                 } else {
                     displayFeedbackPopup("Item deletion failed!", false);
@@ -308,7 +379,7 @@
             inventoryData = [];
             localStorage.clear();
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
-            displayList();
+            displayInventoryList(inventoryData);
             location.reload();
         }
 
@@ -391,50 +462,45 @@
         }
 
         function cancelAddEdit() {
-            clearAddItemForm();
             editingItemId = null;
             document.getElementById('saveButton').textContent = 'Save Item';
             var addItemForm = document.getElementById('addItemForm');
             addItemForm.style.display = 'none';
         }
 
-        function clearAddItemForm() {
-            document.getElementById('itemName').value = '';
-            document.getElementById('purchasePrice').value = '';
-            document.getElementById('salePrice').value = '';
-            document.getElementById('governmentSalePrice').value = '';
-        }
 
         function saveItem() {
             var itemName = document.getElementById('itemName').value;
             var purchasePrice = document.getElementById('purchasePrice').value;
             var salePrice = document.getElementById('salePrice').value;
             var governmentSalePrice = document.getElementById('governmentSalePrice').value;
+            var category = document.getElementById('category').value; // Capture category value
 
             if (editingItemId !== null) {
-                updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice);
+                updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice, category);
             } else {
-                addItem(itemName, purchasePrice, salePrice, governmentSalePrice);
+                addItem(itemName, purchasePrice, salePrice, governmentSalePrice, category);
             }
 
-            displayList();
+            displayInventoryList(inventoryData);
             cancelAddEdit();
         }
 
-        function addItem(itemName, purchasePrice, salePrice, governmentSalePrice) {
+        function addItem(itemName, purchasePrice, salePrice, governmentSalePrice, category) {
             var newItem = {
                 id: inventoryData.length + 1,
                 itemName: itemName,
                 purchasePrice: purchasePrice,
                 salePrice: salePrice,
-                governmentSalePrice: governmentSalePrice
+                governmentSalePrice: governmentSalePrice,
+                category: category // Add category to the newItem object
             };
 
             inventoryData.push(newItem);
             displayFeedbackPopup("Item added successfully!", true);
         }
 
-        function updateItem(itemId, itemName, purchasePrice, salePrice, governmentSalePrice) {
+        function updateItem(itemId, itemName, purchasePrice, salePrice, governmentSalePrice, category) {
             var itemToUpdate = inventoryData.find(function (item) {
                 return item.id === itemId;
             });
@@ -444,9 +510,9 @@
                 itemToUpdate.purchasePrice = purchasePrice;
                 itemToUpdate.salePrice = salePrice;
                 itemToUpdate.governmentSalePrice = governmentSalePrice;
+                itemToUpdate.category = category; // Update category value
             }
             displayFeedbackPopup("Item updated successfully!", true);
-
         }
 
         function loadDataFromCSVFile() {
@@ -481,23 +547,19 @@
                 for (var j = 0; j < headers.length; j++) {
                     newItem[headers[j].trim()] = data[j].trim();
                 }
-
+                // Add category to newItem object
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
-                displayList();
+                displayInventoryList(inventoryData);
             }
-        }
-
-        function displayList() {
-            displayInventoryList();
         }
 
         function downloadCSV() {
             var csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "itemName,purchasePrice,salePrice,governmentSalePrice\n";
+            csvContent += "itemName,purchasePrice,salePrice,governmentSalePrice,category\n"; // Include category header
 
             inventoryData.forEach(function (item) {
-                csvContent += `${item.itemName},${item.purchasePrice},${item.salePrice},${item.governmentSalePrice}\n`;
+                csvContent += `${item.itemName},${item.purchasePrice},${item.salePrice},${item.governmentSalePrice},${item.category}\n`; // Include category for each item
             });
 
             var encodedURI = encodeURI(csvContent);
