@@ -304,7 +304,7 @@ button:hover {
     background-color: #f5ebfb;
     min-width: 120px;
     right: 56px;
-    margin-top: 6px;
+    margin-top: 8px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 8px;
@@ -518,15 +518,15 @@ button.edit-button:hover {
     }
 
     .sort {
-        margin-top: -32px;
+        margin-top: -28px;
     }
 
     .filter {
-        margin-top: -26px;
+        margin-top: -22px;
     }
 
-    .filter-dropdown {
-        margin-top: -2px;
+    .sort-dropdown {
+        margin-top: 8px;
     }
 }
 
