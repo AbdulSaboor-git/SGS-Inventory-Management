@@ -31,7 +31,7 @@
 
     <button class="sort" id="sortButton">&#9650;&#9660;</button>
     <button class="filter" id="filterButton" onclick="toggleFilterForm()">Filter</button>
-    <div id="filterDropdown" class="filter-dropdown">
+    <div id="sortDropdown" class="sort-dropdown">
         <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
         <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
         <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
@@ -282,22 +282,22 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             var sortButton = document.getElementById('sortButton');
-            var filterDropdown = document.getElementById('filterDropdown');
+            var sortDropdown = document.getElementById('sortDropdown');
 
             sortButton.addEventListener('click', function (event) {
                 event.stopPropagation();
-                filterDropdown.classList.toggle('show');
+                sortDropdown.classList.toggle('show');
             });
 
             window.addEventListener('click', function () {
-                if (filterDropdown.classList.contains('show')) {
-                    filterDropdown.classList.remove('show');
+                if (sortDropdown.classList.contains('show')) {
+                    sortDropdown.classList.remove('show');
                 }
             });
 
             document.body.addEventListener('click', function () {
-                if (filterDropdown.classList.contains('show')) {
-                    filterDropdown.classList.remove('show');
+                if (sortDropdown.classList.contains('show')) {
+                    sortDropdown.classList.remove('show');
                 }
             });
         });

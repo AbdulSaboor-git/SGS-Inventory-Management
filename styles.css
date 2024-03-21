@@ -298,7 +298,7 @@ button:hover {
     background-color: #ee4379;
 }
 
-.filter-dropdown {
+.sort-dropdown {
     display: none;
     position: absolute;
     background-color: #f5ebfb;
@@ -311,7 +311,7 @@ button:hover {
 
 }
 
-.filter-dropdown button {
+.sort-dropdown button {
     background-color: #f5ebfb;
     display: block;
     width: 100%;
@@ -326,11 +326,11 @@ button:hover {
     font-size: 13px;
 }
 
-.filter-dropdown button:hover {
+.sort-dropdown button:hover {
     background-color: #d1f9c4;
 }
 
-.filter-dropdown.show {
+.sort-dropdown.show {
     display: block;
     animation: fadeIn 0.15s ease-in-out;
 }
