@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGS Inventory</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-
 </head>
 
 <body>
+    <div id="overlay"></div>
     <div class="header">
         <h1 class="title">SGS - INVENTORY</h1>
         <div class="dropdown">
@@ -21,7 +21,6 @@
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
                     <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
-                    <input type="button" class="btn" value="Filter Items" onclick="toggleFilterForm()">
                     <input type="button" class="logout_btn" value="Logout">
                 </form>
             </div>
@@ -30,7 +29,8 @@
 
     <h3>Search:</h3>
 
-    <button class="filter" id="filterButton">&#9650;&#9660;</button>
+    <button class="sort" id="sortButton">&#9650;&#9660;</button>
+    <button class="filter" id="filterButton" onclick="toggleFilterForm()">Filter</button>
     <div id="filterDropdown" class="filter-dropdown">
         <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
         <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
@@ -46,17 +46,17 @@
 
     <div id="feedbackPopup"></div>
 
-    <form id="FilterForm" class="FilterForm" style="display: none" autocomplete="off" spellcheck="false">
+    <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Filter Items</h2>
-        <label for="filterCategory">By Category:</label>
+        <label for="filterCategory">Category:</label>
         <select name="filterCategory" id="filterCategory" class="addItemInput" title="Select a category">
-            <option value="all">All</option>
+            <option value="All">All</option>
         </select>
 
-        <label for="minPrice">Price Greater Than:</label>
+        <label for="minPrice">Min. Price:</label>
         <input type="number" class="addItemInput" id="minPrice" name="minPrice">
 
-        <label for="maxPrice">Price Less Than:</label>
+        <label for="maxPrice">Max. Price:</label>
         <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
 
         <button type="button" id="FilterButton" onclick="filterItems()" name="filter">Filter</button>
@@ -100,8 +100,10 @@
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
         var categories = ["General", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products"];
+        var FilteredINV = inventoryData;
         populateCategoryDropdown('category');
         populateCategoryDropdown('filterCategory');
+        sortInventory('itemName', 'asc');
         displayInventoryList(inventoryData);
         var editingItemId = null;
 
@@ -128,7 +130,7 @@
             var categorySelect = document.getElementById(targetSelect);
             categories.forEach(function (category) {
                 var option = document.createElement('option');
-                option.value = category.toLowerCase();
+                option.value = category;
                 option.textContent = category;
                 categorySelect.appendChild(option);
             });
@@ -173,13 +175,29 @@
         }
 
         function toggleFilterForm() {
+            document.getElementById('filterCategory').value = "All";
+            document.getElementById('minPrice').value = "";
+            document.getElementById('maxPrice').value = "";
             var filterForm = document.getElementById('FilterForm');
-            filterForm.style.display = 'block';
+            var overlay = document.getElementById('overlay');
+            if (filterForm.style.display === 'block') {
+                filterForm.style.display = 'none';
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+            } else {
+                filterForm.style.display = 'block';
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
         }
 
         function cancelFilter() {
             var filterForm = document.getElementById('FilterForm');
+            var overlay = document.getElementById('overlay');
             filterForm.style.display = 'none';
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
         }
 
         function filterItems() {
@@ -188,13 +206,14 @@
             var minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
 
             var FilteredInv = inventoryData.filter(function (item) {
-                if (Category === 'all')
+                if (Category === 'All')
                     return item.salePrice <= maxPrice && item.salePrice >= minPrice;
                 else
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
 
             displayInventoryList(FilteredInv);
+            sortInventory('itemName', 'asc')
             cancelFilter();
         }
 
@@ -244,28 +263,28 @@
 
         function sortInventory(property, order) {
             if (order === 'asc') {
-                inventoryData.sort(function (a, b) {
+                FilteredINV.sort(function (a, b) {
                     if (property === 'salePrice')
                         return parseFloat(a[property]) - parseFloat(b[property]);
                     else
                         return a[property].localeCompare(b[property]);
                 });
             } else if (order === 'desc') {
-                inventoryData.sort(function (a, b) {
+                FilteredINV.sort(function (a, b) {
                     if (property === 'salePrice')
                         return parseFloat(b[property]) - parseFloat(a[property]);
                     else
                         return b[property].localeCompare(a[property]);
                 });
             }
-            displayInventoryList(inventoryData);
+            displayInventoryList(FilteredINV);
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            var filterButton = document.getElementById('filterButton');
+            var sortButton = document.getElementById('sortButton');
             var filterDropdown = document.getElementById('filterDropdown');
 
-            filterButton.addEventListener('click', function (event) {
+            sortButton.addEventListener('click', function (event) {
                 event.stopPropagation();
                 filterDropdown.classList.toggle('show');
             });
@@ -288,6 +307,7 @@
             inventoryList.innerHTML = '';
 
             var PrintInv = inv;
+            FilteredINV = inv;
 
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
             var filteredItems = PrintInv.filter(function (item) {
@@ -330,7 +350,7 @@
             document.getElementById('purchasePrice').value = itemToEdit.purchasePrice;
             document.getElementById('salePrice').value = itemToEdit.salePrice;
             document.getElementById('governmentSalePrice').value = itemToEdit.governmentSalePrice;
-            document.getElementById('category').value = itemToEdit.category.toLowerCase();
+            document.getElementById('category').value = itemToEdit.category;
 
             editingItemId = itemId;
 
