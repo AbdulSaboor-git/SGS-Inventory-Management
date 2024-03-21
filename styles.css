@@ -208,7 +208,7 @@ button.cancel:hover {
 }
 
 button:hover {
-    background-color: #0d8205;
+    background-color: #10f400;
 }
 
 .SearchBar {
@@ -476,7 +476,7 @@ button.edit-button:hover {
     color: #fff;
     border-radius: 8px;
     display: none;
-    z-index: 2;
+    z-index: 4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     max-width: 300px;
     text-align: center;
