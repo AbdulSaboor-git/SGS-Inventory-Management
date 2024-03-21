@@ -39,6 +39,10 @@ input[type="submit"] {
     padding-bottom: 10px;
 }
 
+#searchDiv {
+    margin-top: 20px;
+}
+
 h1,
 h2,
 h3 {
@@ -51,7 +55,7 @@ h3 {
 
 .addEditHeader {
     color: #bc4749;
-
+    margin-bottom: 15px;
 }
 
 .dropdown {
@@ -203,12 +207,21 @@ button.cancel {
     background-color: #575157;
 }
 
+
 button.cancel:hover {
     background-color: #433e43;
 }
 
+button.clear {
+    background-color: #d82020;
+}
+
+button.clear:hover {
+    background-color: #c41a1a;
+}
+
 button:hover {
-    background-color: #10f400;
+    background-color: #167b0e;
 }
 
 .SearchBar {

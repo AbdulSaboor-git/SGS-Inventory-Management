@@ -27,15 +27,16 @@
         </div>
     </div>
 
-    <h3>Search:</h3>
-
-    <button class="sort" id="sortButton">&#9650;&#9660;</button>
-    <button class="filter" id="filterButton" onclick="toggleFilterForm()">Filter</button>
-    <div id="sortDropdown" class="sort-dropdown">
-        <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
-        <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
-        <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
-        <button onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
+    <div id="searchDiv">
+        <h3>Search:</h3>
+        <button class="sort" id="sortButton">&#9650;&#9660;</button>
+        <button class="filter" id="filterButton" onclick="toggleFilterForm()">Filter</button>
+        <div id="sortDropdown" class="sort-dropdown">
+            <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
+            <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
+            <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
+            <button onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
+        </div>
     </div>
 
     <div class="SearchBar">
@@ -47,7 +48,7 @@
     <div id="feedbackPopup"></div>
 
     <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
-        <h2 id="addEditHeader" class="addEditHeader">Filter Items</h2>
+        <h2 id="FilterHeader" class="addEditHeader">Filter Items</h2>
         <label for="filterCategory">Category:</label>
         <select name="filterCategory" id="filterCategory" class="addItemInput" title="Select a category">
             <option value="All">All</option>
@@ -60,7 +61,8 @@
         <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
 
         <button type="button" id="FilterButton" onclick="filterItems()" name="filter">Filter</button>
-        <button type="reset" class="cancel" onclick="cancelFilter()">Cancel</button>
+        <button type="reset" class="clear" onclick="clearFilter()">Clear All Filters</button>
+        <button type="button" class="cancel" onclick="cancelFilter()">Cancel</button>
     </form>
 
     <form id="addItemForm" class="addItemForm" style="display: none" method="POST" autocomplete="off"
@@ -99,7 +101,12 @@
         title="Choose a CSV file">
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
-        var categories = ["General", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products"];
+
+        var categories = ["General", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products", "Sauce"];
+        categories.sort(function (a, b) {
+            return a.localeCompare(b);
+        });
+
         var FilteredINV = inventoryData;
         populateCategoryDropdown('category');
         populateCategoryDropdown('filterCategory');
@@ -175,9 +182,6 @@
         }
 
         function toggleFilterForm() {
-            document.getElementById('filterCategory').value = "All";
-            document.getElementById('minPrice').value = "";
-            document.getElementById('maxPrice').value = "";
             var filterForm = document.getElementById('FilterForm');
             var overlay = document.getElementById('overlay');
             if (filterForm.style.display === 'block') {
@@ -190,6 +194,11 @@
                 document.body.style.overflow = 'hidden';
             }
 
+        }
+
+        function clearFilter() {
+            cancelFilter();
+            displayInventoryList(inventoryData);
         }
 
         function cancelFilter() {
@@ -494,15 +503,14 @@
             var purchasePrice = document.getElementById('purchasePrice').value;
             var salePrice = document.getElementById('salePrice').value;
             var governmentSalePrice = document.getElementById('governmentSalePrice').value;
-            var category = document.getElementById('category').value
+            var category = document.getElementById('category').value;
 
             if (editingItemId !== null) {
                 updateItem(editingItemId, itemName, purchasePrice, salePrice, governmentSalePrice, category);
             } else {
                 addItem(itemName, purchasePrice, salePrice, governmentSalePrice, category);
             }
-
-            displayInventoryList(inventoryData);
+            displayInventoryList(FilteredINV);
             cancelAddEdit();
         }
 
