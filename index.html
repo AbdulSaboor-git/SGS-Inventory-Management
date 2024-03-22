@@ -42,7 +42,8 @@
     <div class="SearchBar">
         <input type="button" style="display:none" id="clearSearch" class="clearSearch" onclick="clearSearch()"
             value="&#x2715;"></input>
-        <input type="text" id="searchBar" placeholder="Search by Item Name" oninput="searchItems(),toggleClearSearch()">
+        <input type="text" id="searchBar" placeholder="Search by Item or Category Name"
+            oninput="searchItems(),toggleClearSearch()">
     </div>
 
     <div id="feedbackPopup"></div>
@@ -50,8 +51,8 @@
     <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
         <h2 id="FilterHeader" class="addEditHeader">Filter Items</h2>
         <label for="filterCategory">Category:</label>
-        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
-            <option value="All">All</option>
+        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category"
+            onchange="readCategory()">
         </select>
 
         <label for="minPrice">Min. Price:</label>
@@ -136,10 +137,15 @@
             var categorySelect = document.getElementById(targetSelect);
             categorySelect.innerHTML = '';
             if (targetSelect === 'filterCategory') {
-                var option = document.createElement('option');
-                option.value = 'All';
-                option.textContent = option.value;
-                categorySelect.appendChild(option);
+                var option1 = document.createElement('option');
+                option1.value = 'All';
+                option1.textContent = option1.value;
+
+                var option2 = document.createElement('option');
+                option2.value = 'Government Rate List';
+                option2.textContent = option2.value;
+                categorySelect.appendChild(option1);
+                categorySelect.appendChild(option2);
             }
             categories.forEach(function (category) {
                 var option = document.createElement('option');
@@ -202,6 +208,20 @@
 
         }
 
+        function readCategory() {
+            var Category = document.getElementById('filterCategory').value;
+            var minPriceField = document.getElementById('minPrice');
+            var maxPriceField = document.getElementById('maxPrice');
+
+            if (Category === 'Government Rate List') {
+                minPriceField.setAttribute("disabled", true);
+                maxPriceField.setAttribute("disabled", true);
+            } else {
+                minPriceField.setAttribute("disabled", false);
+                maxPriceField.setAttribute("disabled", false);
+            }
+        }
+
         function clearFilter() {
             cancelFilter();
             displayInventoryList(inventoryData);
@@ -223,6 +243,8 @@
             var FilteredInv = inventoryData.filter(function (item) {
                 if (Category === 'All')
                     return item.salePrice <= maxPrice && item.salePrice >= minPrice;
+                else if (Category === 'Government Rate List')
+                    return item.governmentSalePrice != '';
                 else
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
@@ -326,7 +348,7 @@
 
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
             var filteredItems = PrintInv.filter(function (item) {
-                return item.itemName.toLowerCase().includes(searchQuery);
+                return item.itemName.toLowerCase().includes(searchQuery) || item.category.toLowerCase().includes(searchQuery);
             });
 
 
@@ -458,7 +480,7 @@
                     </tr>
                     <tr>
                         <td class="m">Government Sale Price</td>
-                        <td>${item.governmentSalePrice.trim() !== '' ? `Rs. ${item.governmentSalePrice}` : 'N/A'}</td>
+                        <td>${item.governmentSalePrice.trim() !== '' ? `Rs. ${item.governmentSalePrice}` : '-'}</td>
                     </tr>
                 </table>
             `;
@@ -496,13 +518,25 @@
             if (addItemForm.style.display !== 'none') {
                 document.getElementById('itemDetails').style.maxHeight = null;
             }
+            document.getElementById('category').value = '';
         }
 
         function cancelAddEdit() {
+            clearAddItemForm();
             editingItemId = null;
             document.getElementById('saveButton').textContent = 'Save Item';
+            document.getElementById('addEditHeader').textContent = 'Add Item';
             var addItemForm = document.getElementById('addItemForm');
             addItemForm.style.display = 'none';
+        }
+
+        function clearAddItemForm() {
+            document.getElementById('itemName').value = '';
+            document.getElementById('purchasePrice').value = '';
+            document.getElementById('salePrice').value = '';
+            document.getElementById('governmentSalePrice').value = '';
+            document.getElementById('category').value = '';
+
         }
 
 
@@ -518,8 +552,8 @@
             } else {
                 addItem(itemName, purchasePrice, salePrice, governmentSalePrice, category);
             }
-            filterItems();
             cancelAddEdit();
+            filterItems();
         }
 
         function addItem(itemName, purchasePrice, salePrice, governmentSalePrice, category) {
