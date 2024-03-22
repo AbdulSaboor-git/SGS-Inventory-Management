@@ -556,6 +556,8 @@
                     parseCSVData(csvData);
                 };
                 displayFeedbackPopup("Data loaded from CSV successfully!", true);
+                displayInventoryList(inventoryData);
+
 
                 reader.readAsText(file);
             } else {
@@ -578,7 +580,6 @@
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
 
-                displayInventoryList(inventoryData);
                 sortInventory('itemName', 'asc');
                 populateCategoryDropdown('category');
                 populateCategoryDropdown('filterCategory');
