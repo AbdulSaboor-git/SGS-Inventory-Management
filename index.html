@@ -108,8 +108,9 @@
         var FilteredINV = inventoryData;
         populateCategoryDropdown('category');
         populateCategoryDropdown('filterCategory');
+
         sortInventory('itemName', 'asc');
-        displayInventoryList(inventoryData);
+
         var editingItemId = null;
 
         function displayFeedbackPopup(message, isSuccess) {
@@ -134,6 +135,12 @@
         function populateCategoryDropdown(targetSelect) {
             var categorySelect = document.getElementById(targetSelect);
             categorySelect.innerHTML = '';
+            if (targetSelect === 'filterCategory') {
+                var option = document.createElement('option');
+                option.value = 'All';
+                option.textContent = option.value;
+                categorySelect.appendChild(option);
+            }
             categories.forEach(function (category) {
                 var option = document.createElement('option');
                 option.value = category;
@@ -220,8 +227,8 @@
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
 
+            sortInventory('itemName', 'asc');
             displayInventoryList(FilteredInv);
-            sortInventory('itemName', 'asc')
             cancelFilter();
         }
 
