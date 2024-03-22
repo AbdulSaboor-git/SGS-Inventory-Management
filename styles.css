@@ -287,13 +287,13 @@ button:hover {
 }
 
 #filterIndicator {
-    background-color: #00000000;
-    color: #84ff3c;
+    background-color: #d8000000;
+    color: #893dcc;
     display: none;
-    font-size: 25px;
-    right: 63px;
-    align-self: center;
-    margin-top: -52px;
+    font-size: 20px;
+    right: 65px;
+    align-content: center;
+    margin-top: -49px;
     z-index: 3;
 }
 
