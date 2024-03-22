@@ -300,14 +300,14 @@ button:hover {
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    margin-top: -28px;
+    margin-top: -32px;
     font-size: 17px;
 }
 
 #filterButton {
     background-color: #f0618e;
     color: #f5ebfb;
-    margin-top: -22px;
+    margin-top: -26px;
     right: 80px;
     font-size: 14px;
     padding: 13px;
@@ -331,7 +331,7 @@ button:hover {
     background-color: #f5ebfb;
     min-width: 120px;
     right: 56px;
-    margin-top: 8px;
+    margin-top: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 8px;
@@ -549,14 +549,6 @@ button.edit-button:hover {
 
     .dropdown {
         margin-top: -50px;
-    }
-
-    #sortButton {
-        margin-top: -28px;
-    }
-
-    #filterButton {
-        margin-top: -22px;
     }
 
     .sort-dropdown {
