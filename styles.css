@@ -61,6 +61,7 @@ h3 {
 .dropdown {
     position: absolute;
     right: 12px;
+    margin-top: -48px;
     z-index: 2;
     display: block;
 }
@@ -287,14 +288,14 @@ button:hover {
     display: none;
     font-size: 25px;
     right: 66px;
-    top: 105px;
+    margin-top: -42px;
     z-index: 3;
 }
 
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    top: 148px;
+    margin-top: -28px;
     font-size: 17px;
 }
 
@@ -515,7 +516,7 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
 
     h1,
     h2 {
@@ -542,7 +543,7 @@ button.edit-button:hover {
     }
 
     .dropdown {
-        margin-top: -48px;
+        margin-top: -50px;
     }
 
     #sortButton {
