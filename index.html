@@ -100,7 +100,12 @@
     <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()"
         title="Choose a CSV file">
 
-    <div class="footer"></div>
+    <div class="footer">
+        <div class="footerText">
+            @2024 - All Rights Reserved<br><br>
+            github/abdsab-git
+        </div>
+    </div>
 
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];

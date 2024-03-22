@@ -42,9 +42,17 @@ input[type="submit"] {
 
 .footer {
     background-color: #7b2cbf;
-    height: 180px;
+    height: 100px;
     margin: -20px;
     margin-top: 30px;
+    border-top: solid 20px #4a1974;
+}
+
+.footerText {
+    padding-top: 20px;
+    color: #f9f2ff;
+    font-size: 14px;
+    text-align: center;
 }
 
 #searchDiv {
