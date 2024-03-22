@@ -8,6 +8,7 @@ body {
     -ms-user-select: none;
     user-select: none;
     align-items: center;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -591,7 +592,7 @@ button.edit-button:hover {
 }
 
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1200px) {
 
     body {
         margin: 40px;
