@@ -1,6 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
+    margin-bottom: 0px;
     background-color: #10002b;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -37,6 +38,13 @@ input[type="submit"] {
     z-index: 4;
     padding-top: 7px;
     padding-bottom: 10px;
+}
+
+.footer {
+    background-color: #7b2cbf;
+    height: 180px;
+    margin: -20px;
+    margin-top: 30px;
 }
 
 #searchDiv {
