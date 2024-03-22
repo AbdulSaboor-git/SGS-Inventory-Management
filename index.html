@@ -29,8 +29,9 @@
 
     <div id="searchDiv">
         <h3>Search:</h3>
-        <button class="sort" id="sortButton">&#9650;&#9660;</button>
-        <button class="filter" id="filterButton" onclick="toggleFilterForm()">Filter</button>
+        <button class="sortFilterButtons" id="sortButton">&#9650;&#9660;</button>
+        <button class="sortFilterButtons" id="filterIndicator">&#x25CF;</button>
+        <button class="sortFilterButtons" id="filterButton" onclick="toggleFilterForm()">Filter</button>
         <div id="sortDropdown" class="sort-dropdown">
             <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
             <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
@@ -97,6 +98,8 @@
     <div class="details-container" id="itemDetails"></div>
     <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()"
         title="Choose a CSV file">
+
+
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
@@ -106,6 +109,7 @@
         });
 
         var FilteredINV = inventoryData;
+        var filterAppied = false;
         populateCategoryDropdown('category');
         populateCategoryDropdown('filterCategory');
 
@@ -209,6 +213,7 @@
 
         function clearFilter() {
             cancelFilter();
+            filterAppied = false;
             displayInventoryList(inventoryData);
         }
 
@@ -225,13 +230,25 @@
             var maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
             var minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
 
+
             var FilteredInv = inventoryData.filter(function (item) {
-                if (Category === 'All')
+                if (Category === 'All' && minPrice === 0 && maxPrice === Infinity) {
+                    filterAppied = false;
+                    return item;
+                }
+                else if (Category === 'All') {
+                    filterAppied = true;
                     return item.salePrice <= maxPrice && item.salePrice >= minPrice;
-                else if (Category === 'Government Rate List')
+                }
+                else if (Category === 'Government Rate List') {
+                    filterAppied = true;
                     return item.governmentSalePrice != '' && item.salePrice <= maxPrice && item.salePrice >= minPrice;
-                else
+                }
+                else {
+                    filterAppied = true;
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
+                }
+
             });
 
             displayInventoryList(FilteredInv);
@@ -331,6 +348,12 @@
             var PrintInv = inv;
             FilteredINV = inv;
 
+            if (filterAppied) {
+                document.getElementById('filterIndicator').style.display = 'inline';
+            }
+            else
+                document.getElementById('filterIndicator').style.display = 'none';
+
             var searchQuery = document.getElementById('searchBar').value.toLowerCase();
             var filteredItems = PrintInv.filter(function (item) {
                 return item.itemName.toLowerCase().includes(searchQuery) || item.category.toLowerCase().includes(searchQuery);
@@ -352,6 +375,13 @@
 
                 listItem.appendChild(itemNameSpan);
                 listItem.appendChild(salePriceSpan);
+
+                if (item.governmentSalePrice != '') {
+                    var GovtSalePriceSpan = document.createElement('span');
+                    GovtSalePriceSpan.className = 'sale-price';
+                    GovtSalePriceSpan.textContent = `Rs. ${item.governmentSalePrice} Govt.`;
+                    listItem.appendChild(GovtSalePriceSpan);
+                }
                 listItem.appendChild(listItem2);
 
                 listItem2.addEventListener('click', function () {
@@ -427,8 +457,6 @@
             var itemDetails = document.getElementById('itemDetails');
             var existingDetails = document.querySelector('.item-details');
 
-
-
             if (existingDetails) {
                 if (existingDetails.innerHTML.includes(item.itemName)) {
                     existingDetails.parentNode.removeChild(existingDetails);
@@ -440,8 +468,6 @@
 
             var detailsDiv = document.createElement('div');
             detailsDiv.className = 'item-details';
-
-
 
             detailsDiv.innerHTML = `
                 <h2>Item Details</h2>
@@ -478,15 +504,15 @@
             });
 
             detailsDiv.appendChild(editButton);
-            var editButton = document.createElement('button');
-            editButton.className = 'delete-button';
-            editButton.textContent = 'Delete';
-            editButton.addEventListener('click', function (event) {
+            var deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function (event) {
                 event.stopPropagation();
                 deleteItem(item.id);
             });
 
-            detailsDiv.appendChild(editButton);
+            detailsDiv.appendChild(deleteButton);
             var clickedItem = event.target;
             clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
         }

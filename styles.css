@@ -34,7 +34,7 @@ input[type="submit"] {
     top: 0;
     position: sticky;
     background-color: #10002b;
-    z-index: 3;
+    z-index: 4;
     padding-top: 7px;
     padding-bottom: 10px;
 }
@@ -274,40 +274,49 @@ button:hover {
 
 }
 
-.filter {
-    background-color: #f0618e;
-    background-size: cover;
-    color: #f5ebfb;
+.sortFilterButtons {
     position: absolute;
     display: inline;
+    z-index: 2;
+    height: 25px;
+    right: 20px;
+}
+
+#filterIndicator {
+    background-color: #00000000;
+    color: #84ff3c;
+    display: none;
+    font-size: 25px;
+    right: 63px;
+    margin-top: -42px;
+    z-index: 3;
+}
+
+#sortButton {
+    background-color: #00000000;
+    color: #f0618e;
+    margin-top: -28px;
+    font-size: 17px;
+}
+
+#filterButton {
+    background-color: #f0618e;
+    color: #f5ebfb;
     margin-top: -22px;
     right: 80px;
-    z-index: 2;
     font-size: 14px;
     padding: 13px;
     padding-top: 3px;
     padding-bottom: 3px;
 }
 
-.sort {
-    background-color: #00000000;
-    background-size: cover;
-    color: #f0618e;
-    position: absolute;
-    display: inline;
-    margin-top: -28px;
-    right: 20px;
-    z-index: 2;
-    height: 25px;
-    font-size: 17px;
-}
 
-.sort:hover {
+#sortButton:hover {
     background-color: #ccff0000;
     color: #ee4379;
 }
 
-.filter:hover {
+#filterButton:hover {
     background-color: #ee4379;
 }
 
@@ -372,13 +381,14 @@ li {
 
 
 button.details {
-    background-color: #00000000;
+    background-color: #00f84a00;
     cursor: pointer;
-    height: 65px;
-    width: 100%;
+    height: 107%;
+    max-height: 130px;
+    width: 101%;
     position: absolute;
-    right: -4px;
-    top: -12px;
+    right: -7px;
+    top: -2px;
     bottom: 0px;
     border-radius: 8px;
 }
@@ -420,7 +430,7 @@ li:hover {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
     transition: max-height 0.5s ease-in-out;
     max-width: 100%;
-    width: 90%;
+    width: 95%;
     text-align: left;
     overflow: auto;
 }
@@ -530,11 +540,11 @@ button.edit-button:hover {
         margin-top: -48px;
     }
 
-    .sort {
+    #sortButton {
         margin-top: -29px;
     }
 
-    .filter {
+    #filterButton {
         margin-top: -22px;
     }
 
@@ -556,12 +566,16 @@ button.edit-button:hover {
         margin: 40px;
     }
 
-    .filter {
+    #filterButton {
         right: 95px;
     }
 
-    .sort {
+    #sortButton {
         right: 35px;
+    }
+
+    #filterIndicator {
+        right: 78px;
     }
 
     .filter-dropdown {
