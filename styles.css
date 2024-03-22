@@ -294,7 +294,7 @@ button:hover {
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    margin-top: -28px;
+    top: 148px;
     font-size: 17px;
 }
 
