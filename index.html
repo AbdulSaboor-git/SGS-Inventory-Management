@@ -51,8 +51,7 @@
     <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
         <h2 id="FilterHeader" class="addEditHeader">Filter Items</h2>
         <label for="filterCategory">Category:</label>
-        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category"
-            onchange="readCategory()">
+        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
         </select>
 
         <label for="minPrice">Min. Price:</label>
@@ -208,20 +207,6 @@
 
         }
 
-        function readCategory() {
-            var Category = document.getElementById('filterCategory').value;
-            var minPriceField = document.getElementById('minPrice');
-            var maxPriceField = document.getElementById('maxPrice');
-
-            if (Category === 'Government Rate List') {
-                minPriceField.setAttribute("disabled", true);
-                maxPriceField.setAttribute("disabled", true);
-            } else {
-                minPriceField.setAttribute("disabled", false);
-                maxPriceField.setAttribute("disabled", false);
-            }
-        }
-
         function clearFilter() {
             cancelFilter();
             displayInventoryList(inventoryData);
@@ -244,7 +229,7 @@
                 if (Category === 'All')
                     return item.salePrice <= maxPrice && item.salePrice >= minPrice;
                 else if (Category === 'Government Rate List')
-                    return item.governmentSalePrice != '';
+                    return item.governmentSalePrice != '' && item.salePrice <= maxPrice && item.salePrice >= minPrice;
                 else
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
@@ -518,7 +503,8 @@
             if (addItemForm.style.display !== 'none') {
                 document.getElementById('itemDetails').style.maxHeight = null;
             }
-            document.getElementById('category').value = '';
+            if (editingItemId === null)
+                document.getElementById('category').value = '';
         }
 
         function cancelAddEdit() {
