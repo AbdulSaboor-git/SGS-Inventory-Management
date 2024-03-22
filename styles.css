@@ -584,6 +584,10 @@ button.edit-button:hover {
     .dropdown {
         margin-top: -44px;
     }
+
+    #sortButton {
+        margin-top: -24px;
+    }
 }
 
 
