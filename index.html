@@ -50,7 +50,7 @@
     <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
         <h2 id="FilterHeader" class="addEditHeader">Filter Items</h2>
         <label for="filterCategory">Category:</label>
-        <select name="filterCategory" id="filterCategory" class="addItemInput" title="Select a category">
+        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
             <option value="All">All</option>
         </select>
 
@@ -71,7 +71,7 @@
         <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="category">Category:</label>
-        <select name="category" id="category" class="addItemInput" title="Select a category" required></select>
+        <select name="category" id="category" class="selectCateg" title="Select a category" required></select>
 
         <label for="purchasePrice">Purchase Price:</label>
         <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()"
@@ -133,6 +133,7 @@
 
         function populateCategoryDropdown(targetSelect) {
             var categorySelect = document.getElementById(targetSelect);
+            categorySelect.innerHTML = '';
             categories.forEach(function (category) {
                 var option = document.createElement('option');
                 option.value = category;
@@ -556,8 +557,8 @@
                     parseCSVData(csvData);
                 };
                 displayFeedbackPopup("Data loaded from CSV successfully!", true);
-                displayInventoryList(inventoryData);
-
+                populateCategoryDropdown('category');
+                populateCategoryDropdown('filterCategory');
 
                 reader.readAsText(file);
             } else {
@@ -579,11 +580,9 @@
                 }
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
-
                 sortInventory('itemName', 'asc');
-                populateCategoryDropdown('category');
-                populateCategoryDropdown('filterCategory');
             }
+
         }
 
         function downloadCSV() {

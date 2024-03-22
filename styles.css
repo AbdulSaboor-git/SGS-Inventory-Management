@@ -173,6 +173,7 @@ label {
     color: #555;
 }
 
+.selectCateg,
 .addItemInput {
     width: 100%;
     padding: 10px;
@@ -182,7 +183,6 @@ label {
     box-sizing: border-box;
     color: #303030;
     background-color: #e3c8f2;
-
 }
 
 input:focus {
