@@ -27,26 +27,72 @@
         </div>
     </div>
 
-    <div id="searchDiv">
-        <h3>Search:</h3>
-        <button class="sortFilterButtons" id="sortButton">&#9650;&#9660;</button>
-        <button class="sortFilterButtons" id="filterIndicator">&#x25CF;</button>
-        <button class="sortFilterButtons" id="filterButton" onclick="toggleFilterForm()">Filter</button>
+    <div class="components">
 
-        <div id="sortDropdown" class="sort-dropdown">
-            <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
-            <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
-            <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
-            <button onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
+        <div class="leftComponents">
+            <div id="searchDiv">
+                <h3>Search:</h3>
+                <button class="sortFilterButtons" id="sortButton" title="Sort Items">&#9650;&#9660;</button>
+                <button class="sortFilterButtons" id="filterIndicator">&#x25CF;</button>
+                <button class="sortFilterButtons" id="filterButton" onclick="toggleFilterForm()">Filter</button>
+
+                <div id="sortDropdown" class="sort-dropdown">
+                    <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
+                    <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
+                    <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
+                    <button onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
+                </div>
+
+                <div class="SearchBar">
+                    <input type="button" style="display:none" id="clearSearch" class="clearSearch"
+                        onclick="clearSearch()" value="&#x2715;"></input>
+                    <input type="text" id="searchBar" placeholder="Search by Item or Category Name"
+                        oninput="searchItems(),toggleClearSearch()">
+                </div>
+            </div>
+            <div class="navButtons">
+                <button class="navButton" onclick="toggleAddItemForm()">Add Item</button>
+                <button class="navButton" onclick="document.getElementById('csvFileInput').click()">Load Data</button>
+                <button class="navButton" onclick="downloadCSV()">Save Data</button>
+                <button class="navButton" onclick="clearInventoryList()">Clear Data</button>
+                <button class="navButton">Logout</button>
+            </div>
+        </div>
+
+        <form id="addItemForm" class="addItemForm" style="display: none" autocomplete="off" spellcheck="false">
+            <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
+            <label for="itemName">Item Name:</label>
+            <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
+
+            <label for="category">Category:</label>
+            <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
+                required></select>
+
+            <label for="purchasePrice">Purchase Price:</label>
+            <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice"
+                oninput="setText() , enable()" disabled="true" required>
+
+            <label for="salePrice">Sale Price:</label>
+            <input type="number" class="addItemInput" id="salePrice" name="salePrice" required>
+
+            <label for="governmentSalePrice">Government Sale Price:</label>
+            <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice"
+                disabled="true">
+
+            <button type="button" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
+            <button type="reset" class="cancel" onclick="cancelAddEdit()">Cancel</button>
+        </form>
+
+        <div class="inventoryList">
+            <div class="invHeading">
+                <h3>INVENTORY</h3>
+            </div>
+            <ul id="inventoryList">
+                <!-- Items will be dynamically added here -->
+            </ul>
         </div>
     </div>
 
-    <div class="SearchBar">
-        <input type="button" style="display:none" id="clearSearch" class="clearSearch" onclick="clearSearch()"
-            value="&#x2715;"></input>
-        <input type="text" id="searchBar" placeholder="Search by Item or Category Name"
-            oninput="searchItems(),toggleClearSearch()">
-    </div>
 
     <div id="feedbackPopup"></div>
 
@@ -67,34 +113,6 @@
         <button type="button" class="cancel" onclick="cancelFilter()">Cancel</button>
     </form>
 
-    <form id="addItemForm" class="addItemForm" style="display: none" autocomplete="off" spellcheck="false">
-        <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
-        <label for="itemName">Item Name:</label>
-        <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
-
-        <label for="category">Category:</label>
-        <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
-            required></select>
-
-        <label for="purchasePrice">Purchase Price:</label>
-        <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()"
-            disabled="true" required>
-
-        <label for="salePrice">Sale Price:</label>
-        <input type="number" class="addItemInput" id="salePrice" name="salePrice" required>
-
-        <label for="governmentSalePrice">Government Sale Price:</label>
-        <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
-
-        <button type="button" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
-        <button type="reset" class="cancel" onclick="cancelAddEdit()">Cancel</button>
-    </form>
-
-    <!-- List for displaying item names with sales prices -->
-    <h3>INVENTORY</h3>
-    <ul id="inventoryList">
-        <!-- Items will be dynamically added here -->
-    </ul>
 
     <!-- Display detailed information for a selected item -->
     <div class="details-container" id="itemDetails"></div>
