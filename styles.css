@@ -60,8 +60,7 @@ h3 {
 
 .dropdown {
     position: absolute;
-    margin-top: -54px;
-    right: 10px;
+    right: 12px;
     z-index: 2;
     display: block;
 }
