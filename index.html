@@ -249,8 +249,8 @@
                     return item.category === Category && item.salePrice <= maxPrice && item.salePrice >= minPrice;
             });
 
-            sortInventory('itemName', 'asc');
             displayInventoryList(FilteredInv);
+            sortInventory('itemName', 'asc');
             cancelFilter();
         }
 
