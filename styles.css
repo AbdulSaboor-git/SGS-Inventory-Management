@@ -86,7 +86,7 @@ h1, h2 {
 .dropdown {
     position: absolute;
     right: 18px;
-    margin-top: -48px;
+    margin-top: -46px;
     z-index: 2;
     display: block;
 }
@@ -325,7 +325,7 @@ button:hover {
     font-size: 20px;
     right: 70px;
     align-content: center;
-    margin-top: -38px;
+    margin-top: -39px;
     z-index: 3;
 }
 
