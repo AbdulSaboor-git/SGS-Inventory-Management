@@ -53,6 +53,10 @@ h3 {
     margin-left: 2px;
 }
 
+h1, h2 {
+    font-size: 24px;
+}
+
 .addEditHeader {
     color: #bc4749;
     margin-bottom: 15px;
@@ -287,8 +291,8 @@ button:hover {
     color: #84ff3c;
     display: none;
     font-size: 25px;
-    right: 66px;
-    margin-top: -42px;
+    right: 68px;
+    margin-top: -48px;
     z-index: 3;
 }
 
@@ -520,7 +524,7 @@ button.edit-button:hover {
 
     h1,
     h2 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .item-details {
