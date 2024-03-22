@@ -85,8 +85,8 @@ h1, h2 {
 
 .dropdown {
     position: absolute;
-    right: 12px;
-    margin-top: -52px;
+    right: 18px;
+    margin-top: -48px;
     z-index: 2;
     display: block;
 }
@@ -96,7 +96,6 @@ h1, h2 {
     font-size: 23px;
     background-color: #FFB30000;
     transition: background-color 0.3s;
-    margin-bottom: 20px;
 }
 
 .dropdown-btn:hover {
@@ -111,9 +110,8 @@ h1, h2 {
     display: none;
     position: absolute;
     box-sizing: content-box;
-    right: 25px;
+    right: 20px;
     min-width: 130px;
-    margin-top: -25px;
 }
 
 .dropdown-content.show {
@@ -233,16 +231,25 @@ button {
 }
 
 button.cancel {
+    padding: 8px;
     background-color: #575157;
 }
 
+button.saveButton {
+    padding: 8px;
+}
 
 button.cancel:hover {
     background-color: #433e43;
 }
 
 button.clear {
+    padding: 8px;
     background-color: #d82020;
+}
+
+button.FilterButton {
+    padding: 8px;
 }
 
 button.clear:hover {
@@ -313,19 +320,19 @@ button:hover {
 
 #filterIndicator {
     background-color: #d8000000;
-    color: #893dcc;
+    color: #00b221;
     display: none;
     font-size: 20px;
-    right: 65px;
+    right: 70px;
     align-content: center;
-    margin-top: -49px;
+    margin-top: -38px;
     z-index: 3;
 }
 
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    margin-top: -32px;
+    margin-top: -26px;
     font-size: 17px;
 }
 
@@ -496,6 +503,7 @@ button.edit-button {
     margin-right: 10px;
     margin-left: 1px;
     margin-bottom: 0px;
+    padding: 8px;
 }
 
 button.delete-button {
@@ -510,6 +518,7 @@ button.delete-button {
     margin-top: 16px;
     margin-right: 10px;
     margin-bottom: 0px;
+    padding: 8px;
 }
 
 button.delete-button:hover {
@@ -573,11 +582,7 @@ button.edit-button:hover {
     }
 
     .dropdown {
-        margin-top: -50px;
-    }
-
-    .sort-dropdown {
-        margin-top: 8px;
+        margin-top: -46px;
     }
 }
 

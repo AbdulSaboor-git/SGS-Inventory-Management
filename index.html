@@ -79,7 +79,8 @@
             <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice"
                 disabled="true">
 
-            <button type="button" id="saveButton" onclick="saveItem()" name="insert">Save Item</button>
+            <button type="button" class="saveButton" id="saveButton" onclick="saveItem()" name="insert">Save
+                Item</button>
             <button type="reset" class="cancel" onclick="cancelAddEdit()">Cancel</button>
         </form>
 
@@ -108,7 +109,8 @@
         <label for="maxPrice">Max. Price:</label>
         <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
 
-        <button type="button" id="FilterButton" onclick="filterItems()" name="filter">Filter</button>
+        <button type="button" id="FilterButton" class="FilterButton" onclick="filterItems()"
+            name="filter">Filter</button>
         <button type="reset" class="clear" onclick="clearFilter()">Clear All Filters</button>
         <button type="button" class="cancel" onclick="cancelFilter()">Cancel</button>
     </form>
