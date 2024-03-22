@@ -141,7 +141,7 @@ input.logout_btn {
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 4;
+    z-index: 5;
     width: 70%;
     max-width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -163,7 +163,7 @@ input.logout_btn {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(1.5px);
-    z-index: 4;
+    z-index: 5;
 }
 
 label {
@@ -516,7 +516,13 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+
+    h1,
+    h2 {
+        font-size: 24px;
+    }
+
     .item-details {
         max-width: 100%;
         box-sizing: border-box;
@@ -541,7 +547,7 @@ button.edit-button:hover {
     }
 
     #sortButton {
-        margin-top: -29px;
+        margin-top: -28px;
     }
 
     #filterButton {
@@ -553,13 +559,6 @@ button.edit-button:hover {
     }
 }
 
-@media only screen and (max-width: 768px) {
-
-    h1,
-    h2 {
-        font-size: 24px;
-    }
-}
 
 @media only screen and (min-width: 1200px) {
     body {
