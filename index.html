@@ -73,7 +73,8 @@
         <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
         <label for="category">Category:</label>
-        <select name="category" id="category" class="selectCateg" title="Select a category" required></select>
+        <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
+            required></select>
 
         <label for="purchasePrice">Purchase Price:</label>
         <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText() , enable()"
@@ -173,16 +174,19 @@
             var categoryField = document.getElementById('category');
             var governmentSalePriceField = document.getElementById('governmentSalePrice');
 
-            if (itemName.trim() !== '') {
-                purchasePriceField.removeAttribute('disabled');
-                governmentSalePriceField.removeAttribute('disabled');
+
+            if (itemName != '') {
                 categoryField.removeAttribute('disabled');
-                if (purchasePriceField.value.trim() !== '') {
-                    saveButton1.removeAttribute('disabled');
-                    salePriceField.removeAttribute('disabled');
-                } else {
-                    saveButton1.setAttribute('disabled', true);
-                    salePriceField.setAttribute('disabled', true);
+                if (categoryField.value != '') {
+                    purchasePriceField.removeAttribute('disabled');
+                    governmentSalePriceField.removeAttribute('disabled');
+                    if (purchasePriceField.value != '') {
+                        saveButton1.removeAttribute('disabled');
+                        salePriceField.removeAttribute('disabled');
+                    } else {
+                        saveButton1.setAttribute('disabled', true);
+                        salePriceField.setAttribute('disabled', true);
+                    }
                 }
             } else {
                 purchasePriceField.setAttribute('disabled', true);
