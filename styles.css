@@ -334,7 +334,7 @@ button:hover {
     display: flex;
     z-index: 2;
     height: 25px;
-    right: 20px;
+    right: 0px;
 }
 
 #filterIndicator {
@@ -359,7 +359,7 @@ button:hover {
     background-color: #f0618e;
     color: #f5ebfb;
     margin-top: -26px;
-    right: 80px;
+    right: 60px;
     font-size: 14px;
     padding: 13px;
     padding-top: 5px;
