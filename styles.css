@@ -338,7 +338,7 @@ button:hover {
     color: #00b221;
     display: none;
     font-size: 20px;
-    right: 49px;
+    margin-right: 53px;
     align-content: center;
     margin-top: -39px;
     z-index: 3;
@@ -727,7 +727,7 @@ button.edit-button:hover {
     }
 
     #filterIndicator {
-        margin-right: -27px;
+        margin-right: 44px;
     }
 
     .filter-dropdown {
