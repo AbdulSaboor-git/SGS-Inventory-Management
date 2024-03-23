@@ -7,12 +7,17 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    align-items: center;
-    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body::-webkit-scrollbar {
-    display: none;
+    width: 5px;
+    background-color: #10002b;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #7b2cbf;
+    border-radius: 50px;
 }
 
 button,
@@ -556,7 +561,7 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
     h1,
     h2 {
@@ -592,11 +597,13 @@ button.edit-button:hover {
 }
 
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 992px) {
 
     body {
-        margin: 40px;
         margin-top: 20px;
+        margin-right: 40px;
+        margin-left: 40px;
+        overflow-x: hidden;
     }
 
     .dropdown {
@@ -659,7 +666,7 @@ button.edit-button:hover {
         margin-top: 7px;
         position: relative;
         max-width: calc(30% - 15px);
-        max-height: 600px;
+        max-height: 550px;
     }
 
     .navButtons {
