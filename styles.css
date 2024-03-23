@@ -614,6 +614,7 @@ button.edit-button:hover {
     body {
         align-items: stretch;
         justify-content: center;
+        overflow-x: hidden;
     }
 
     .container {
@@ -704,7 +705,7 @@ button.edit-button:hover {
     }
 
     .navButton:hover {
-        background-color: #e32e67;
+        background-color: #e44074;
     }
 
     #filterButton {
