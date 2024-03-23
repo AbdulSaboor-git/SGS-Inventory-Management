@@ -283,7 +283,7 @@ button:hover {
 
 .leftComponents {
     position: sticky;
-    top: 60px;
+    top: 54px;
     z-index: 2;
 }
 
@@ -316,7 +316,7 @@ button:hover {
     font-size: 15px;
     color: #db88d0;
     position: absolute;
-    top: 12px;
+    top: 36px;
     right: 2px;
     height: 32px;
     width: 32px;
