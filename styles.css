@@ -306,7 +306,6 @@ button:hover {
 }
 
 .clearSearch {
-    background-color: #f5ebfb;
     border: 0px solid;
     border-radius: 8px;
     cursor: pointer;
@@ -714,7 +713,7 @@ button.edit-button:hover {
 
     #sortButton {
         right: 0px;
-        top: 49px;
+        top: 45px;
         font-size: 14px;
     }
 
