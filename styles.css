@@ -1,13 +1,15 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
+    margin: 25px;
     margin-bottom: 0px;
+    margin-top: 0px;
     background-color: #10002b;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -603,13 +605,10 @@ button.edit-button:hover {
 
 
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 800px) {
 
     body {
         align-items: stretch;
-        margin-right: 40px;
-        margin-left: 40px;
-        overflow-x: hidden;
     }
 
     .container {
@@ -618,7 +617,6 @@ button.edit-button:hover {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        min-width: 90vw;
     }
 
     .dropdown {
@@ -666,7 +664,6 @@ button.edit-button:hover {
         overflow-y: scroll;
         scroll-behavior: smooth;
         max-height: 100vh;
-        min-height: 100vh;
 
     }
 
@@ -682,7 +679,6 @@ button.edit-button:hover {
         position: relative;
         max-width: calc(30% - 15px);
         max-height: 100vh;
-        min-height: 100vh;
     }
 
     .navButtons {
