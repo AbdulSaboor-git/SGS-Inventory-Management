@@ -39,7 +39,7 @@ input[type="submit"] {
 .title {
     background-color: #7b2cbf;
     text-align: center;
-    font-size: 35px;
+    font-size: 32px;
     color: #f9f2ff;
     padding: 10px;
     transition: padding-top 0.3s, font-size 0.3s;
@@ -115,9 +115,6 @@ h1, h2 {
     background-color: transparent;
 }
 
-.dropdownList {
-    padding: 0px;
-}
 
 .dropdown-content {
     display: none;
@@ -141,7 +138,7 @@ input.btn {
     background-color: #f5ebfb;
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: 0px solid #E0E0E0;
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -149,7 +146,7 @@ input.btn {
     color: #7b2cbf;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 14px;
+    font-size: 13.8px;
 }
 
 input.logout_btn {
@@ -283,7 +280,7 @@ button:hover {
 
 .leftComponents {
     position: sticky;
-    top: 54px;
+    top: 56px;
     z-index: 2;
 }
 
@@ -351,7 +348,7 @@ button:hover {
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    margin-top: -26px;
+    margin-top: -24px;
     font-size: 17px;
 }
 
@@ -381,7 +378,7 @@ button:hover {
     position: absolute;
     background-color: #f5ebfb;
     min-width: 120px;
-    right: 56px;
+    right: 42px;
     margin-top: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
@@ -576,7 +573,7 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
 
     h1,
     h2 {
@@ -609,7 +606,7 @@ button.edit-button:hover {
     #sortButton {
         margin-top: -28px;
     }
-}
+} */
 
 
 
