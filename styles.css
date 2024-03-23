@@ -501,9 +501,9 @@ li:hover {
 .item-details td {
     border: 0.5px solid;
     border-color: #f0618e50;
-    padding: 3px;
+    padding: 5px;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .item-details td.m {
