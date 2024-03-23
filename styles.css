@@ -626,8 +626,7 @@ button.edit-button:hover {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        left: 0px;
-        right: 0px;
+        margin: 0 auto;
     }
 
     .dropdown {
@@ -690,6 +689,10 @@ button.edit-button:hover {
         top: 0px;
         max-width: calc(30% - 15px);
         max-height: 100vh;
+    }
+
+    .clearSearch {
+        top: 56px;
     }
 
     .navButtons {
