@@ -411,17 +411,16 @@ button:hover {
 
 ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
 }
 
 
 li {
-    margin-top: 10px;
+    margin-top: 6px;
     background-color: #f5ebfb;
     border: 3px solid #db88d0;
     border-radius: 8px;
-    margin-bottom: 10px;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
