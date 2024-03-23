@@ -592,7 +592,7 @@ button.edit-button:hover {
 }
 
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 850px) {
 
     body {
         margin: 40px;
