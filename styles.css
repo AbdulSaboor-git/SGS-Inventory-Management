@@ -602,13 +602,23 @@ button.edit-button:hover {
 }
 
 
+
 @media only screen and (min-width: 992px) {
 
     body {
-        margin-top: 20px;
+        align-items: stretch;
         margin-right: 40px;
         margin-left: 40px;
         overflow-x: hidden;
+    }
+
+    .container {
+        justify-content: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-width: 90vw;
     }
 
     .dropdown {
@@ -634,9 +644,8 @@ button.edit-button:hover {
 
     .components {
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
-        /* background-color: #0d8205; */
+        min-height: 100vh;
     }
 
     .invHeading {
@@ -656,7 +665,9 @@ button.edit-button:hover {
         margin-left: 10px;
         overflow-y: scroll;
         scroll-behavior: smooth;
-        max-height: 550px;
+        max-height: 100vh;
+        min-height: 100vh;
+
     }
 
     .inventoryList::-webkit-scrollbar {
@@ -670,7 +681,8 @@ button.edit-button:hover {
         margin-top: 7px;
         position: relative;
         max-width: calc(30% - 15px);
-        max-height: 550px;
+        max-height: 100vh;
+        min-height: 100vh;
     }
 
     .navButtons {
