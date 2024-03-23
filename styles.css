@@ -54,7 +54,7 @@ input[type="submit"] {
     z-index: 4;
     padding: 0px;
     padding-top: 7px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .footer {
@@ -274,12 +274,17 @@ button:hover {
 }
 
 .SearchBar {
-    position: sticky;
     padding-top: 10px;
     padding-bottom: 10px;
-    top: 81px;
     z-index: 1;
     background-color: #10002b;
+    box-shadow: 0 0 20px #10002b;
+}
+
+.leftComponents {
+    position: sticky;
+    top: 60px;
+    z-index: 2;
 }
 
 #searchBar {
@@ -293,6 +298,7 @@ button:hover {
     box-sizing: border-box;
     background-color: #f5ebfb;
 }
+
 
 #searchBar::placeholder {
     color: #a5a5a5;
@@ -609,6 +615,7 @@ button.edit-button:hover {
 
     body {
         align-items: stretch;
+        justify-content: center;
     }
 
     .container {
@@ -617,6 +624,8 @@ button.edit-button:hover {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        left: 0px;
+        right: 0px;
     }
 
     .dropdown {
@@ -673,10 +682,10 @@ button.edit-button:hover {
 
     .leftComponents {
         flex: 1;
-        z-index: 2;
         background-color: #10002b;
         margin-top: 7px;
         position: relative;
+        top: 0px;
         max-width: calc(30% - 15px);
         max-height: 100vh;
     }
