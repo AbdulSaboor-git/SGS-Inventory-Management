@@ -709,7 +709,7 @@ button.edit-button:hover {
     }
 
     #filterButton {
-        display: none;
+        margin-right: -6px;
     }
 
     #sortButton {
@@ -727,7 +727,7 @@ button.edit-button:hover {
     }
 
     #filterIndicator {
-        right: 78px;
+        margin-right: -27px;
     }
 
     .filter-dropdown {
