@@ -693,20 +693,20 @@ button.edit-button:hover {
     }
 
     .navButtons {
-        display: inline;
-        height: 700px;
+        display: block;
     }
 
     .navButton {
         width: 100%;
-        margin-top: 5px;
+        margin-top: 4px;
+        padding: 8px;
         background-color: #f0618e;
+        color: #10002b;
     }
 
     .navButton:hover {
-        background-color: #ee4379;
+        background-color: #e32e67;
     }
-
 
     #filterButton {
         display: none;
@@ -714,7 +714,7 @@ button.edit-button:hover {
 
     #sortButton {
         right: 0px;
-        top: 50px;
+        top: 49px;
         font-size: 14px;
     }
 
