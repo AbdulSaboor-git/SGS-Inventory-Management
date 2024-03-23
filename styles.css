@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 25px;
+    margin: 20px;
     margin-bottom: 0px;
     margin-top: 0px;
     background-color: #10002b;
@@ -501,12 +501,14 @@ li:hover {
 .item-details td {
     border: 0.5px solid;
     border-color: #f0618e50;
-    padding: 5px;
+    padding: 3px;
     text-align: center;
+    font-size: 15px;
 }
 
 .item-details td.m {
     font-weight: bold;
+    width: 40%;
 }
 
 button.edit-button {
