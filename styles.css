@@ -662,7 +662,7 @@ button.edit-button:hover {
 
     .invHeading {
         position: absolute;
-        width: 100%;
+        width: 100vw;
         margin-top: -40px;
         padding-left: 0px;
         padding-bottom: 8px;
@@ -695,10 +695,6 @@ button.edit-button:hover {
         max-height: 100vh;
     }
 
-    .clearSearch {
-        top: 56px;
-    }
-
     .navButtons {
         display: block;
     }
@@ -717,12 +713,13 @@ button.edit-button:hover {
 
     #filterButton {
         margin-right: 46px;
+        margin-top: 20px;
     }
 
     #sortButton {
         right: 0px;
-        top: 45px;
         font-size: 14px;
+        margin-top: 20px;
     }
 
     #sortButton:hover {
@@ -735,6 +732,7 @@ button.edit-button:hover {
 
     #filterIndicator {
         margin-right: 42px;
+        margin-top: 8px;
     }
 
     .filter-dropdown {
