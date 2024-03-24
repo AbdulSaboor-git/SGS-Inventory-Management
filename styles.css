@@ -306,6 +306,7 @@ button:hover {
 }
 
 .clearSearch {
+    background-color: #00000000;
     border: 0px solid;
     border-radius: 8px;
     cursor: pointer;
@@ -704,7 +705,7 @@ button.edit-button:hover {
     }
 
     .navButton:hover {
-        background-color: #e44074;
+        background-color: #ee4379;
     }
 
     #filterButton {
