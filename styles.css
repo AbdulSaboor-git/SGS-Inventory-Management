@@ -100,10 +100,9 @@ h1, h2 {
     position: absolute;
     right: 0;
     padding: 0;
-    margin-right: 15px;
+    margin-right: 20px;
     margin-top: -43px;
     z-index: 2;
-    display: block;
 }
 
 .dropdown-btn {
@@ -328,10 +327,12 @@ button:hover {
 .sortFilterButtons {
     padding: 0px;
     position: absolute;
-    display: flex;
+    display: grid;
     z-index: 2;
     height: 25px;
     right: 0px;
+    margin-right: 5px;
+    margin-top: 0px;
 }
 
 #filterIndicator {
@@ -339,7 +340,7 @@ button:hover {
     color: #00b221;
     display: none;
     font-size: 20px;
-    margin-right: 49px;
+    margin-right: 55px;
     align-content: center;
     margin-top: -39px;
     z-index: 3;
