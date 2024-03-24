@@ -662,13 +662,13 @@ button.edit-button:hover {
 
     .invHeading {
         position: absolute;
-        width: calc(70% - 35px);
+        width: calc(70% - 15px);
         top: 0;
         margin-top: 124px;
         margin-left: -13px;
         padding-left: 15px;
         padding-bottom: 8px;
-        box-shadow: 0 0 20px #10002b;
+        box-shadow: 0 0 20px #d6d2dc;
         z-index: 1;
     }
 
