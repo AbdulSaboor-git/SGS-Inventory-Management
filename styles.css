@@ -335,7 +335,6 @@ button:hover {
     height: 25px;
     right: 0px;
     margin-right: 5px;
-    margin-top: 0px;
 }
 
 #filterIndicator {
@@ -354,7 +353,7 @@ button:hover {
     background-color: #00000000;
     color: #f0618e;
     top: 0;
-    margin-top: 0px;
+    margin-top: -5px;
     font-size: 17px;
     background-color: #10002b;
 }
@@ -363,7 +362,7 @@ button:hover {
     background-color: #f0618e;
     color: #f5ebfb;
     top: 0;
-    margin-top: 0px;
+    margin-top: -5px;
     margin-right: 60px;
     font-size: 13.5px;
     padding: 11px;
@@ -716,7 +715,7 @@ button.edit-button:hover {
 
     #filterButton {
         margin-right: 46px;
-        margin-top: 20px;
+        margin-top: 18px;
     }
 
     #sortButton {
