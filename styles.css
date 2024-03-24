@@ -38,6 +38,7 @@ input[type="submit"] {
 
 .title {
     background-color: #7b2cbf;
+    border: none;
     text-align: center;
     font-size: 32px;
     color: #f9f2ff;
@@ -47,6 +48,7 @@ input[type="submit"] {
 }
 
 .header {
+    border: none;
     width: 100%;
     top: 0;
     position: sticky;
@@ -55,6 +57,8 @@ input[type="submit"] {
     padding: 0px;
     padding-top: 7px;
     padding-bottom: 15px;
+    left: 0;
+    right: 0;
 }
 
 .footer {
@@ -363,7 +367,7 @@ button:hover {
     color: #f5ebfb;
     top: 0;
     margin-top: -5px;
-    margin-right: 60px;
+    margin-right: 55px;
     font-size: 13.5px;
     padding: 11px;
     padding-top: 5.5px;
@@ -578,41 +582,6 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
-/* @media only screen and (max-width: 768px) {
-
-    h1,
-    h2 {
-        font-size: 22px;
-    }
-
-    .item-details {
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .addItemForm {
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .title {
-        padding-top: 12px;
-        font-size: 30px;
-    }
-
-    .SearchBar {
-        top: 76px;
-    }
-
-    .dropdown {
-        margin-top: -43px;
-    }
-
-    #sortButton {
-        margin-top: -28px;
-    }
-} */
-
 
 
 @media only screen and (min-width: 800px) {
@@ -663,7 +632,7 @@ button.edit-button:hover {
         position: absolute;
         width: calc(70% - 15px);
         top: 0;
-        margin-top: 124px;
+        margin-top: 122px;
         margin-left: -13px;
         padding-left: 15px;
         padding-bottom: 8px;
@@ -715,13 +684,13 @@ button.edit-button:hover {
 
     #filterButton {
         margin-right: 46px;
-        margin-top: 18px;
+        margin-top: 16px;
     }
 
     #sortButton {
         right: 0px;
         font-size: 14px;
-        margin-top: 20px;
+        margin-top: 16px;
     }
 
     #sortButton:hover {
