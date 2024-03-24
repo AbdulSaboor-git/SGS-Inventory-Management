@@ -311,6 +311,7 @@ button:hover {
     font-size: 15px;
     color: #db88d0;
     position: absolute;
+    display: flex;
     top: 36px;
     right: 2px;
     height: 32px;
@@ -709,7 +710,7 @@ button.edit-button:hover {
     }
 
     #filterButton {
-        margin-right: -6px;
+        margin-right: 46px;
     }
 
     #sortButton {
@@ -727,7 +728,7 @@ button.edit-button:hover {
     }
 
     #filterIndicator {
-        margin-right: 44px;
+        margin-right: 42px;
     }
 
     .filter-dropdown {
