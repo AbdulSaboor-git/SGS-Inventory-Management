@@ -100,8 +100,9 @@ h1, h2 {
     position: absolute;
     right: 0;
     padding: 0;
+    top: 0;
     margin-right: 20px;
-    margin-top: -43px;
+    margin-top: 30px;
     z-index: 2;
     background-color: #7b2cbf;
 }
@@ -351,7 +352,8 @@ button:hover {
 #sortButton {
     background-color: #00000000;
     color: #f0618e;
-    margin-top: -24px;
+    top: 0;
+    margin-top: 0px;
     font-size: 17px;
     background-color: #10002b;
 }
@@ -359,7 +361,8 @@ button:hover {
 #filterButton {
     background-color: #f0618e;
     color: #f5ebfb;
-    margin-top: -26px;
+    top: 0;
+    margin-top: 0px;
     margin-right: 60px;
     font-size: 13.5px;
     padding: 11px;
