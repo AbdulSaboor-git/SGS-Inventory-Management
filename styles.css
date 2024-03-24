@@ -312,8 +312,8 @@ button:hover {
     font-size: 15px;
     color: #db88d0;
     position: absolute;
-    display: flex;
-    top: 36px;
+    display: block;
+    margin-top: 2px;
     right: 2px;
     height: 32px;
     width: 32px;
