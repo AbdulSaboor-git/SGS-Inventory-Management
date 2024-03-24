@@ -103,6 +103,7 @@ h1, h2 {
     margin-right: 20px;
     margin-top: -43px;
     z-index: 2;
+    background-color: #7b2cbf;
 }
 
 .dropdown-btn {
@@ -304,7 +305,7 @@ button:hover {
 }
 
 .clearSearch {
-    background-color: #00000000;
+    background-color: #f5ebfb;
     border: 0px solid;
     border-radius: 8px;
     cursor: pointer;
@@ -352,6 +353,7 @@ button:hover {
     color: #f0618e;
     margin-top: -24px;
     font-size: 17px;
+    background-color: #10002b;
 }
 
 #filterButton {
