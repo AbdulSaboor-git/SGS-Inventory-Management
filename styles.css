@@ -98,7 +98,9 @@ h1, h2 {
 
 .dropdown {
     position: absolute;
-    right: 18px;
+    right: 0;
+    padding: 0;
+    margin-right: 15px;
     margin-top: -43px;
     z-index: 2;
     display: block;
@@ -229,15 +231,11 @@ input:focus {
 button {
     background-color: #10a705;
     color: #fff;
-    /* padding: 8px; */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
-    margin-right: 5px;
-    display: inline;
-
 }
 
 button.cancel {
@@ -246,6 +244,7 @@ button.cancel {
 }
 
 button.saveButton {
+    margin-right: 5px;
     padding: 8px;
 }
 
@@ -327,6 +326,7 @@ button:hover {
 }
 
 .sortFilterButtons {
+    padding: 0px;
     position: absolute;
     display: flex;
     z-index: 2;
@@ -339,7 +339,7 @@ button:hover {
     color: #00b221;
     display: none;
     font-size: 20px;
-    margin-right: 53px;
+    margin-right: 49px;
     align-content: center;
     margin-top: -39px;
     z-index: 3;
@@ -356,7 +356,7 @@ button:hover {
     background-color: #f0618e;
     color: #f5ebfb;
     margin-top: -26px;
-    right: 60px;
+    margin-right: 60px;
     font-size: 13.5px;
     padding: 11px;
     padding-top: 5.5px;
