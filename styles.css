@@ -330,7 +330,7 @@ button:hover {
 .sortFilterButtons {
     padding: 0px;
     position: absolute;
-    display: grid;
+    display: block;
     z-index: 2;
     height: 25px;
     right: 0px;
@@ -345,7 +345,8 @@ button:hover {
     font-size: 20px;
     margin-right: 55px;
     align-content: center;
-    margin-top: -39px;
+    top: 0;
+    margin-top: -13px;
     z-index: 3;
 }
 
