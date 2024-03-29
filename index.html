@@ -14,18 +14,16 @@
         <div id="overlay"></div>
         <div class="header">
             <h1 class="title">SGS - INVENTORY</h1>
-            <div class="dropdown">
-                <button class="dropdown-btn">&#8285;</button>
-                <div class="dropdown-content">
-                    <form class="dropdownList" method="post">
-                        <input type="button" class="btn" value="Add Item" onclick="toggleAddItemForm()">
-                        <input type="button" class="btn" value="Load Data"
-                            onclick="document.getElementById('csvFileInput').click()">
-                        <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
-                        <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
-                        <input type="button" class="logout_btn" value="Logout">
-                    </form>
-                </div>
+            <button class="dropdown-btn">&#8285;</button>
+            <div class="dropdown-content">
+                <form class="dropdownList" method="post">
+                    <input type="button" class="btn" value="Add Item" onclick="toggleAddItemForm()">
+                    <input type="button" class="btn" value="Load Data"
+                        onclick="document.getElementById('csvFileInput').click()">
+                    <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
+                    <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
+                    <input type="button" class="logout_btn" value="Logout">
+                </form>
             </div>
         </div>
 
@@ -34,8 +32,7 @@
             <div class="leftComponents">
                 <div id="searchDiv">
                     <h3>Search:</h3>
-                    <button class="sortFilterButtons" id="sortButton" title="Sort Items">&#9650;<br
-                            class="sortButtonGap">&#9660;</button>
+                    <button class="sortFilterButtons" id="sortButton" title="Sort Items">&#9650;<br>&#9660;</button>
                     <button class="sortFilterButtons" id="filterIndicator">&#x25CF;</button>
                     <button class="sortFilterButtons" id="filterButton" onclick="toggleFilterForm()">Filter</button>
 
@@ -136,7 +133,7 @@
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
-        var categories = ["General", "Cereals", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products", "Sauces", "Kitchen Groceries", "Baverages", "Preserved Foods", "Cleaning Products", "Cosmetics", "Electronics", "Snacks", "Insecticides"];
+        var categories = ["General", "Cereals", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products", "Sauces", "Kitchen Groceries", "Beverages", "Preserved Foods", "Cleaning Products", "Cosmetics", "Electronics", "Snacks", "Insecticides"];
         categories.sort(function (a, b) {
             return a.localeCompare(b);
         });
