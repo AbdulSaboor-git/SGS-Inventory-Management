@@ -113,7 +113,7 @@ h1, h2 {
     font-size: 30px;
     border-radius: 100px;
     background-color: #f0618e;
-    transition: background-color 0.5s;
+    transition: background-color 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
