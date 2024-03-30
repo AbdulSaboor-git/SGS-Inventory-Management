@@ -113,12 +113,23 @@ h1, h2 {
     font-size: 28px;
     border-radius: 100px;
     background-color: #f0618e;
-    transition: background-color 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, background-color 0.3s;
 }
 
 .itemAddButton:hover {
     background-color: #ee4379;
+}
+
+
+.itemAddButton.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.itemAddButton.hide {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .dropdown-btn {
@@ -141,18 +152,21 @@ h1, h2 {
 
 
 .dropdown-content {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
     position: absolute;
     box-sizing: content-box;
     right: 30px;
     top: 0;
     margin-top: 60px;
     min-width: 130px;
+
 }
 
 .dropdown-content.show {
-    animation: fadeIn 0.15s ease-in-out;
-    display: block;
+    opacity: 1;
+    pointer-events: all;
 }
 
 .navButtons {
@@ -202,11 +216,13 @@ input.logout_btn {
 }
 
 .FilterForm {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 5;
+    z-index: 6;
     width: 70%;
     max-width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -219,8 +235,15 @@ input.logout_btn {
     transform: translate(-50%, -50%)
 }
 
+.FilterForm.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
 #overlay {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
     position: fixed;
     top: 0;
     left: 0;
@@ -229,6 +252,11 @@ input.logout_btn {
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(1.5px);
     z-index: 5;
+}
+
+#overlay.show {
+    opacity: 1;
+    pointer-events: all;
 }
 
 label {
@@ -343,7 +371,7 @@ button:hover {
     right: 2px;
     height: 32px;
     width: 32px;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 
@@ -404,7 +432,9 @@ button:hover {
 }
 
 .sort-dropdown {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
     position: absolute;
     background-color: #f5ebfb;
     min-width: 120px;
@@ -437,8 +467,8 @@ button:hover {
 }
 
 .sort-dropdown.show {
-    display: block;
-    animation: fadeIn 0.15s ease-in-out;
+    opacity: 1;
+    pointer-events: all;
 }
 
 .invHeading {
@@ -745,5 +775,15 @@ button.edit-button:hover {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }

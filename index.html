@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <button class="itemAddButton" value="Add Item" onclick="toggleAddItemForm()">+</button>
+        <button class="itemAddButton " value="Add Item" onclick="toggleAddItemForm()">+</button>
 
         <div class="components">
 
@@ -174,6 +174,24 @@
             }, 2200);
         }
 
+        var lastScrollTop = 0;
+        var itemAddButton = document.querySelector('.itemAddButton');
+
+        window.addEventListener('scroll', function () {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                itemAddButton.classList.remove('show');
+                itemAddButton.classList.add('hide');
+            } else {
+                itemAddButton.classList.remove('hide');
+                itemAddButton.classList.add('show');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }, false);
+
+
         function populateCategoryDropdown(targetSelect) {
             var categorySelect = document.getElementById(targetSelect);
             categorySelect.innerHTML = '';
@@ -240,16 +258,9 @@
         function toggleFilterForm() {
             var filterForm = document.getElementById('FilterForm');
             var overlay = document.getElementById('overlay');
-            if (filterForm.style.display === 'block') {
-                filterForm.style.display = 'none';
-                overlay.style.display = 'none';
-                document.body.style.overflow = '';
-            } else {
-                filterForm.style.display = 'block';
-                overlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-
+            filterForm.classList.add('show');
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
         function clearFilter() {
@@ -261,8 +272,8 @@
         function cancelFilter() {
             var filterForm = document.getElementById('FilterForm');
             var overlay = document.getElementById('overlay');
-            filterForm.style.display = 'none';
-            overlay.style.display = 'none';
+            filterForm.classList.remove('show');
+            overlay.classList.remove('show');
             document.body.style.overflow = '';
         }
 
