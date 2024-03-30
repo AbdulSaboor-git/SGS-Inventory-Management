@@ -108,9 +108,9 @@ h1, h2 {
     margin-right: 30px;
     z-index: 1;
     padding: 10px;
-    padding-left: 19px;
-    padding-right: 19px;
-    font-size: 30px;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 28px;
     border-radius: 100px;
     background-color: #f0618e;
     transition: background-color 0.3s;
@@ -732,6 +732,9 @@ button.edit-button:hover {
         margin-right: 20px;
     }
 
+    .itemAddButton {
+        display: none;
+    }
 
 
 }
