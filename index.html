@@ -17,10 +17,7 @@
             <button class="dropdown-btn">&#8285;</button>
             <div class="dropdown-content">
                 <form class="dropdownList" method="post">
-                    <!-- <input type="button" class="btn" value="Add Item" onclick="toggleAddItemForm()"> -->
-                    <input type="button" class="btn" value="Add Category" onclick="toggleAddCategoryForm()">
-                    <input type="button" class="btn" value="Edit Category" onclick="toggleEditCategoryForm()">
-                    <input type="button" class="btn" value="Remove Category" onclick="toggleRemoveCategoryForm()">
+                    <input type="button" class="btn" value="Manage Categories" onclick="toggleManageCategoriesForm()">
                     <input type="button" class="btn" value="Load Data"
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
@@ -57,9 +54,7 @@
                 </div>
                 <div class="navButtons">
                     <button class="navButton" onclick="toggleAddItemForm()">Add Item</button>
-                    <button class="navButton" onclick="toggleAddCategoryForm()">Add Category</button>
-                    <button class="navButton" onclick="toggleEditCategoryForm()">Edit Category</button>
-                    <button class="navButton" onclick="toggleRemoveCategoryForm()">Remove Category</button>
+                    <button class="navButton" onclick="toggleManageCategoriesForm()">Manage Categories</button>
                     <button class="navButton" onclick="document.getElementById('csvFileInput').click()">Load
                         Data</button>
                     <button class="navButton" onclick="downloadCSV()">Save Data</button>
@@ -502,7 +497,6 @@
             localStorage.clear();
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
             displayInventoryList(inventoryData);
-            // location.reload();
         }
 
         function toggleItemDetails(item) {
