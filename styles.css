@@ -161,7 +161,6 @@ h1, h2 {
     top: 0;
     margin-top: 60px;
     min-width: 130px;
-
 }
 
 .dropdown-content.show {
@@ -215,6 +214,10 @@ input.logout_btn {
     border-radius: 8px;
 }
 
+.addItemForm .b1 {
+    margin-top: 10px;
+}
+
 .FilterForm {
     opacity: 0;
     pointer-events: none;
@@ -238,6 +241,10 @@ input.logout_btn {
 .FilterForm.show {
     opacity: 1;
     pointer-events: all;
+}
+
+.FilterForm .b1 {
+    margin-top: 5px;
 }
 
 .manageCategories {
