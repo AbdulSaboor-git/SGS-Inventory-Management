@@ -18,10 +18,10 @@
             <div class="dropdown-content">
                 <form class="dropdownList" method="post">
                     <input type="button" class="btn" value="Manage Categories" onclick="toggleManageCategoriesForm()">
-                    <input type="button" class="btn" value="Load Data"
+                    <input type="button" class="btn" value="Load Data From File"
                         onclick="document.getElementById('csvFileInput').click()">
-                    <input type="button" class="btn" value="Save Data" onclick="downloadCSV()">
-                    <input type="button" class="btn" value="Clear Data" onclick="clearInventoryList()">
+                    <input type="button" class="btn" value="Export Data" onclick="downloadCSV()">
+                    <input type="button" class="btn" value="Clear Inventory" onclick="clearInventoryList()">
                     <input type="button" class="logout_btn" value="Logout">
                 </form>
             </div>
@@ -30,7 +30,6 @@
         <button class="itemAddButton " value="Add Item" onclick="toggleAddItemForm()">+</button>
 
         <div class="components">
-
             <div class="leftComponents">
                 <div id="searchDiv">
                     <h3>Search:</h3>
@@ -55,13 +54,46 @@
                 <div class="navButtons">
                     <button class="navButton" onclick="toggleAddItemForm()">Add Item</button>
                     <button class="navButton" onclick="toggleManageCategoriesForm()">Manage Categories</button>
-                    <button class="navButton" onclick="document.getElementById('csvFileInput').click()">Load
-                        Data</button>
-                    <button class="navButton" onclick="downloadCSV()">Save Data</button>
-                    <button class="navButton" onclick="clearInventoryList()">Clear Data</button>
+                    <button class="navButton" onclick="document.getElementById('csvFileInput').click()">Load Data From
+                        File</button>
+                    <button class="navButton" onclick="downloadCSV()">Export Data</button>
+                    <button class="navButton" onclick="clearInventoryList()">Clear Inventory</button>
                     <button class="navButton">Logout</button>
                 </div>
             </div>
+
+            <form id="manageCategories" class="manageCategories" autocomplete="off" spellcheck="false">
+                <h2 class="addEditHeader">Manage Categories</h2>
+                <div class="categFormHeader">
+                    <input type="button" id="categFormHeaderButtonAdd" class="categFormHeaderButton"
+                        onclick="enableAdd()" value="Add">
+                    <input type="button" id="categFormHeaderButtonRename" class="categFormHeaderButton"
+                        onclick="enableRename()" value="Rename">
+                    <input type="button" id="categFormHeaderButtonRemove" class="categFormHeaderButton"
+                        onclick="enableRemove()" value="Remove">
+
+                </div>
+
+                <div class="categFormBackground">
+
+
+                    <label for="categName" id="categNameLabel">Category Name:</label>
+                    <input type="text" class="addItemInput" id="categName" oninput="" required>
+
+                    <label for="category" id="selectCategLabel">Select Category:</label>
+                    <select name="category" id="selectCateg" class="selectCateg" title="Select a category" oninput=""
+                        required></select>
+
+                    <label for="categName" id="renameLabel">Enter New Name:</label>
+                    <input type="text" class="addItemInput" id="categNewName" oninput="" required>
+
+                    <button class="categFormBTN" id="addCategButton" onclick="">Add</button>
+                    <button class="categFormBTN" id="renameCategButton" onclick="">Rename</button>
+                    <button class="categFormBTN clear" id="removeCategButton" onclick="">Remove</button>
+                    <button type="reset" class="categFormBTN cancel" onclick="cancelCategoriesForm()">Cancel</button>
+                </div>
+
+            </form>
 
             <form id="addItemForm" class="addItemForm" style="display: none" autocomplete="off" spellcheck="false">
                 <h2 id="addEditHeader" class="addEditHeader">Add Item</h2>
@@ -74,7 +106,7 @@
 
                 <label for="purchasePrice">Purchase Price:</label>
                 <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice"
-                    oninput="setText() , enable()" disabled="true" required>
+                    oninput="setText(), enable()" disabled="true" required>
 
                 <label for="salePrice">Sale Price:</label>
                 <input type="number" class="addItemInput" id="salePrice" name="salePrice" required>
@@ -83,7 +115,7 @@
                 <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice"
                     disabled="true">
 
-                <button type="button" class="saveButton" id="saveButton" onclick="saveItem()" name="insert">Save
+                <button class="saveButton" id="saveButton" onclick="saveItem()" name="insert">Save
                     Item</button>
                 <button type="reset" class="cancel" onclick="cancelAddEdit()">Cancel</button>
             </form>
@@ -145,6 +177,7 @@
         var filterAppied = false;
         populateCategoryDropdown('category');
         populateCategoryDropdown('filterCategory');
+        populateCategoryDropdown('selectCateg');
 
         sortInventory('itemName', 'asc');
 
@@ -248,6 +281,72 @@
             var saleValue = purchaseValue + (purchaseValue * 0.07);
             saleValue = Math.round(saleValue / 10) * 10;
             inputField1.value = saleValue;
+        }
+
+        function toggleManageCategoriesForm() {
+            enableAdd();
+            document.getElementById('manageCategories').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cancelCategoriesForm() {
+            document.getElementById('manageCategories').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function enableAdd() {
+            document.getElementById('categFormHeaderButtonAdd').classList.add('focused');
+            document.getElementById('categFormHeaderButtonRename').classList.remove('focused');
+            document.getElementById('categFormHeaderButtonRemove').classList.remove('focused');
+
+            document.getElementById('categName').style.display = 'block';
+            document.getElementById('categNameLabel').style.display = 'block';
+            document.getElementById('categNewName').style.display = 'none';
+            document.getElementById('renameLabel').style.display = 'none';
+            document.getElementById('selectCategLabel').style.display = 'none';
+            document.getElementById('selectCateg').style.display = 'none';
+
+            document.getElementById('addCategButton').style.display = 'inline';
+            document.getElementById('renameCategButton').style.display = 'none';
+            document.getElementById('removeCategButton').style.display = 'none';
+
+
+        }
+
+        function enableRename() {
+            document.getElementById('categFormHeaderButtonAdd').classList.remove('focused');
+            document.getElementById('categFormHeaderButtonRename').classList.add('focused');
+            document.getElementById('categFormHeaderButtonRemove').classList.remove('focused');
+
+            document.getElementById('categName').style.display = 'none';
+            document.getElementById('categNameLabel').style.display = 'none';
+            document.getElementById('selectCategLabel').style.display = 'block';
+            document.getElementById('selectCateg').style.display = 'block';
+            document.getElementById('categNewName').style.display = 'block';
+            document.getElementById('renameLabel').style.display = 'block';
+
+            document.getElementById('addCategButton').style.display = 'none';
+            document.getElementById('renameCategButton').style.display = 'inline';
+            document.getElementById('removeCategButton').style.display = 'none';
+        }
+
+        function enableRemove() {
+            document.getElementById('categFormHeaderButtonAdd').classList.remove('focused');
+            document.getElementById('categFormHeaderButtonRename').classList.remove('focused');
+            document.getElementById('categFormHeaderButtonRemove').classList.add('focused');
+
+            document.getElementById('categName').style.display = 'none';
+            document.getElementById('categNameLabel').style.display = 'none';
+            document.getElementById('categNewName').style.display = 'none';
+            document.getElementById('renameLabel').style.display = 'none';
+            document.getElementById('selectCategLabel').style.display = 'block';
+            document.getElementById('selectCateg').style.display = 'block';
+
+            document.getElementById('addCategButton').style.display = 'none';
+            document.getElementById('renameCategButton').style.display = 'none';
+            document.getElementById('removeCategButton').style.display = 'inline';
         }
 
         function toggleFilterForm() {

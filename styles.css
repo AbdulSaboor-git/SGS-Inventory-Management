@@ -240,6 +240,83 @@ input.logout_btn {
     pointer-events: all;
 }
 
+.manageCategories {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: 6;
+    width: 70%;
+    height: 330px;
+    max-width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
+    background-color: #f5ebfb;
+    border-radius: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.manageCategories.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.manageCategories .addItemInput,
+.manageCategories .selectCateg {
+    background-color: #f5ebfb;
+}
+
+.categFormHeader {
+    padding-left: 5px;
+    display: inline;
+    width: 100%;
+}
+
+.categFormBackground {
+    margin-top: -20px;
+    height: 200px;
+    background-color: #fbd5ff;
+    padding: 20px;
+    border: solid 1px #edb4f5;
+    border-top: none;
+}
+
+.categFormHeaderButton {
+    width: 33.45%;
+    margin-left: -5px;
+    padding: 8px;
+    background-color: #fbd5ff;
+    border: none;
+    border: solid 1px #edb4f5;
+    border-bottom: none;
+    margin-bottom: 20px;
+    color: #424242;
+}
+
+.categFormHeaderButton:hover {
+    background-color: #f3c5f9;
+}
+
+.categFormHeaderButton.focused {
+    background-color: #edb4f5;
+}
+
+.categFormBTN {
+    margin-top: 10px;
+    width: 35%;
+    height: 30px;
+}
+
+.categFormBTN.cancel {
+    padding: 0px;
+}
+
+.categFormBTN.clear {
+    padding: 0px;
+}
+
 #overlay {
     opacity: 0;
     pointer-events: none;
@@ -262,8 +339,7 @@ input.logout_btn {
 label {
     display: block;
     margin-bottom: 6px;
-    font-weight: bold;
-    color: #555;
+    color: #424242;
 }
 
 .selectCateg,
@@ -271,11 +347,11 @@ label {
     width: 100%;
     padding: 10px;
     margin-bottom: 12px;
-    border: 2px solid #bc474980;
+    border: 1px solid #ef83fe;
     border-radius: 4px;
     box-sizing: border-box;
     color: #303030;
-    background-color: #e3c8f2;
+    background-color: #fbd5ff;
 }
 
 input:focus {
