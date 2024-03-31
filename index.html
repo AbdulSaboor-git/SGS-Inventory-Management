@@ -87,9 +87,12 @@
                     <label for="categName" id="renameLabel">Enter New Name:</label>
                     <input type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()" required>
 
-                    <button class="categFormBTN" id="addCategButton" disabled="true" onclick="">Add</button>
-                    <button class="categFormBTN" id="renameCategButton" disabled="true" onclick="">Rename</button>
-                    <button class="categFormBTN clear" id="removeCategButton" onclick="">Remove</button>
+                    <button type="button" class="categFormBTN" id="addCategButton" onclick="addCategory()"
+                        disabled="true">Add</button>
+                    <button type="button" class="categFormBTN" id="renameCategButton" onclick="renameCategory()"
+                        disabled="true">Rename</button>
+                    <button type="button" class="categFormBTN clear" id="removeCategButton"
+                        onclick="removeCategory()">Remove</button>
                     <button type="reset" class="categFormBTN cancel" onclick="cancelCategoriesForm()">Cancel</button>
                 </div>
 
@@ -169,17 +172,24 @@
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
 
         var categories = ["General", "Cereals", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products", "Sauces", "Cooking Products", "Beverages", "Preserved Foods", "Cleaning Products", "Cosmetics", "Electronics", "Snacks", "Insecticides"];
-        categories.sort(function (a, b) {
-            return a.localeCompare(b);
-        });
+
 
         var FilteredINV = inventoryData;
         var filterAppied = false;
-        populateCategoryDropdown('category');
-        populateCategoryDropdown('filterCategory');
-        populateCategoryDropdown('selectCateg');
+
+
+        function AddCategoriesToDropdowns() {
+            populateCategoryDropdown('category');
+            populateCategoryDropdown('filterCategory');
+            populateCategoryDropdown('selectCateg');
+
+            categories.sort(function (a, b) {
+                return a.localeCompare(b);
+            });
+        }
 
         sortInventory('itemName', 'asc');
+        AddCategoriesToDropdowns();
 
         var editingItemId = null;
 
@@ -250,16 +260,34 @@
             var renameButton = document.getElementById('renameCategButton');
 
             if (categInput != '') {
-                addButton.setAttribute('disabled', false);
+                addButton.removeAttribute('disabled');
             }
             else
                 addButton.setAttribute('disabled', true);
 
             if (categNewInput.value != '') {
-                renameButton.setAttribute('disabled', false);
+                renameButton.removeAttribute('disabled');
             }
             else
                 renameButton.setAttribute('disabled', true);
+        }
+
+        function addCategory() {
+            var c = document.getElementById('categName').value;
+
+            if (!categories.includes(c)) {
+                categories.push(c);
+                AddCategoriesToDropdowns();
+                displayFeedbackPopup("Category added successfully", true);
+            }
+            else
+                displayFeedbackPopup("Unable to add! Category already exists", false);
+            cancelCategoriesForm();
+        }
+
+        function clearCategoryForm() {
+            document.getElementById('categName').value = '';
+            document.getElementById('categNewName').value = '';
         }
 
         function enable() {
@@ -310,6 +338,7 @@
         function toggleManageCategoriesForm() {
             setText();
             enableAdd();
+            clearCategoryForm();
             document.getElementById('manageCategories').classList.add('show');
             document.getElementById('overlay').classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -718,7 +747,6 @@
             document.getElementById('salePrice').value = '';
             document.getElementById('governmentSalePrice').value = '';
             document.getElementById('category').value = '';
-
         }
 
 
