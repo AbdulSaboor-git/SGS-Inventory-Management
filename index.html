@@ -78,17 +78,17 @@
 
 
                     <label for="categName" id="categNameLabel">Category Name:</label>
-                    <input type="text" class="addItemInput" id="categName" oninput="" required>
+                    <input type="text" class="addItemInput" id="categName" oninput="enableCategButtons()" required>
 
                     <label for="category" id="selectCategLabel">Select Category:</label>
-                    <select name="category" id="selectCateg" class="selectCateg" title="Select a category" oninput=""
-                        required></select>
+                    <select name="category" id="selectCateg" class="selectCateg" title="Select a category"
+                        oninput="setText()" required></select>
 
                     <label for="categName" id="renameLabel">Enter New Name:</label>
-                    <input type="text" class="addItemInput" id="categNewName" oninput="" required>
+                    <input type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()" required>
 
-                    <button class="categFormBTN" id="addCategButton" onclick="">Add</button>
-                    <button class="categFormBTN" id="renameCategButton" onclick="">Rename</button>
+                    <button class="categFormBTN" id="addCategButton" disabled="true" onclick="">Add</button>
+                    <button class="categFormBTN" id="renameCategButton" disabled="true" onclick="">Rename</button>
                     <button class="categFormBTN clear" id="removeCategButton" onclick="">Remove</button>
                     <button type="reset" class="categFormBTN cancel" onclick="cancelCategoriesForm()">Cancel</button>
                 </div>
@@ -242,6 +242,26 @@
             });
         }
 
+        function enableCategButtons() {
+            var categInput = document.getElementById('categName').value;
+            var categNewInput = document.getElementById('categNewName');
+            var categ = document.getElementById('selectCateg').value;
+            var addButton = document.getElementById('addCategButton');
+            var renameButton = document.getElementById('renameCategButton');
+
+            if (categInput != '') {
+                addButton.setAttribute('disabled', false);
+            }
+            else
+                addButton.setAttribute('disabled', true);
+
+            if (categNewInput.value != '') {
+                renameButton.setAttribute('disabled', false);
+            }
+            else
+                renameButton.setAttribute('disabled', true);
+        }
+
         function enable() {
             var itemName = document.getElementById('itemName').value;
             var saveButton1 = document.getElementById('saveButton');
@@ -281,9 +301,14 @@
             var saleValue = purchaseValue + (purchaseValue * 0.07);
             saleValue = Math.round(saleValue / 10) * 10;
             inputField1.value = saleValue;
+
+            var categNewInput = document.getElementById('categNewName');
+            var categ = document.getElementById('selectCateg').value;
+            categNewInput.value = categ;
         }
 
         function toggleManageCategoriesForm() {
+            setText();
             enableAdd();
             document.getElementById('manageCategories').classList.add('show');
             document.getElementById('overlay').classList.add('show');
