@@ -248,8 +248,8 @@ input.logout_btn {
 }
 
 .manageCategories {
-    opacity: 0;
-    pointer-events: none;
+    /* opacity: 0;
+    pointer-events: none; */
     position: fixed;
     z-index: 6;
     width: 70%;
@@ -279,9 +279,9 @@ input.logout_btn {
     padding-left: 5px;
     display: inline;
     width: 100%;
-    padding: 7px;
-    padding-left: 8.3px;
-    padding-right: 3.5px;
+    padding: 7.5px;
+    padding-left: 8.34px;
+    padding-right: 3.51px;
     background-color: #edb4f5;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
@@ -294,14 +294,14 @@ input.logout_btn {
     background-color: #fbd5ff;
     padding: 20px;
     padding-top: 50px;
-    border: solid 3.3px #edb4f5;
+    border: solid 4px #edb4f5;
     border-radius: 8px;
 }
 
 
 .categFormHeaderButton {
-    width: 32.8%;
-    margin-left: -5px;
+    width: 32.63%;
+    margin-left: -4.4px;
     padding: 8px;
     background-color: #edb4f5;
     border: none;
