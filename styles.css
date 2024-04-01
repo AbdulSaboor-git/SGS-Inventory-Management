@@ -281,7 +281,7 @@ input.logout_btn {
     width: 100%;
     padding: 7px;
     padding-left: 8.3px;
-    padding-right: 2.8px;
+    padding-right: 3.5px;
     background-color: #edb4f5;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
@@ -302,7 +302,6 @@ input.logout_btn {
 .categFormHeaderButton {
     width: 32.8%;
     margin-left: -5px;
-    margin-right: 0.2px;
     padding: 8px;
     background-color: #edb4f5;
     border: none;
