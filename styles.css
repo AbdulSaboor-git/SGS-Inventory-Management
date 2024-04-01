@@ -279,35 +279,47 @@ input.logout_btn {
     padding-left: 5px;
     display: inline;
     width: 100%;
+    padding: 6.2px;
+    padding-left: 8.3px;
+    padding-right: 2.8px;
+    background-color: #edb4f5;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .categFormBackground {
-    margin-top: -20px;
+    margin-top: -53px;
     height: 200px;
     background-color: #fbd5ff;
     padding: 20px;
-    border: solid 1px #edb4f5;
-    border-top: none;
+    padding-top: 50px;
+    border: solid 3.3px #edb4f5;
+    border-radius: 8px;
 }
 
+
 .categFormHeaderButton {
-    width: 33.45%;
+    width: 32.8%;
     margin-left: -5px;
     padding: 8px;
-    background-color: #fbd5ff;
+    background-color: #edb4f5;
     border: none;
-    border: solid 1px #edb4f5;
-    border-bottom: none;
     margin-bottom: 20px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     color: #424242;
 }
 
 .categFormHeaderButton:hover {
-    background-color: #f3c5f9;
+    background-color: #f5c0fc;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .categFormHeaderButton.focused {
-    background-color: #edb4f5;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #fbd5ff;
 }
 
 .categFormBTN {
