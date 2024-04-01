@@ -253,7 +253,7 @@ input.logout_btn {
     position: fixed;
     z-index: 6;
     width: 70%;
-    height: 345px;
+    height: 342px;
     max-width: 350px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -296,8 +296,8 @@ input.logout_btn {
 }
 
 .categFormHeaderAllButtons {
-    margin-right: -11px;
-    margin-left: 0.2px;
+    margin-right: -11.2px;
+    margin-left: 0.1px;
 }
 
 .categFormHeaderButton {
