@@ -248,8 +248,8 @@ input.logout_btn {
 }
 
 .manageCategories {
-    opacity: 1;
-    /* pointer-events: none; */
+    opacity: 0;
+    pointer-events: none;
     position: fixed;
     z-index: 6;
     width: 70%;
