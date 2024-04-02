@@ -211,11 +211,11 @@
                 feedbackPopup.classList.remove('success');
             }
 
-            feedbackPopup.style.display = 'block';
+            feedbackPopup.classList.add('show');
 
             setTimeout(function () {
-                feedbackPopup.style.display = 'none';
-            }, 2200);
+                feedbackPopup.classList.remove('show');
+            }, 3000);
         }
 
         var lastScrollTop = 0;
@@ -322,11 +322,17 @@
                     n++;
             });
             if (!n) {
-                var ind = categories.indexOf(c);
-                categories.splice(ind, 1);
-                AddCategoriesToDropdowns();
-                displayFeedbackPopup("Category removed successfully", true);
-                localStorage.setItem('categories', JSON.stringify(categories));
+                var confirmRemove = confirm("Are you sure you want to remove this category?");
+                if (confirmRemove) {
+                    var ind = categories.indexOf(c);
+                    categories.splice(ind, 1);
+                    AddCategoriesToDropdowns();
+                    displayFeedbackPopup("Category removed successfully", true);
+                    localStorage.setItem('categories', JSON.stringify(categories));
+                }
+                else {
+                    displayFeedbackPopup("Category removal canceled!", false);
+                }
             }
             else
                 displayFeedbackPopup("Empty the category before deleting! There are " + n + " items present in this category", false);
@@ -426,6 +432,8 @@
             document.getElementById('renameCategButton').style.display = 'inline';
             document.getElementById('removeCategButton').style.display = 'none';
 
+
+            var categ = document.getElementById('selectCateg').value = '';
             setNewName();
         }
 
@@ -450,6 +458,9 @@
             document.getElementById('addCategButton').style.display = 'none';
             document.getElementById('renameCategButton').style.display = 'none';
             document.getElementById('removeCategButton').style.display = 'inline';
+
+            var categ = document.getElementById('selectCateg').value = '';
+
         }
 
         function toggleFilterForm() {

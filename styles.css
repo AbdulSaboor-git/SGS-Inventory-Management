@@ -710,6 +710,7 @@ button.edit-button:hover {
 }
 
 #feedbackPopup {
+    opacity: 0;
     position: fixed;
     top: 20px;
     right: 20px;
@@ -717,14 +718,16 @@ button.edit-button:hover {
     background-color: #007bff;
     color: #fff;
     border-radius: 8px;
-    display: none;
     z-index: 4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     max-width: 300px;
     text-align: center;
     transition: background-color 0.3s;
-    animation: fadeIn 0.2s ease-in-out;
+    transition: opacity 0.3s;
+}
 
+#feedbackPopup.show {
+    opacity: 1;
 }
 
 #feedbackPopup.error {
