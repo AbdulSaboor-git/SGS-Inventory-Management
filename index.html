@@ -286,7 +286,7 @@
                 displayFeedbackPopup("Category added successfully", true);
             }
             else
-                displayFeedbackPopup("Unable to add! Category already exists", false);
+                displayFeedbackPopup("Unable to add! Category with this name already exists", false);
             cancelCategoriesForm();
         }
 
@@ -323,7 +323,7 @@
                 displayFeedbackPopup("Category removed successfully", true);
             }
             else
-                displayFeedbackPopup("Empty the category before deleting. There are " + n + " items present in this category", false);
+                displayFeedbackPopup("Empty the category before deleting! There are " + n + " items present in this category", false);
             cancelCategoriesForm();
         }
 
