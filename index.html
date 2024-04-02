@@ -84,7 +84,7 @@
 
                     <label for="category" id="selectCategLabel">Select Category:</label>
                     <select name="category" id="selectCateg" class="selectCateg" title="Select a category"
-                        oninput="enableRename()" required></select>
+                        oninput="setNewName()" required></select>
 
                     <label for="categName" id="renameLabel">Enter New Name:</label>
                     <input type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()" required>
@@ -420,6 +420,10 @@
             document.getElementById('renameCategButton').style.display = 'inline';
             document.getElementById('removeCategButton').style.display = 'none';
 
+            setNewName();
+        }
+
+        function setNewName() {
             var categNewInput = document.getElementById('categNewName');
             var categ = document.getElementById('selectCateg').value;
             categNewInput.value = categ;
