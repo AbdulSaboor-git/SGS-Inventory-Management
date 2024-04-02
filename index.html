@@ -307,6 +307,7 @@
                 categories[ind] = d;
                 AddCategoriesToDropdowns();
                 displayFeedbackPopup("Category renamed successfully", true);
+                localStorage.setItem('categories', JSON.stringify(categories));
             }
             else
                 displayFeedbackPopup("Unable to rename! Category with this name already exists", false);
@@ -325,6 +326,7 @@
                 categories.splice(ind, 1);
                 AddCategoriesToDropdowns();
                 displayFeedbackPopup("Category removed successfully", true);
+                localStorage.setItem('categories', JSON.stringify(categories));
             }
             else
                 displayFeedbackPopup("Empty the category before deleting! There are " + n + " items present in this category", false);
