@@ -286,10 +286,12 @@
                 categories.push(c);
                 AddCategoriesToDropdowns();
                 displayFeedbackPopup("Category added successfully", true);
+                localStorage.setItem('categories', JSON.stringify(categories));
             }
             else
                 displayFeedbackPopup("Unable to add! Category with this name already exists", false);
             cancelCategoriesForm();
+
         }
 
         function renameCategory() {
