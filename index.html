@@ -837,11 +837,11 @@
         }
 
         function loadDataFromCSVFile() {
-            empty();
-            var fileInput = document.getElementById('csvFileInput');
-            var file = fileInput.files[0];
-
             if (file) {
+                empty();
+                var fileInput = document.getElementById('csvFileInput');
+                var file = fileInput.files[0];
+
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
