@@ -84,7 +84,7 @@
 
                     <label for="category" id="selectCategLabel">Select Category:</label>
                     <select name="category" id="selectCateg" class="selectCateg" title="Select a category"
-                        oninput="setText()" required></select>
+                        oninput="enableRename()" required></select>
 
                     <label for="categName" id="renameLabel">Enter New Name:</label>
                     <input type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()" required>
@@ -172,8 +172,8 @@
 
     <script>
         var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+        var categories = JSON.parse(localStorage.getItem('categories')) || [];
 
-        var categories = ["General", "Cereals", "Pulses", "Spices", "Dairy", "Rice", "Stationary", "Grains", "Dry Fruits", "Baking Products", "Sauces", "Cooking Products", "Beverages", "Preserved Foods", "Cleaning Products", "Cosmetics", "Electronics", "Snacks", "Insecticides"];
 
 
         var FilteredINV = inventoryData;
@@ -290,6 +290,43 @@
             cancelCategoriesForm();
         }
 
+        function renameCategory() {
+            var c = document.getElementById('selectCateg').value;
+            var d = document.getElementById('categNewName').value;
+
+            if (!categories.includes(d)) {
+                inventoryData.forEach(item => {
+                    if (item.category === c)
+                        item.category = d;
+                });
+                var ind = categories.indexOf(c);
+                categories[ind] = d;
+                AddCategoriesToDropdowns();
+                displayFeedbackPopup("Category renamed successfully", true);
+            }
+            else
+                displayFeedbackPopup("Unable to rename! Category with this name already exists", false);
+            cancelCategoriesForm();
+        }
+
+        function removeCategory() {
+            var c = document.getElementById('selectCateg').value;
+            var n = 0;
+            inventoryData.forEach(item => {
+                if (item.category === c)
+                    n++;
+            });
+            if (!n) {
+                var ind = categories.indexOf(c);
+                categories.splice(ind, 1);
+                AddCategoriesToDropdowns();
+                displayFeedbackPopup("Category removed successfully", true);
+            }
+            else
+                displayFeedbackPopup("Empty the category before deleting. There are " + n + " items present in this category", false);
+            cancelCategoriesForm();
+        }
+
         function clearCategoryForm() {
             document.getElementById('categName').value = '';
             document.getElementById('categNewName').value = '';
@@ -365,8 +402,6 @@
             document.getElementById('addCategButton').style.display = 'inline';
             document.getElementById('renameCategButton').style.display = 'none';
             document.getElementById('removeCategButton').style.display = 'none';
-
-
         }
 
         function enableRename() {
@@ -594,6 +629,7 @@
                 inventoryList.appendChild(listItem);
             });
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+            localStorage.setItem('categories', JSON.stringify(categories));
         }
 
 
@@ -653,6 +689,7 @@
             inventoryData = [];
             localStorage.clear();
             localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+            localStorage.setItem('categories', JSON.stringify(categories));
             displayInventoryList(inventoryData);
         }
 
@@ -812,9 +849,6 @@
                     parseCSVData(csvData);
                 };
                 displayFeedbackPopup("Data loaded from CSV successfully!", true);
-                populateCategoryDropdown('category');
-                populateCategoryDropdown('filterCategory');
-
                 reader.readAsText(file);
             } else {
                 displayFeedbackPopup("No CSV file selected!", false);
@@ -835,6 +869,9 @@
                 }
                 newItem.id = inventoryData.length + 1;
                 inventoryData.push(newItem);
+                if (!categories.includes(newItem.category))
+                    categories.push(newItem.category);
+                AddCategoriesToDropdowns();
                 sortInventory('itemName', 'asc');
             }
 
