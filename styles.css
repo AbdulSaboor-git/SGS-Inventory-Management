@@ -718,7 +718,7 @@ button.edit-button:hover {
     background-color: #007bff;
     color: #fff;
     border-radius: 8px;
-    z-index: 4;
+    z-index: 3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     max-width: 300px;
     text-align: center;
@@ -728,6 +728,7 @@ button.edit-button:hover {
 
 #feedbackPopup.show {
     opacity: 1;
+    z-index: 4;
 }
 
 #feedbackPopup.error {
