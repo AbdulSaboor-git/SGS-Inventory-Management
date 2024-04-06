@@ -203,8 +203,8 @@ input.logout_btn {
 
 .addItemForm {
     opacity: 0;
-    width: 65%;
-    max-width: 450px;
+    width: 70%;
+    max-width: 400px;
     pointer-events: none;
     position: fixed;
     z-index: 6;
