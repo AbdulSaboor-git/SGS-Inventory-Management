@@ -77,9 +77,7 @@ input[type="submit"] {
     text-align: center;
 }
 
-#searchDiv {
-    margin-top: 20px;
-}
+
 
 h1,
 h2,
@@ -204,15 +202,27 @@ input.logout_btn {
 
 
 .addItemForm {
-    max-width: 600px;
-    display: none;
-    margin: 20px auto;
+    opacity: 0;
+    width: 65%;
+    max-width: 450px;
+    pointer-events: none;
+    position: fixed;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
-    background-color: #f5ebfb;
     border-radius: 8px;
+    background-color: #f5ebfb;
 }
+
+.addItemForm.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
 
 .addItemForm .b1 {
     margin-top: 10px;
@@ -278,7 +288,6 @@ input.logout_btn {
 .categFormHeader {
     padding: 7.5px;
     padding-left: 8.34px;
-    /* padding-right: 6px; */
     background-color: #edb4f5;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
@@ -358,6 +367,14 @@ input.logout_btn {
     pointer-events: all;
 }
 
+#overlay2 {
+    display: none;
+}
+
+#overlay2.show {
+    display: none;
+}
+
 label {
     display: block;
     margin-bottom: 6px;
@@ -431,9 +448,10 @@ button:hover {
 
 .leftComponents {
     position: sticky;
-    top: 56px;
     z-index: 2;
+    top: 56px;
 }
+
 
 #searchBar {
     margin-bottom: 10px;
@@ -841,7 +859,7 @@ button.edit-button:hover {
 
     #filterButton {
         margin-right: 33px;
-        margin-top: 16px;
+        margin-top: 6px;
     }
 
     #filterIndicator {
@@ -852,7 +870,7 @@ button.edit-button:hover {
     #sortButton {
         right: 0px;
         margin-right: 10px;
-        margin-top: 11px;
+        margin-top: 3px;
     }
 
     #sortButton:hover {
