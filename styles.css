@@ -77,8 +77,6 @@ input[type="submit"] {
     text-align: center;
 }
 
-
-
 h1,
 h2,
 h3 {
@@ -684,7 +682,6 @@ li:hover {
     text-align: left;
     overflow: auto;
 }
-
 
 .item-details table {
     width: 100%;
