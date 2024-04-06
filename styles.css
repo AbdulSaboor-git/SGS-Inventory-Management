@@ -203,9 +203,11 @@ input.logout_btn {
 
 .addItemForm {
     opacity: 0;
-    width: 70%;
-    max-width: 400px;
     pointer-events: none;
+    width: 70%;
+    height: 75%;
+    max-height: 490px;
+    max-width: 400px;
     position: fixed;
     z-index: 6;
     top: 50%;
@@ -216,7 +218,13 @@ input.logout_btn {
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
     border-radius: 8px;
     background-color: #f5ebfb;
+    overflow-y: scroll;
 }
+
+.addItemForm::-webkit-scrollbar {
+    display: none;
+}
+
 
 .addItemForm.show {
     opacity: 1;
@@ -235,6 +243,8 @@ input.logout_btn {
     justify-content: center;
     align-items: center;
     position: fixed;
+    height: 75%;
+    max-height: 330px;
     z-index: 6;
     width: 70%;
     max-width: 300px;
@@ -245,7 +255,12 @@ input.logout_btn {
     border-radius: 8px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+}
+
+.FilterForm::-webkit-scrollbar {
+    display: none;
 }
 
 .FilterForm.show {
@@ -263,7 +278,8 @@ input.logout_btn {
     position: fixed;
     z-index: 6;
     width: 70%;
-    height: 342px;
+    height: 75%;
+    max-height: 342px;
     max-width: 350px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -273,6 +289,11 @@ input.logout_btn {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow-y: scroll;
+}
+
+.manageCategories::-webkit-scrollbar {
+    display: none;
 }
 
 .manageCategories.show {
@@ -359,7 +380,7 @@ input.logout_btn {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(1.5px);
-    z-index: 5;
+    z-index: 6;
 }
 
 #overlay.show {
@@ -367,13 +388,6 @@ input.logout_btn {
     pointer-events: all;
 }
 
-#overlay2 {
-    display: none;
-}
-
-#overlay2.show {
-    display: none;
-}
 
 label {
     display: block;
@@ -452,6 +466,9 @@ button:hover {
     top: 56px;
 }
 
+#searchDiv {
+    margin-top: 10px;
+}
 
 #searchBar {
     margin-bottom: 10px;
@@ -859,7 +876,7 @@ button.edit-button:hover {
 
     #filterButton {
         margin-right: 33px;
-        margin-top: 6px;
+        margin-top: 3px;
     }
 
     #filterIndicator {
@@ -870,7 +887,7 @@ button.edit-button:hover {
     #sortButton {
         right: 0px;
         margin-right: 10px;
-        margin-top: 3px;
+        margin-top: 0px;
     }
 
     #sortButton:hover {
