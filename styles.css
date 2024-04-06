@@ -878,7 +878,7 @@ button.edit-button:hover {
 
     #filterIndicator {
         margin-right: 29px;
-        margin-top: 4px;
+        margin-top: -10px;
     }
 
     #sortButton {
