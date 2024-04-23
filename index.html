@@ -22,7 +22,7 @@
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="btn" value="Export Data" onclick="downloadCSV()">
                     <input type="button" class="btn" value="Clear Inventory" onclick="clearInventoryList()">
-                    <input type="button" class="logout_btn" value="Logout">
+                    <input type="button" class="logout_btn btn" value="Logout">
                 </form>
             </div>
         </div>
@@ -39,10 +39,10 @@
                     <button class="sortFilterButtons" id="filterButton" onclick="toggleFilterForm()">Filter</button>
 
                     <div id="sortDropdown" class="sort-dropdown">
-                        <button onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
-                        <button onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
-                        <button onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
-                        <button onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
+                        <button class="btn" onclick="sortInventory('itemName', 'asc')">Name &#9650;</button>
+                        <button class="btn" onclick="sortInventory('itemName', 'desc')">Name &#9660;</button>
+                        <button class="btn" onclick="sortInventory('salePrice', 'asc')">Price &#9650;</button>
+                        <button class="btn" onclick="sortInventory('salePrice', 'desc')">Price &#9660;</button>
                     </div>
 
                     <div class="SearchBar">
@@ -121,8 +121,8 @@
                 <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice"
                     disabled="true">
 
-                <button type="button" class="saveButton b1" id="saveButton" onclick="saveItem()" name="insert">Save
-                    Item</button>
+                <button type="button" class="saveButton b1" id="saveButton" onclick="saveItem()"
+                    name="insert">Save</button>
                 <button type="reset" class="cancel b1" onclick="cancelAddEdit()">Cancel</button>
             </form>
 
@@ -152,8 +152,8 @@
             <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
 
             <button type="button" id="FilterButton" class="FilterButton" onclick="filterItems()"
-                name="filter">Filter</button>
-            <button type="reset" class="clear b1" onclick="clearFilter()">Clear All Filters</button>
+                name="filter">Apply</button>
+            <button type="reset" class="clear b1" onclick="clearFilter()">Clear</button>
             <button type="button" class="cancel b1" onclick="cancelFilter()">Cancel</button>
         </form>
 
@@ -541,7 +541,7 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             var dropdownBtn = document.querySelector('.dropdown-btn');
-            var dropdownContent = document.querySelector('.dropdown-content');
+            var dropdownContent = document.querySelector('.dropdownList');
 
             dropdownBtn.addEventListener('click', function (event) {
                 event.stopPropagation();
@@ -668,7 +668,7 @@
 
             editingItemId = itemId;
 
-            document.getElementById('saveButton').textContent = 'Update Item';
+            document.getElementById('saveButton').textContent = 'Update';
             document.getElementById('addEditHeader').textContent = 'Edit Item';
             toggleAddItemForm();
         }
@@ -799,7 +799,7 @@
         function cancelAddEdit() {
             clearAddItemForm();
             editingItemId = null;
-            document.getElementById('saveButton').textContent = 'Save Item';
+            document.getElementById('saveButton').textContent = 'Save';
             document.getElementById('addEditHeader').textContent = 'Add Item';
             document.getElementById('addItemForm').classList.remove('show');
             document.getElementById('overlay').classList.remove('show');

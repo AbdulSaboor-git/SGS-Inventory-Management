@@ -26,6 +26,17 @@ body::-webkit-scrollbar-thumb {
     border-radius: 50px;
 }
 
+input:focus, select:focus {
+    outline: solid 1.5px #f0618e;
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus {
+    outline: solid 2px #7a2cbf46;
+}
+
 button,
 a,
 li,
@@ -34,6 +45,10 @@ input[type="submit"] {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     transition: background-color 0.3s;
+}
+
+button {
+    cursor: pointer;
 }
 
 .title {
@@ -147,19 +162,25 @@ h1, h2 {
 }
 
 
-.dropdown-content {
+.dropdownList {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
     position: absolute;
-    box-sizing: content-box;
     right: 30px;
     top: 0;
     margin-top: 60px;
     min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    border-radius: 10px;
+    background-color: #f5ebfb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
-.dropdown-content.show {
+.dropdownList.show {
     opacity: 1;
     pointer-events: all;
 }
@@ -168,34 +189,30 @@ h1, h2 {
     display: none;
 }
 
-input.logout_btn,
-input.btn {
-    background-color: #f5ebfb;
-    display: block;
-    width: 100%;
-    padding: 8px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border: 0px solid #E0E0E0;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.btn {
+    padding: 7px;
     text-align: center;
+    background-color: #f5ebfb;
+    border: solid 1px #10002b25;
+    border-left: solid 0px #f5ebfb;
+    border-right: solid 0px #f5ebfb;
+    border-top: none;
+    border-radius: 10px;
     color: #7b2cbf;
-    cursor: pointer;
     transition: background-color 0.3s;
     font-size: 13.8px;
 }
 
-input.logout_btn {
+.logout_btn {
     color: #c72121;
 }
 
 .btn:hover {
-    background-color: #d1f9c4;
+    background-color: #daf7da;
 }
 
 .logout_btn:hover {
-    background-color: #fbd4d4;
+    background-color: #f9dddd;
 }
 
 
@@ -331,7 +348,6 @@ input.logout_btn {
 .categFormHeaderButton {
     width: 33%;
     display: inline-block;
-
     margin-left: -4.41px;
     padding: 8px;
     background-color: #edb4f5;
@@ -353,9 +369,13 @@ input.logout_btn {
     background-color: #fbd5ff;
 }
 
+.manageCategories input[type="button"] {
+    outline: none;
+}
+
 .categFormBTN {
     margin-top: 10px;
-    width: 35%;
+    width: 80px;
     height: 30px;
 }
 
@@ -405,26 +425,25 @@ label {
     background-color: #fbd5ff;
 }
 
-input:focus {
-    outline: none;
-}
 
 button {
     background-color: #10a705;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
 }
 
 button.cancel {
+    width: 80px;
     padding: 8px;
     background-color: #575157;
 }
 
 button.saveButton {
+    width: 80px;
     margin-right: 5px;
     padding: 8px;
 }
@@ -434,11 +453,13 @@ button.cancel:hover {
 }
 
 button.clear {
+    width: 80px;
     padding: 8px;
     background-color: #d82020;
 }
 
 button.FilterButton {
+    width: 80px;
     padding: 8px;
 }
 
@@ -480,13 +501,8 @@ button:hover {
     background-color: #f5ebfb;
 }
 
-
 #searchBar::placeholder {
     color: #a5a5a5;
-}
-
-#searchBar:focus {
-    outline: none;
 }
 
 .clearSearch {
@@ -543,13 +559,14 @@ button:hover {
 }
 
 #filterButton {
-    background-color: #f0618e;
     color: #f5ebfb;
     margin-top: -5px;
     margin-right: 40px;
-    font-size: 13.5px;
-    padding: 11px;
-    padding-top: 5.5px;
+    background-color: #f0618e;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
 }
 
 
@@ -565,32 +582,18 @@ button:hover {
 .sort-dropdown {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s;
     position: absolute;
+    right: 0;
+    margin-right: 30px;
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    border-radius: 10px;
     background-color: #f5ebfb;
-    min-width: 120px;
-    right: 0px;
-    margin-right: 25px;
-    margin-top: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    border-radius: 8px;
-
-}
-
-.sort-dropdown button {
-    background-color: #f5ebfb;
-    display: block;
-    width: 100%;
-    padding: 8px;
-    border: 0px solid #E0E0E0;
-    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    color: #7b2cbf;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 13px;
+    z-index: 4;
+
 }
 
 .sort-dropdown button:hover {
@@ -625,6 +628,10 @@ li {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+}
+
+li button:focus {
+    outline: none;
 }
 
 
