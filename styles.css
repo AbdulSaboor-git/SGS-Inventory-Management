@@ -515,6 +515,7 @@ button:hover {
 }
 
 .clearSearch {
+    display: none;
     background-color: #f5ebfb;
     border: 0px solid;
     border-radius: 8px;
