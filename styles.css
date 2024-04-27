@@ -523,7 +523,6 @@ button:hover {
     font-size: 15px;
     color: #db88d0;
     position: absolute;
-    display: block;
     margin-top: 2px;
     right: 2px;
     height: 32px;
@@ -806,7 +805,7 @@ button.edit-button:hover {
     transform: translate(-50%, -50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
+    transition: box-shadow 0.2s, opacity 0.2s;
     border: solid #f0618e83 3px;
     border-radius: 8px;
     background-color: #f5ebfb;
