@@ -47,10 +47,9 @@
                     </div>
 
                     <div class="SearchBar">
-                        <input type="button" style="display:none" id="clearSearch" class="clearSearch"
-                            onclick="clearSearch()" value="&#x2715;"></input>
+                        <button id="clearSearch" class="clearSearch" onclick="clearSearch()">&#x2715;</button>
                         <input type="text" id="searchBar" placeholder="Enter text here ..."
-                            oninput="searchItems(),toggleClearSearch()">
+                            oninput="toggleClearSearch() , searchItems()">
                     </div>
                 </div>
                 <div class="navButtons">
@@ -550,10 +549,13 @@
         function toggleClearSearch() {
             var searchBar = document.getElementById('searchBar');
             var clearSearch = document.getElementById('clearSearch');
-            if (searchBar.value !== '') {
+            clearSearch.style.display = 'block';
+            if (searchBar.value != '') {
                 clearSearch.style.display = 'block';
             }
-            else { clearSearch.style.display = 'none'; }
+            else {
+                clearSearch.style.display = 'none';
+            }
         }
 
         document.addEventListener("DOMContentLoaded", function () {

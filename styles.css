@@ -311,6 +311,10 @@ h1, h2 {
     display: none;
 }
 
+.categFormHeader input[type="button"]:focus {
+    outline: none;
+}
+
 .manageCategories.show {
     opacity: 1;
     pointer-events: all;
@@ -526,10 +530,13 @@ button:hover {
     animation: fadeIn 0.2s ease-in-out;
 }
 
-
 .clearSearch:hover {
     background-color: #00000000;
 
+}
+
+.clearSearch:focus {
+    outline: none;
 }
 
 .sortFilterButtons {
