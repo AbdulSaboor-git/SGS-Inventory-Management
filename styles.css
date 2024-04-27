@@ -34,7 +34,8 @@ button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus {
-    outline: solid 2px #7a2cbf46;
+    outline: solid 1.3px #62626246;
+    ;
 }
 
 button,
@@ -585,6 +586,10 @@ button:hover {
 #sortButton:hover {
     background-color: #ccff0000;
     color: #ee4379;
+}
+
+#sortButton:focus {
+    outline: none;
 }
 
 #filterButton:hover {
