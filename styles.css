@@ -387,7 +387,8 @@ h1, h2 {
     padding: 0px;
 }
 
-#overlay {
+#overlay,
+#overlay2 {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
@@ -401,11 +402,15 @@ h1, h2 {
     z-index: 6;
 }
 
-#overlay.show {
+#overlay2 {
+    z-index: 9;
+}
+
+#overlay.show,
+#overlay2.show {
     opacity: 1;
     pointer-events: all;
 }
-
 
 label {
     display: block;
@@ -767,7 +772,7 @@ button.edit-button:hover {
 
 #feedbackPopup.show {
     opacity: 1;
-    z-index: 4;
+    z-index: 10;
 }
 
 #feedbackPopup.error {
@@ -778,6 +783,47 @@ button.edit-button:hover {
     background-color: #10a705;
 }
 
+
+.confirmation_dialogue {
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    width: 70%;
+    max-height: 490px;
+    max-width: 230px;
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
+    border: solid #f0618e83 3px;
+    border-radius: 8px;
+    background-color: #f5ebfb;
+    overflow-y: scroll;
+}
+
+.confirmation_dialogue::-webkit-scrollbar {
+    display: none;
+}
+
+.confirmation_dialogue.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.confirmation_dialogue h4 {
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.confirmation_dialogue button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 
 @media only screen and (min-width: 800px) {
