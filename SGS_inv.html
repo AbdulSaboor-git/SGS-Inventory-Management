@@ -1,0 +1,245 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS Inventory</title>
+</head>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<body>
+    <div id="overlay"></div>
+    <div id="overlay2"></div>
+    <div id="filter_overlay"></div>
+    <div class="header">
+        <div class="heading">
+            <h1 class="title">SGS - INVENTORY</h1>
+            <link rel="stylesheet" type="text/css" href="SGS_styles.css">
+            <script src="SGS_script.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+            <button class="header_dropdown_btn" onclick="toggle_Header_dropdown()">&#8285;</button>
+        </div>
+        <form class="header_dropdown_list" action="">
+            <input type="button" class="dropdown-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
+            <input type="button" class="dropdown-btns" value="Load Data From File"
+                onclick="document.getElementById('csvFileInput').click()">
+            <input type="button" class="dropdown-btns" value="Export Data" onclick="downloadCSV()">
+            <input type="button" class="dropdown-btns" value="Clear Inventory" onclick="clearInventoryList()">
+            <!-- <input type="reset" class="dropdown-btns logout_btn" value="Logout"> -->
+        </form>
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <button class="addItem_overlay_btn" value="Add Item" onclick="toggleAddItemForm()">+</button>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()"
+        title="Choose a CSV file">
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <div id="feedbackPopup"></div>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <div id="confirmation_dialogue" class="confirmation_dialogue">
+        <h4 id="confirmation_text"></h4>
+        <button class="GreenButton" id="yesButton">Yes</button>
+        <button class="GreenButton clear" id="noButton">Cancel</button>
+    </div>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <div class="container">
+
+        <h3 class="search_h3">Search:</h3>
+        <div class="sortFilter-btns">
+            <button class="sortFilter-btn" id="filter-btn" onclick="toggleFilterForm()">Filter</button>
+            <button class="sortFilter-btn filterIndicator" id="filterIndicator">&#x25CF;</button>
+            <button class="sortFilter-btn" id="sort-btn" title="Sort Items"
+                onclick="toggle_Sort()">&#9650;<br>&#9660;</button>
+        </div>
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        <div id="sort-dropdown" class="sort-dropdown">
+            <button class="dropdown-btns" onclick="sort_prod_list_display('prod_name', 'asc')">Name
+                &#9650;</button>
+            <button class="dropdown-btns" onclick="sort_prod_list_display('prod_name', 'desc')">Name
+                &#9660;</button>
+            <button class="dropdown-btns" onclick="sort_prod_list_display('sale_price', 'asc')">Price
+                &#9650;</button>
+            <button class="dropdown-btns" onclick="sort_prod_list_display('sale_price', 'desc')">Price
+                &#9660;</button>
+            <button class="dropdown-btns" onclick="sort_prod_list_display('date_added', 'desc')">Last
+                Added</button>
+            <button class="dropdown-btns" onclick="sort_prod_list_display('date_updated', 'desc')">Last
+                Updated</button>
+        </div>
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <div class="left_components">
+
+            <div class="SearchBar">
+                <button id="clearSearch" class="clearSearch" onclick="clearSearch()">&#x2715;</button>
+                <input type="text" id="search-bar" class="search-bar" placeholder="Enter text here ..."
+                    oninput="toggleClearSearch(), displayInventoryList()">
+
+                <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <form class="left_buttons_list" action="">
+                    <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
+                    <input type="button" class="left-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
+                    <input type="button" class="left-btns" value="Load Data From File"
+                        onclick="document.getElementById('csvFileInput').click()">
+                    <input type="button" class="left-btns" value="Export Data" onclick="downloadCSV()">
+                    <input type="button" class="left-btns" value="Clear Inventory" onclick="clearInventoryList()">
+                    <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
+                </form>
+            </div>
+            <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
+                <h3>Filter Products</h3>
+                <label for="filterCategory">Category:</label>
+                <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
+                </select>
+
+                <label for="minPrice">Min. Price:</label>
+                <input type="number" class="addItemInput" id="minPrice" name="minPrice">
+
+                <label for="maxPrice">Max. Price:</label>
+                <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
+
+                <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
+                    name="filter">Apply</button>
+                <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
+                <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
+            </form>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        <div class="InventoryList">
+            <h3 class="invHeading">INVENTORY</h3>
+            <ul id="inventoryList">
+                <!-- Items will be dynamically added here -->
+                <li>acq</li>
+                <li>acq</li>
+                <li>acq</li>
+                <li>acq</li>
+            </ul>
+        </div>
+        <div class="details-container" id="itemDetails"></div>
+
+
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
+        <h3>Filter Products</h3>
+        <label for="filterCategory">Category:</label>
+        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
+        </select>
+
+        <label for="minPrice">Min. Price:</label>
+        <input type="number" class="addItemInput" id="minPrice" name="minPrice">
+
+        <label for="maxPrice">Max. Price:</label>
+        <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
+
+        <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
+            name="filter">Apply</button>
+        <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
+        <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
+    </form> -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <form id="manageCategories" class="manageCategories" autocomplete="off" spellcheck="false">
+        <h2 class="addEditHeader">Manage Categories</h2>
+        <div class="categFormHeader">
+            <div class="categFormHeaderAllButtons">
+                <input type="button" id="categFormHeaderButtonAdd" class="categFormHeaderButton" onclick="enableAdd()"
+                    value="Add">
+                <input type="button" id="categFormHeaderButtonRename" class="categFormHeaderButton"
+                    onclick="enableRename()" value="Rename">
+                <input type="button" id="categFormHeaderButtonRemove" class="categFormHeaderButton"
+                    onclick="enableRemove()" value="Remove">
+            </div>
+        </div>
+
+        <div class="categFormBackground">
+
+            <label for="categName" id="categNameLabel">Category Name:</label>
+            <input name="categName" type="text" class="addItemInput" id="categName" oninput="enableCategButtons()"
+                required>
+
+            <label for="selectCateg" id="selectCategLabel">Select Category:</label>
+            <select name="selectCateg" id="selectCateg" class="selectCateg" title="Select a category"
+                oninput="enableCategButtons()" required></select>
+
+            <label for="categNewName" id="renameLabel">Enter New Name:</label>
+            <input name="categNewName" type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()"
+                disabled="true" required>
+
+            <button type="button" class="Greenbutton" id="addCategButton" onclick="addCategory()"
+                disabled="true">Add</button>
+            <button type="button" class="Greenbutton" id="renameCategButton" onclick="renameCategory()"
+                disabled="true">Rename</button>
+            <button type="button" class="Greenbutton clear" id="removeCategButton" onclick="removeCategory()"
+                disabled="true">Remove</button>
+            <button type="reset" class="Greenbutton cancel" onclick="closeCategoriesForm()">Cancel</button>
+        </div>
+
+    </form>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <form id="addItemForm" class="addItemForm" autocomplete="off" spellcheck="false">
+        <h2 id="addEditHeader" class="addEditHeader">Add Product</h2>
+        <label for="itemName">Product Name:</label>
+        <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
+
+        <label for="category">Category:</label>
+        <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
+            disabled="true" required></select>
+
+        <label for="purchasePrice">Purchase Price:</label>
+        <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText(), enable()"
+            disabled="true" required>
+
+        <label for="salePrice">Sale Price:</label>
+        <input type="number" class="addItemInput" id="salePrice" name="salePrice" disabled="true" required>
+
+        <label for="governmentSalePrice">Government Sale Price:</label>
+        <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
+
+        <button type="button" class="Greenbutton" id="saveButton" disabled="true" onclick="saveItem()">Save</button>
+        <button type="reset" class="Greenbutton cancel" onclick="closeAddItemForm()">Cancel</button>
+    </form>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="footer">
+        <div class="footerText">
+            @2024 - All Rights Reserved<br><br>
+            github/abdsab-git
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<script>
+    addItem_button_functionality();
+    var sort_by = 'prod_name';
+    var sort_order = 'asc';
+
+    var products = JSON.parse(localStorage.getItem('products')) || [];
+    var categories = JSON.parse(localStorage.getItem('categories')) || [];
+    var filtered_products = [];
+    var editingItemId = null;
+
+
+    AddCategoriesToDropdowns();
+    displayInventoryList();
+
+
+</script>
