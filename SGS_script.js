@@ -132,15 +132,9 @@ async function addCategory() {
 
 async function renameCategory() {
     var oldCategory_name = document.getElementById('selectCateg').value;
-    // var oldCategory = document.getElementById('selectCateg');
-    // var oldCategoryName = oldCategory.options[oldCategory.selectedIndex].textContent;
-
     var newCategory_name = document.getElementById('categNewName').value.trim();
 
     try {
-        // await $.post('categories.php', { action: 'rename', oldCategoryName: oldCategory_id, newCategoryName: newCategoryName });
-        // fetchCategories();
-        // fetchProducts();
         if (!categories.includes(newCategory_name)) {
             products.forEach(item => {
                 if (item.category === oldCategory_name)
