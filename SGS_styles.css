@@ -897,7 +897,7 @@ button.edit-button:hover {
     .footer {
         margin: -40px;
         margin-top: 30px;
-        z-index: 2;
+        z-index: 5;
     }
 
     .addItem_overlay_btn {
