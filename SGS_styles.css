@@ -1032,7 +1032,7 @@ button.edit-button:hover {
         border: solid #edb4f5;
         padding: 30px;
         padding-top: 70px;
-        left: 0;
+        top: 345;
         box-shadow: 0 0 10px #edb4f5;
         left: 0;
         z-index: 6;

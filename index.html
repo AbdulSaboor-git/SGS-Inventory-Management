@@ -17,16 +17,14 @@
             <h1 class="title">SGS - INVENTORY</h1>
             <link rel="stylesheet" type="text/css" href="SGS_styles.css">
             <script src="SGS_script.js"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
             <button class="header_dropdown_btn" onclick="toggle_Header_dropdown()">&#8285;</button>
         </div>
         <form class="header_dropdown_list" action="">
             <input type="button" class="dropdown-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
-            <input type="button" class="dropdown-btns" value="Load Data From File"
+            <input type="button" class="dropdown-btns" value="Load Inventory Data"
                 onclick="document.getElementById('csvFileInput').click()">
-            <input type="button" class="dropdown-btns" value="Export Data" onclick="downloadCSV()">
+            <input type="button" class="dropdown-btns" value="Export Inventory Data" onclick="downloadCSV()">
             <input type="button" class="dropdown-btns" value="Clear Inventory" onclick="clearInventoryList()">
             <!-- <input type="reset" class="dropdown-btns logout_btn" value="Logout"> -->
         </form>
@@ -86,9 +84,9 @@
                 <form class="left_buttons_list" action="">
                     <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
                     <input type="button" class="left-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
-                    <input type="button" class="left-btns" value="Load Data From File"
+                    <input type="button" class="left-btns" value="Load Inventory Data"
                         onclick="document.getElementById('csvFileInput').click()">
-                    <input type="button" class="left-btns" value="Export Data" onclick="downloadCSV()">
+                    <input type="button" class="left-btns" value="Export Inventory Data" onclick="downloadCSV()">
                     <input type="button" class="left-btns" value="Clear Inventory" onclick="clearInventoryList()">
                     <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
                 </form>
