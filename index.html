@@ -33,6 +33,7 @@
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <button class="addItem_overlay_btn" value="Add Item" onclick="toggleAddItemForm()">+</button>
+    <button class="move_to_top_btn" onclick="move_to_top()">&#x2191;</button>
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="loadDataFromCSVFile()"
         title="Choose a CSV file">
@@ -227,6 +228,7 @@
 
 <script>
     addItem_button_functionality();
+    move_to_top_functionality();
     var sort_by = 'prod_name';
     var sort_order = 'asc';
 
@@ -239,9 +241,6 @@
     AddCategoriesToDropdowns();
     displayInventoryList();
     checkScreenWidthforOverlay();
-
-    window.addEventListener('resize', checkScreenWidthforOverlay);
-
 
 
 </script>

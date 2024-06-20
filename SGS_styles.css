@@ -271,6 +271,42 @@ h1, h2 {
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
+.move_to_top_btn {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 40px;
+    margin-right: 37.5px;
+    color: #f5ebfb;
+    z-index: 2;
+    padding: 14px;
+    padding-top: 7px;
+    padding-bottom: 9px;
+    font-size: 18px;
+    border: none;
+    border-radius: 100px;
+    background-color: #4a1974;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, background-color 0.3s, transform 0.5s;
+}
+
+.move_to_top_btn:hover {
+    background-color: #3e1662;
+}
+
+.move_to_top_btn.move {
+    transform: translate(0px, -60px);
+}
+
+.move_to_top_btn.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+
 .left_components {
     position: sticky;
     z-index: 1;
@@ -901,6 +937,10 @@ button.edit-button:hover {
     }
 
     .addItem_overlay_btn {
+        display: none;
+    }
+
+    .move_to_top_btn {
         display: none;
     }
 

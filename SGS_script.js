@@ -340,6 +340,41 @@ function addItem_button_functionality() {
 //-----------------------------------------------------------------------------
 
 
+function move_to_top() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+
+function move_to_top_functionality() {
+    var lastScrollTop = 0;
+    var ScrollButton = document.querySelector('.move_to_top_btn');
+
+    window.addEventListener('scroll', function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            ScrollButton.classList.remove('move');
+        } else {
+            ScrollButton.classList.add('move');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+        if (scrollTop <= 300) {
+            ScrollButton.classList.remove('show');
+        }
+        else
+            ScrollButton.classList.add('show');
+
+    }, false);
+}
+
+//-----------------------------------------------------------------------------
+
+
 var FeedbackTimeout;
 function displayFeedbackPopup(message, isSuccess) {
     var feedbackPopup = document.getElementById('feedbackPopup');
@@ -432,6 +467,7 @@ function hide_filter_overlay() {
 }
 
 function checkScreenWidthforOverlay() {
+    window.addEventListener('resize', checkScreenWidthforOverlay);
     if (window.innerWidth < 800 && filterFlag == true) {
         document.body.style.overflow = 'hidden';
     } else {
