@@ -281,19 +281,19 @@ h1, h2 {
     margin-right: 37.5px;
     color: #f5ebfb;
     z-index: 2;
-    padding: 14px;
+    padding: 17px;
     padding-top: 7px;
     padding-bottom: 9px;
-    font-size: 18px;
+    font-size: 20px;
     border: none;
     border-radius: 100px;
-    background-color: #4a1974;
+    background-color: #7b2cbf;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: opacity 0.3s, background-color 0.3s, transform 0.5s;
 }
 
 .move_to_top_btn:hover {
-    background-color: #3e1662;
+    background-color: #4a1974;
 }
 
 .move_to_top_btn.move {
