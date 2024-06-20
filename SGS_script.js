@@ -38,7 +38,7 @@ function toggle_Sort() {
 function toggleFilterForm() {
     var filterForm = document.getElementById('FilterForm');
     filterForm.classList.add('show');
-    // show_filter_overlay();
+    show_filter_overlay();
 }
 
 //-----------------------------------------------------------------------------
@@ -46,7 +46,7 @@ function toggleFilterForm() {
 function closeFilterForm() {
     var filterForm = document.getElementById('FilterForm');
     filterForm.classList.remove('show');
-    // hide_filter_overlay();
+    hide_filter_overlay();
 }
 
 //-----------------------------------------------------------------------------
@@ -411,17 +411,29 @@ function hideOverlay2() {
     document.body.style.overflow = '';
 }
 
+var filterFlag = false;
 function show_filter_overlay() {
     var overlay = document.getElementById('filter_overlay');
+    filterFlag = true;
     overlay.classList.add('show');
-    // document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 }
 
 function hide_filter_overlay() {
     var overlay = document.getElementById('filter_overlay');
     overlay.classList.remove('show');
-    // document.body.style.overflow = '';
+    filterFlag = false;
+    document.body.style.overflow = '';
 }
+
+function checkScreenWidthforOverlay() {
+    if (window.innerWidth < 800 && filterFlag == true) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
 
 //-----------------------------------------------------------------------------
 

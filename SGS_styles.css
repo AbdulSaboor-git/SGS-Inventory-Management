@@ -1005,7 +1005,6 @@ button.edit-button:hover {
         top: 0;
         margin-top: 125px;
         margin-left: 3px;
-        margin-right: 3px;
         padding-bottom: 8px;
         box-shadow: 0 0 20px #10002b;
         z-index: 1;
@@ -1013,23 +1012,21 @@ button.edit-button:hover {
 
     #filter_overlay {
         display: none;
+        overflow: auto;
     }
 
     .FilterForm {
         opacity: 1;
         pointer-events: all;
-        position: relative;
+        position: absolute;
         display: block;
-        justify-content: center;
-        align-items: center;
         border-radius: 8px;
         height: auto;
         width: 320px;
         max-width: 900px;
         max-height: 900px;
-        margin-left: 200px;
-        margin-right: -200px;
-        margin-top: 200px;
+        margin-left: 220px;
+        margin-top: 325px;
         margin-bottom: -170px;
         background-color: #00000000;
         border: solid #edb4f5;
@@ -1037,7 +1034,6 @@ button.edit-button:hover {
         padding-top: 70px;
         left: 0;
         box-shadow: 0 0 10px #edb4f5;
-        top: 0;
         left: 0;
         z-index: 6;
     }

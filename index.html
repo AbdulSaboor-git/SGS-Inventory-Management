@@ -93,7 +93,7 @@
                     <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
                 </form>
             </div>
-            <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
+            <!-- <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
                 <h3>Filter Products</h3>
                 <label for="filterCategory">Category:</label>
                 <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
@@ -109,7 +109,7 @@
                     name="filter">Apply</button>
                 <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
                 <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
-            </form>
+            </form> -->
         </div>
         <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -130,7 +130,7 @@
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-    <!-- <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
+    <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
         <h3>Filter Products</h3>
         <label for="filterCategory">Category:</label>
         <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
@@ -146,7 +146,7 @@
             name="filter">Apply</button>
         <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
         <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
-    </form> -->
+    </form>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -240,6 +240,10 @@
 
     AddCategoriesToDropdowns();
     displayInventoryList();
+    checkScreenWidthforOverlay();
+
+    window.addEventListener('resize', checkScreenWidthforOverlay);
+
 
 
 </script>
