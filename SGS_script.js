@@ -339,6 +339,8 @@ function addItem_button_functionality() {
 
 //-----------------------------------------------------------------------------
 
+
+var FeedbackTimeout;
 function displayFeedbackPopup(message, isSuccess) {
     var feedbackPopup = document.getElementById('feedbackPopup');
     feedbackPopup.textContent = message;
@@ -351,9 +353,12 @@ function displayFeedbackPopup(message, isSuccess) {
         feedbackPopup.classList.remove('success');
     }
 
+    if (FeedbackTimeout)
+        clearTimeout(FeedbackTimeout);
+
     feedbackPopup.classList.add('show');
 
-    setTimeout(function () {
+    FeedbackTimeout = setTimeout(function () {
         feedbackPopup.classList.remove('show');
     }, 3000);
 }
@@ -789,10 +794,16 @@ function sort_prod_list_display(property, order) {
 
 function clearFilter() {
     closeFilterForm();
-    filterApplied = false;
-    products = JSON.parse(localStorage.getItem('products')) || [];
-    sort_prod_list_display(sort_by, sort_order);
-    displayFeedbackPopup('Filter cleared!', true);
+
+    if (filterApplied) {
+        filterApplied = false;
+        displayFeedbackPopup('Filter cleared!', true);
+        sort_prod_list_display(sort_by, sort_order);
+        products = JSON.parse(localStorage.getItem('products')) || [];
+    }
+    else
+        displayFeedbackPopup('Filter is already cleared!', false);
+
 
 }
 
