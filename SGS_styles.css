@@ -906,6 +906,7 @@ button.edit-button:hover {
 
     .container {
         display: flex;
+
     }
 
     .left_components {
@@ -1000,10 +1001,11 @@ button.edit-button:hover {
     .InventoryList .invHeading {
         position: absolute;
         background-color: #10002b;
-        width: 100%;
+        width: -webkit-fill-available;
         top: 0;
         margin-top: 125px;
         margin-left: 3px;
+        margin-right: 3px;
         padding-bottom: 8px;
         box-shadow: 0 0 20px #10002b;
         z-index: 1;
