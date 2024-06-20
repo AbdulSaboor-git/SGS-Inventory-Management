@@ -1028,7 +1028,7 @@ button.edit-button:hover {
         margin-left: 40px;
         margin-top: 93px;
         width: 100%;
-        height: 100vh;
+        height: 80vh;
         min-height: 697px;
         overflow-x: hidden;
         overflow-y: scroll;
@@ -1072,7 +1072,7 @@ button.edit-button:hover {
         border: solid #edb4f5;
         padding: 30px;
         padding-top: 70px;
-        top: 345;
+        top: 345px;
         box-shadow: 0 0 10px #edb4f5;
         left: 0;
         z-index: 4;

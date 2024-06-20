@@ -117,8 +117,6 @@ async function addCategory() {
     }
 
     try {
-        // await $.post('categories.php', { action: 'add', categoryName: categoryName });
-        // fetchCategories();
         categories.push(categoryName);
         displayFeedbackPopup("Category '" + categoryName + "' added successfully!", true);
         clearCategoryForm();
