@@ -13,6 +13,10 @@ body {
     justify-content: center;
 }
 
+a {
+    text-decoration: none;
+}
+
 body::-webkit-scrollbar {
     width: 5px;
     background-color: #10002b;
@@ -168,6 +172,13 @@ h1, h2 {
     font-size: 14px;
     text-align: center;
 }
+
+.footerText a {
+    color: #f9f2ff;
+}
+
+
+
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
