@@ -735,7 +735,7 @@ function toggleItemDetails(product) {
     if (product.govt_sale_price != 0) {
         govtSalePriceRow = `
         <tr>
-            <td class="m">Govt.Sale Price</td>
+            <td class="m">Govt. Sale Price</td>
             <td>Rs. ${product.govt_sale_price}</td>
         </tr>
     `;

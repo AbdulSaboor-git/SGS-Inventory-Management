@@ -115,11 +115,6 @@
         <div class="InventoryList">
             <h3 class="invHeading">INVENTORY</h3>
             <ul id="inventoryList">
-                <!-- Items will be dynamically added here -->
-                <li>acq</li>
-                <li>acq</li>
-                <li>acq</li>
-                <li>acq</li>
             </ul>
         </div>
         <div class="details-container" id="itemDetails"></div>
@@ -191,21 +186,21 @@
 
     <form id="addItemForm" class="addItemForm" autocomplete="off" spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Add Product</h2>
-        <label for="itemName">Product Name:</label>
+        <label for="itemName">Product Name</label>
         <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
-        <label for="category">Category:</label>
+        <label for="category">Category</label>
         <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
             disabled="true" required></select>
 
-        <label for="purchasePrice">Purchase Price:</label>
+        <label for="purchasePrice">Purchase Price</label>
         <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText(), enable()"
             disabled="true" required>
 
-        <label for="salePrice">Sale Price:</label>
+        <label for="salePrice">Sale Price</label>
         <input type="number" class="addItemInput" id="salePrice" name="salePrice" disabled="true" required>
 
-        <label for="governmentSalePrice">Government Sale Price:</label>
+        <label for="governmentSalePrice">Govt. Sale Price <a style="color: #979797;">(optional)</a></label>
         <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
 
         <button type="button" class="Greenbutton" id="saveButton" disabled="true" onclick="saveItem()">Save</button>
