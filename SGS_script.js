@@ -537,7 +537,7 @@ async function saveItem() {
     var purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
     var salePrice = parseFloat(document.getElementById('salePrice').value);
     var governmentSalePrice = parseFloat(document.getElementById('governmentSalePrice').value) || 0;
-    const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    const currentDateTime = moment().format('YYYY/MM/DD HH:mm:ss');
 
     var productExists = products.some(function (product) {
         return product.prod_name.toLowerCase() === itemName.toLowerCase();
@@ -581,7 +581,7 @@ async function updateItem() {
     var purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
     var salePrice = parseFloat(document.getElementById('salePrice').value);
     var governmentSalePrice = parseFloat(document.getElementById('governmentSalePrice').value) || 0;
-    const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    const currentDateTime = moment().format('YYYY/MM/DD HH:mm:ss');
 
 
     var preUpdated_Product = products.find(function (product) {
@@ -731,6 +731,16 @@ function toggleItemDetails(product) {
     var detailsDiv = document.createElement('div');
     detailsDiv.className = 'item-details';
 
+    let govtSalePriceRow = '';
+    if (product.govt_sale_price != 0) {
+        govtSalePriceRow = `
+        <tr>
+            <td class="m">Govt.Sale Price</td>
+            <td>Rs. ${product.govt_sale_price}</td>
+        </tr>
+    `;
+    }
+
     detailsDiv.innerHTML = `
         <h3>Product Details</h3>
 
@@ -751,10 +761,9 @@ function toggleItemDetails(product) {
                 <td class="m">Sale Price</td>
                 <td>Rs. ${product.sale_price}</td>
             </tr>
-            <tr>
-                <td class="m">Govt. Sale Price</td>
-                <td>${product.govt_sale_price != 0 ? `Rs. ${product.govt_sale_price}` : '-'}</td>
-            </tr>
+            
+            ${govtSalePriceRow}
+
             <tr>
                 <td class="m">Date Added</td>
                 <td>${product.date_added}</td>
@@ -763,7 +772,7 @@ function toggleItemDetails(product) {
                 <td class="m">Last Updated</td>
                 <td>${product.date_updated}</td>
             </tr>
-        </table>
+        </table >
     `;
     var editButton = document.createElement('button');
     editButton.className = 'edit-button';
@@ -940,7 +949,7 @@ function downloadCSV() {
 
 
     products_List.forEach(function (product) {
-        csvContent += `${product.prod_id},${product.prod_name},${product.purchase_price},${product.sale_price},${product.govt_sale_price},${product.category},${product.date_added},${product.date_updated}\n`;
+        csvContent += `${product.prod_id},${product.prod_name},${product.purchase_price},${product.sale_price},${product.govt_sale_price},${product.category},${product.date_added},${product.date_updated} \n`;
     });
 
     var encodedURI = encodeURI(csvContent);
