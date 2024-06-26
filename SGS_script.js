@@ -54,7 +54,7 @@ function closeFilterForm() {
 function togglePreferences() {
     var Form = document.getElementById('preferences');
     Form.classList.add('show');
-    show_filter_overlay();
+    showOverlay();
 }
 
 //-----------------------------------------------------------------------------
@@ -62,7 +62,7 @@ function togglePreferences() {
 function closePreferences() {
     var Form = document.getElementById('preferences');
     Form.classList.remove('show');
-    hide_filter_overlay();
+    hideOverlay();
 }
 
 function savePreferences() {
@@ -766,44 +766,46 @@ function toggleItemDetails(product) {
     var detailsDiv = document.createElement('div');
     detailsDiv.className = 'item-details';
 
+    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1];
+
     let govtSalePriceRow = '';
     if (product.govt_sale_price != 0) {
         govtSalePriceRow = `
-        <tr>
-        <td class="m">Govt. Sale Price</td>
-        <td>Rs. ${product.govt_sale_price}</td>
-        </tr>
-        `;
+            <tr>
+                <td class="m">Govt. Sale Price</td>
+                <td>Rs. ${product.govt_sale_price}</td>
+            </tr>   `
+            ;
     }
 
     let PurchasePriceRow = '';
-    if (preferences[2] === 1) {
-        govtSalePriceRow = `
-        <tr>
-            <td class="m">Purchase Price</td>
-            <td>Rs. ${product.purchase_price}</td>
-        </tr>
-    `;
+    if (preferences[2] == 1) {
+        PurchasePriceRow = `
+            <tr>
+                <td class="m">Purchase Price</td>
+                <td>Rs. ${product.purchase_price}</td>
+            </tr>
+        `;
     }
 
     let dateAddedRow = '';
-    if (preferences[0] === 1) {
-        govtSalePriceRow = `
-        <tr>
-            <td class="m">Date Added</td>
-            <td>${product.date_added}</td>
-        </tr>
-    `;
+    if (preferences[0] == 1) {
+        dateAddedRow = `
+            <tr>
+                <td class="m">Date Added</td>
+                <td>${product.date_added}</td>
+            </tr>
+        `;
     }
 
     let dateUpdatedRow = '';
-    if (preferences[1] === 1) {
-        govtSalePriceRow = `
-         <tr>
-            <td class="m">Last Updated</td>
-            <td>${product.date_updated}</td>
-        </tr>
-    `;
+    if (preferences[1] == 1) {
+        dateUpdatedRow = `
+            <tr>
+                <td class="m">Last Updated</td>
+                <td>${product.date_updated}</td>
+            </tr>
+        `;
     }
 
     detailsDiv.innerHTML = `
@@ -818,21 +820,17 @@ function toggleItemDetails(product) {
                 <td class="m">Category</td>
                 <td>${product.category}</td>
             </tr>
-            
             ${PurchasePriceRow}
-
             <tr>
                 <td class="m">Sale Price</td>
                 <td>Rs. ${product.sale_price}</td>
             </tr>
-            
             ${govtSalePriceRow}
-            
             ${dateAddedRow}
-
             ${dateUpdatedRow}
-        </table >
+        </table>
     `;
+
     var editButton = document.createElement('button');
     editButton.className = 'edit-button';
     editButton.textContent = 'Edit';
@@ -850,7 +848,6 @@ function toggleItemDetails(product) {
         deleteItem(product.prod_id, product.prod_name);
     });
     detailsDiv.appendChild(deleteButton);
-
 
     var clickedItem = event.target;
     clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
