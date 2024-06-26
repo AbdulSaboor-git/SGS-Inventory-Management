@@ -51,6 +51,43 @@ function closeFilterForm() {
 
 //-----------------------------------------------------------------------------
 
+function togglePreferences() {
+    var Form = document.getElementById('preferences');
+    Form.classList.add('show');
+    show_filter_overlay();
+}
+
+//-----------------------------------------------------------------------------
+
+function closePreferences() {
+    var Form = document.getElementById('preferences');
+    Form.classList.remove('show');
+    hide_filter_overlay();
+}
+
+function savePreferences() {
+    var option1 = document.getElementById('date_added_pref').checked;
+    var option2 = document.getElementById('date_updated_pref').checked;
+    var option3 = document.getElementById('purchasePrice_pref').checked;
+
+    preferences[0] = option1 ? 1 : 0;
+    preferences[1] = option2 ? 1 : 0;
+    preferences[2] = option3 ? 1 : 0;
+
+    localStorage.setItem('preferences', JSON.stringify(preferences));
+    closePreferences();
+}
+
+function checkPreferences() {
+    var preferences = JSON.parse(localStorage.getItem('preferences')) || [0, 0, 0];
+
+    document.getElementById('date_added_pref').checked = preferences[0] === 1;
+    document.getElementById('date_updated_pref').checked = preferences[1] === 1;
+    document.getElementById('purchasePrice_pref').checked = preferences[2] === 1;
+}
+
+//-----------------------------------------------------------------------------
+
 function toggleCategoriesForm() {
     enableAdd();
     clearCategoryForm();
@@ -735,8 +772,38 @@ function toggleItemDetails(product) {
     if (product.govt_sale_price != 0) {
         govtSalePriceRow = `
         <tr>
-            <td class="m">Govt. Sale Price</td>
-            <td>Rs. ${product.govt_sale_price}</td>
+        <td class="m">Govt. Sale Price</td>
+        <td>Rs. ${product.govt_sale_price}</td>
+        </tr>
+        `;
+    }
+
+    let PurchasePriceRow = '';
+    if (preferences[2] === 1) {
+        govtSalePriceRow = `
+        <tr>
+            <td class="m">Purchase Price</td>
+            <td>Rs. ${product.purchase_price}</td>
+        </tr>
+    `;
+    }
+
+    let dateAddedRow = '';
+    if (preferences[0] === 1) {
+        govtSalePriceRow = `
+        <tr>
+            <td class="m">Date Added</td>
+            <td>${product.date_added}</td>
+        </tr>
+    `;
+    }
+
+    let dateUpdatedRow = '';
+    if (preferences[1] === 1) {
+        govtSalePriceRow = `
+         <tr>
+            <td class="m">Last Updated</td>
+            <td>${product.date_updated}</td>
         </tr>
     `;
     }
@@ -753,25 +820,19 @@ function toggleItemDetails(product) {
                 <td class="m">Category</td>
                 <td>${product.category}</td>
             </tr>
-            <tr>
-                <td class="m">Purchase Price</td>
-                <td>Rs. ${product.purchase_price}</td>
-            </tr>
+            
+            ${PurchasePriceRow}
+
             <tr>
                 <td class="m">Sale Price</td>
                 <td>Rs. ${product.sale_price}</td>
             </tr>
             
             ${govtSalePriceRow}
+            
+            ${dateAddedRow}
 
-            <tr>
-                <td class="m">Date Added</td>
-                <td>${product.date_added}</td>
-            </tr>
-            <tr>
-                <td class="m">Last Updated</td>
-                <td>${product.date_updated}</td>
-            </tr>
+            ${dateUpdatedRow}
         </table >
     `;
     var editButton = document.createElement('button');

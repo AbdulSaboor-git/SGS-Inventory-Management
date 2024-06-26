@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="SGS_styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="SGS_script.js"></script>
     <title>SGS Inventory</title>
 </head>
 
@@ -16,19 +19,45 @@
     <div class="header">
         <div class="heading">
             <h1 class="title">SGS - INVENTORY</h1>
-            <link rel="stylesheet" type="text/css" href="SGS_styles.css">
-            <script src="SGS_script.js"></script>
 
             <button class="header_dropdown_btn" onclick="toggle_Header_dropdown()">&#8285;</button>
         </div>
         <form class="header_dropdown_list" action="">
             <input type="button" class="dropdown-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
+            <input type="button" class="dropdown-btns" value="Preferences" onclick="togglePreferences()">
             <input type="button" class="dropdown-btns" value="Load Inventory Data"
                 onclick="document.getElementById('csvFileInput').click()">
             <input type="button" class="dropdown-btns" value="Export Inventory Data" onclick="downloadCSV()">
             <input type="button" class="dropdown-btns" value="Clear Inventory" onclick="clearInventoryList()">
             <!-- <input type="reset" class="dropdown-btns logout_btn" value="Logout"> -->
         </form>
+    </div>
+
+    <div class="preferences" id="preferences">
+        <h3>
+            Preferences
+        </h3>
+        <div class="pref_options">
+            <div class="option">
+                <label for="date_added_pref" class="title">Show Date Addded</label>
+                <input type="checkbox" id="date_added_pref" name="date_added_pref">
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+            <div class="option">
+                <label for="date_updated_pref" class="title">Show Date Updated</label>
+                <input type="checkbox" id="date_updated_pref" name="date_updated_pref">
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+            <div class="option">
+                <label for="purchasePrice_pref" class="title">Show Purchase Price</label>
+                <input type="checkbox" id="purchasePrice_pref" name="purchasePrice_pref">
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+        </div>
+        <div class="pref_buttons">
+            <button class="Greenbutton" onclick="savePreferences()">Save</button>
+            <button class="Greenbutton cancel" onclick="closePreferences()">Cancel</button>
+        </div>
     </div>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -85,6 +114,7 @@
                 <form class="left_buttons_list" action="">
                     <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
                     <input type="button" class="left-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
+                    <input type="button" class="left-btns" value="Preferences" onclick="togglePreferences()">
                     <input type="button" class="left-btns" value="Load Inventory Data"
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="left-btns" value="Export Inventory Data" onclick="downloadCSV()">
@@ -231,6 +261,7 @@
 
     var products = JSON.parse(localStorage.getItem('products')) || [];
     var categories = JSON.parse(localStorage.getItem('categories')) || [];
+    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1];
     var filtered_products = [];
     var editingItemId = null;
 
@@ -238,6 +269,7 @@
     AddCategoriesToDropdowns();
     displayInventoryList();
     checkScreenWidthforOverlay();
+    checkPreferences();
 
 
 </script>
