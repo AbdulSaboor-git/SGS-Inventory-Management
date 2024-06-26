@@ -79,8 +79,6 @@ function savePreferences() {
 }
 
 function checkPreferences() {
-    var preferences = JSON.parse(localStorage.getItem('preferences')) || [0, 0, 0];
-
     document.getElementById('date_added_pref').checked = preferences[0] === 1;
     document.getElementById('date_updated_pref').checked = preferences[1] === 1;
     document.getElementById('purchasePrice_pref').checked = preferences[2] === 1;
