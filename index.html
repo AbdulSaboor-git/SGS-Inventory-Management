@@ -44,6 +44,11 @@
             </div>
             <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
             <div class="option">
+                <label for="category_pref" class="title">Show Category</label>
+                <input type="checkbox" id="category_pref" name="category_pref">
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+            <div class="option">
                 <label for="date_added_pref" class="title">Show Date Addded</label>
                 <input type="checkbox" id="date_added_pref" name="date_added_pref">
             </div>
@@ -261,7 +266,7 @@
 
     var products = JSON.parse(localStorage.getItem('products')) || [];
     var categories = JSON.parse(localStorage.getItem('categories')) || [];
-    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1];
+    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1, 1];
     var filtered_products = [];
     var editingItemId = null;
 

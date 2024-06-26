@@ -67,13 +67,15 @@ function closePreferences() {
 }
 
 function savePreferences() {
-    var option1 = document.getElementById('date_added_pref').checked;
-    var option2 = document.getElementById('date_updated_pref').checked;
-    var option3 = document.getElementById('purchasePrice_pref').checked;
+    var option0 = document.getElementById('date_added_pref').checked;
+    var option1 = document.getElementById('date_updated_pref').checked;
+    var option2 = document.getElementById('purchasePrice_pref').checked;
+    var option3 = document.getElementById('category_pref').checked;
 
-    preferences[0] = option1 ? 1 : 0;
-    preferences[1] = option2 ? 1 : 0;
-    preferences[2] = option3 ? 1 : 0;
+    preferences[0] = option0 ? 1 : 0;
+    preferences[1] = option1 ? 1 : 0;
+    preferences[2] = option2 ? 1 : 0;
+    preferences[3] = option3 ? 1 : 0;
 
     localStorage.setItem('preferences', JSON.stringify(preferences));
     closePreferences();
@@ -83,6 +85,7 @@ function checkPreferences() {
     document.getElementById('date_added_pref').checked = preferences[0] === 1;
     document.getElementById('date_updated_pref').checked = preferences[1] === 1;
     document.getElementById('purchasePrice_pref').checked = preferences[2] === 1;
+    document.getElementById('category_pref').checked = preferences[3] === 1;
 }
 
 //-----------------------------------------------------------------------------
@@ -810,6 +813,16 @@ function toggleItemDetails(product) {
         `;
     }
 
+    let categoryRow = '';
+    if (preferences[3] == 1) {
+        categoryRow = `
+            <tr>
+                <td class="m">Category</td>
+                <td>${product.category}</td>
+            </tr>
+        `;
+    }
+
     detailsDiv.innerHTML = `
         <h3>Product Details</h3>
 
@@ -818,10 +831,8 @@ function toggleItemDetails(product) {
                 <td class="m">Product Name</td>
                 <td>${product.prod_name}</td>
             </tr>
-            <tr>
-                <td class="m">Category</td>
-                <td>${product.category}</td>
-            </tr>
+            
+            ${categoryRow}
             ${PurchasePriceRow}
             <tr>
                 <td class="m">Sale Price</td>
