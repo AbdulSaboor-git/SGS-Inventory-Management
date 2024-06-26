@@ -701,6 +701,7 @@ function editItem(product_id) {
 //-----------------------------------------------------------------------------
 
 function displayInventoryList() {
+    checkPreferences();
     var inventoryList = document.getElementById('inventoryList');
     var fil_ind = document.getElementById('filterIndicator');
     inventoryList.innerHTML = '';
@@ -1035,6 +1036,7 @@ function empty() {
     }
     products = [];
     categories = [];
-    localStorage.clear();
+    localStorage.removeItem('products');
+    localStorage.removeItem('categories');
     displayInventoryList();
 }

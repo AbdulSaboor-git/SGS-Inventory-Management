@@ -39,6 +39,11 @@
         </h3>
         <div class="pref_options">
             <div class="option">
+                <label for="purchasePrice_pref" class="title">Show Purchase Price</label>
+                <input type="checkbox" id="purchasePrice_pref" name="purchasePrice_pref">
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+            <div class="option">
                 <label for="date_added_pref" class="title">Show Date Addded</label>
                 <input type="checkbox" id="date_added_pref" name="date_added_pref">
             </div>
@@ -46,11 +51,6 @@
             <div class="option">
                 <label for="date_updated_pref" class="title">Show Date Updated</label>
                 <input type="checkbox" id="date_updated_pref" name="date_updated_pref">
-            </div>
-            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
-            <div class="option">
-                <label for="purchasePrice_pref" class="title">Show Purchase Price</label>
-                <input type="checkbox" id="purchasePrice_pref" name="purchasePrice_pref">
             </div>
             <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
         </div>
@@ -269,7 +269,5 @@
     AddCategoriesToDropdowns();
     displayInventoryList();
     checkScreenWidthforOverlay();
-    checkPreferences();
-
 
 </script>
