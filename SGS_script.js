@@ -63,6 +63,7 @@ function closePreferences() {
     var Form = document.getElementById('preferences');
     Form.classList.remove('show');
     hideOverlay();
+    checkPreferences();
 }
 
 function savePreferences() {
