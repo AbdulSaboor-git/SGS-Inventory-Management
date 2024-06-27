@@ -3,7 +3,7 @@ body {
     margin: 20px;
     margin-bottom: 0px;
     margin-top: 0px;
-    background-color: #39145b;
+    background-color: #10002b;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -19,7 +19,7 @@ a {
 
 body::-webkit-scrollbar {
     width: 5px;
-    background-color: #39145b;
+    background-color: #10002b;
 }
 
 body::-webkit-scrollbar:horizontal {
@@ -127,7 +127,7 @@ h1, h2 {
     margin-top: -10px;
     display: flex;
     text-align: center;
-    background-color: #39145b;
+    background-color: #10002b;
     width: 103%;
     height: 100px;
     padding: 8px;
@@ -140,7 +140,7 @@ h1, h2 {
     flex: 1;
     height: 70px;
     margin-top: 22px;
-    background-color: #8640c3;
+    background-color: #4a2072;
     border: none;
     display: block;
     text-align: center;
@@ -189,7 +189,7 @@ h1, h2 {
     top: 0;
     right: 0;
     margin-top: 38px;
-    margin-right: 25px;
+    margin-right: 35px;
     padding: 5px;
     background-color: transparent;
     border: none;
@@ -205,14 +205,14 @@ h1, h2 {
     pointer-events: none;
     position: absolute;
     right: 0;
-    margin-right: 35px;
+    margin-right: 45px;
     margin-top: 75px;
     display: flex;
     flex-direction: column;
     width: 180px;
     border-radius: 10px;
-    background-color: #200537;
-    box-shadow: 0 0 10px 1px #00000033;
+    background-color: #C7A9FF;
+    box-shadow: 0 0 10px 1px #10002b;
     z-index: 5;
     transition: opacity 0.1s;
 }
@@ -226,11 +226,11 @@ h1, h2 {
     filter: none;
     padding: 10px;
     text-align: center;
-    background-color: #200537;
+    background-color: #C7A9FF;
     border: none;
-    border-bottom: solid 1px #5e2f59c5;
+    border-bottom: solid 1px #767676;
     border-radius: 10px;
-    color: #caaec7;
+    color: #3d3d3d;
     transition: background-color 0.3s;
     font-size: 13.8px;
 }
@@ -240,7 +240,7 @@ h1, h2 {
 }
 
 .dropdown-btns:hover {
-    background-color: #140223fb
+    background-color: #a687e0
 }
 
 .logout_btn:hover {
@@ -259,10 +259,10 @@ h1, h2 {
     z-index: 6;
     width: 70%;
     max-width: 350px;
-    box-shadow: 0 0 10px 1px #caaec7;
     padding: 30px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
-    background-color: #39145b;
+    box-shadow: 0 0 10px 1px #C7A9FF;
+    background-color: #100623;
     border-radius: 8px;
     top: 50%;
     left: 50%;
@@ -281,7 +281,7 @@ h1, h2 {
 .preferences h5 {
     margin-top: 5px;
     margin-bottom: 10px;
-    color: #caaec7;
+    color: #d5ccd4;
 }
 
 .preferences .pref_options {
@@ -361,8 +361,8 @@ h1, h2 {
     position: fixed;
     right: 0;
     bottom: 0;
-    margin-bottom: 40px;
-    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-right: 20px;
     color: #f5ebfb;
     z-index: 2;
     padding: 10px;
@@ -393,8 +393,8 @@ h1, h2 {
     position: fixed;
     right: 0;
     bottom: 0;
-    margin-bottom: 40px;
-    margin-right: 34.5px;
+    margin-bottom: 30px;
+    margin-right: 24.5px;
     color: #f5ebfb;
     z-index: 2;
     padding: 16px;
@@ -403,7 +403,7 @@ h1, h2 {
     font-size: 20px;
     border: none;
     border-radius: 100px;
-    background-color: #7b2cbf;
+    background-color: #f0618e;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: opacity 0.4s, background-color 0.3s, transform 0.5s;
 }
@@ -431,15 +431,15 @@ h1, h2 {
 
 .searchBar {
     position: sticky;
+    width: 100%;
     padding-top: 75px;
-    padding-right: 35px;
-    padding-left: 35px;
+    padding-right: 10px;
+    padding-left: 10px;
     margin-top: -70px;
-    margin-left: -30px;
-    margin-right: -30px;
+    margin-left: -10px;
     padding-bottom: 5px;
-    background-color: #39145b;
-    box-shadow: 0 10px 10px 1px #39145b;
+    background-color: #10002b;
+    box-shadow: 0 10px 10px 1px #10002b;
 }
 
 .search_h3 {
@@ -459,7 +459,7 @@ h1, h2 {
     border-radius: 8px;
     box-sizing: border-box;
     color: #dac7d8;
-    background-color: #19012eb5;
+    background-color: #2907489c;
 }
 
 .search-bar::placeholder {
@@ -568,14 +568,14 @@ h1, h2 {
     pointer-events: none;
     position: absolute;
     right: 0;
-    margin-right: 30px;
+    margin-right: 45px;
     margin-top: -5px;
     display: flex;
     flex-direction: column;
     width: 140px;
     border-radius: 10px;
-    background-color: #200537;
-    box-shadow: 0 0 10px 1px #00000033;
+    background-color: #C7A9FF;
+    box-shadow: 0 0 10px 1px #10002b;
     z-index: 4;
     transition: opacity 0.1s;
 
@@ -599,10 +599,10 @@ h1, h2 {
     height: 70%;
     max-height: 350px;
     max-width: 350px;
-    box-shadow: 0 0 10px 1px #caaec7;
     padding: 20px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
-    background-color: #39145b;
+    box-shadow: 0 0 10px 1px #C7A9FF;
+    background-color: #100623;
     border-radius: 8px;
     top: 50%;
     left: 50%;
@@ -619,10 +619,11 @@ h1, h2 {
     pointer-events: all;
 }
 
-/* .manageCategories .addItemInput,
+.manageCategories .addItemInput,
 .manageCategories .selectCateg {
-    background-color: #f5ebfb;
-} */
+    background-color: #C7A9FF;
+    color: #4b4b4b;
+}
 
 .manageCategories h2 {
     margin-top: 10px;
@@ -630,13 +631,13 @@ h1, h2 {
 }
 
 .manageCategories label {
-    color: #dac7d8;
+    color: #f3e8f2;
 }
 
 .categFormHeader {
     padding: 7.5px;
     padding-left: 8.34px;
-    background-color: #edb4f5;
+    background-color: #4a2072;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -645,10 +646,10 @@ h1, h2 {
 .categFormBackground {
     margin-top: -53px;
     min-height: 200px;
-    background-color: #8640c3;
+    background-color: #682e9a;
     padding: 20px;
     padding-top: 50px;
-    border: solid 4px #edb4f5;
+    border: solid 4px #4a2072;
     border-radius: 8px;
 }
 
@@ -662,17 +663,17 @@ h1, h2 {
 .categFormHeaderButton {
     width: 98%;
     padding: 8px;
-    background-color: #edb4f5;
+    background-color: #4a2072;
     border: none;
     margin-bottom: 20px;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    color: #424242;
+    color: #caaec7;
 }
 
 .categFormHeaderButton:hover {
-    background-color: #f5c0fc;
+    background-color: #3d1364;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -682,8 +683,8 @@ h1, h2 {
 
 .categFormHeaderButton.focused {
     transition: background-color 0.3s ease-in-out;
-    background-color: #8640c3;
-    color: #dac7d8;
+    background-color: #682e9a;
+    color: #f3e8f2;
 }
 
 
@@ -704,8 +705,8 @@ h1, h2 {
     padding: 20px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
     border-radius: 8px;
-    box-shadow: 0 0 10px 1px #caaec7;
-    background-color: #39145c;
+    box-shadow: 0 0 10px 0px #C7A9FF;
+    background-color: #100623;
     overflow-y: scroll;
 }
 
@@ -738,7 +739,7 @@ h1, h2 {
     border-radius: 4px;
     box-sizing: border-box;
     color: #dac7d8;
-    background-color: #19012eb5;
+    background-color: #1e0f38;
 }
 
 
@@ -755,7 +756,7 @@ h1, h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: #16002396;
     backdrop-filter: blur(1.5px);
     z-index: 6;
 }
@@ -792,8 +793,8 @@ h1, h2 {
     transform: translate(-50%, -50%);
     overflow-y: scroll;
     z-index: 6;
-    box-shadow: 0 0 10px 1px #caaec7;
-    background-color: #39145c;
+    box-shadow: 0 0 10px 1px #C7A9FF;
+    background-color: #100623;
 }
 
 .FilterForm label {
@@ -906,7 +907,7 @@ h1, h2 {
 
 li {
     margin-top: 6px;
-    background-color: #19012e;
+    background-color: #300a53;
     border: 3px solid #f0618e4f;
     border-radius: 8px;
     padding: 10px;
@@ -921,12 +922,12 @@ li {
 }
 
 li:hover {
-    background-color: #10002b;
+    background-color: #260842;
 }
 
 
 button.details {
-    background-color: #00f84a00;
+    background-color: #00000000;
     cursor: pointer;
     height: 110%;
     max-height: 130px;
@@ -941,7 +942,7 @@ button.details {
 }
 
 button.details:hover {
-    background-color: #0057b300;
+    background-color: #00000000;
 }
 
 button.details:focus {
@@ -973,7 +974,7 @@ button.details:focus {
     box-sizing: border-box;
     padding: 20px;
     border-radius: 8px;
-    background-color: #752a6e29;
+    background-color: #10002b;
     box-shadow: 0 0 10px -1px #752a6e29;
     transition: max-height 0.5s ease-in-out;
     max-width: 100%;
