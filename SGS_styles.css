@@ -1,9 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
+    margin: 30px;
     margin-bottom: 0px;
     margin-top: 0px;
-    background-color: #10002b;
+    background-color: #39145b;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -19,7 +19,7 @@ a {
 
 body::-webkit-scrollbar {
     width: 5px;
-    background-color: #10002b;
+    background-color: #39145b;
 }
 
 body::-webkit-scrollbar:horizontal {
@@ -27,7 +27,7 @@ body::-webkit-scrollbar:horizontal {
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: #7b2cbf;
+    background-color: #10002b;
     border-radius: 50px;
 }
 
@@ -118,20 +118,21 @@ h1, h2 {
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
 .header {
+    align-self: center;
     border: none;
     top: -5px;
     position: sticky;
-    display: flex;
-    text-align: center;
-    background-color: #10002b;
-    width: 100%;
-    height: 100px;
-    right: 0;
-    padding: 0px;
-    padding-bottom: 1px;
-    padding-top: 1px;
+    margin-left: -15px;
     margin-bottom: -20px;
     margin-top: -10px;
+    display: flex;
+    text-align: center;
+    background-color: #39145b;
+    width: 103%;
+    height: 100px;
+    padding: 8px;
+    padding-bottom: 1px;
+    padding-top: 1px;
     z-index: 5;
 }
 
@@ -139,7 +140,7 @@ h1, h2 {
     flex: 1;
     height: 70px;
     margin-top: 22px;
-    background-color: #7b2cbf;
+    background-color: #8640c3;
     border: none;
     display: block;
     text-align: center;
@@ -210,8 +211,8 @@ h1, h2 {
     flex-direction: column;
     width: 180px;
     border-radius: 10px;
-    background-color: #f5ebfb;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #200537;
+    box-shadow: 0 0 10px 1px #00000033;
     z-index: 5;
     transition: opacity 0.1s;
 }
@@ -223,15 +224,13 @@ h1, h2 {
 
 .dropdown-btns {
     filter: none;
-    padding: 7px;
+    padding: 10px;
     text-align: center;
-    background-color: #f5ebfb;
-    border: solid 1px #10002b25;
-    border-left: solid 0px #f5ebfb;
-    border-right: solid 0px #f5ebfb;
-    border-top: none;
+    background-color: #200537;
+    border: none;
+    border-bottom: solid 1px #5e2f59c5;
     border-radius: 10px;
-    color: #7b2cbf;
+    color: #caaec7;
     transition: background-color 0.3s;
     font-size: 13.8px;
 }
@@ -241,7 +240,7 @@ h1, h2 {
 }
 
 .dropdown-btns:hover {
-    background-color: #daf7da;
+    background-color: #140223fb
 }
 
 .logout_btn:hover {
@@ -433,10 +432,14 @@ h1, h2 {
 .searchBar {
     position: sticky;
     padding-top: 75px;
+    padding-right: 35px;
+    padding-left: 35px;
     margin-top: -70px;
-    padding-bottom: 10px;
-    background-color: #10002b;
-    box-shadow: 0 0 20px #10002b;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding-bottom: 5px;
+    background-color: #39145b;
+    box-shadow: 0 10px 10px 1px #39145b;
 }
 
 .search_h3 {
@@ -447,12 +450,58 @@ h1, h2 {
     z-index: 3;
 }
 
+.search-bar {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    font-size: 14px;
+    border: 2px solid #f0618e4f;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #dac7d8;
+    background-color: #19012eb5;
+}
+
+.search-bar::placeholder {
+    color: #caaec7;
+}
+
+.clearSearch {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background-color: #ad41a200;
+    color: #dac7d8;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-top: 2px;
+    right: 0px;
+    margin-right: 37px;
+    height: 32px;
+    width: 32px;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.clearSearch.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.clearSearch:hover {
+    background-color: #00000000;
+}
+
+.clearSearch:focus {
+    outline: none;
+}
+
 .sortFilter-btns {
     display: flex;
     flex-direction: row;
     position: absolute;
     right: 0;
-    margin-right: 20px;
+    margin-right: 30px;
     margin-top: -40px;
     z-index: 3;
 }
@@ -525,8 +574,8 @@ h1, h2 {
     flex-direction: column;
     width: 140px;
     border-radius: 10px;
-    background-color: #f5ebfb;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #200537;
+    box-shadow: 0 0 10px 1px #00000033;
     z-index: 4;
     transition: opacity 0.1s;
 
@@ -537,51 +586,7 @@ h1, h2 {
     pointer-events: all;
 }
 
-.search-bar {
-    margin-bottom: 10px;
-    padding: 8px;
-    width: 100%;
-    font-size: 14px;
-    color: #202020;
-    border: 2px solid #f0618e79;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: #f5ebfb;
-}
 
-.search-bar::placeholder {
-    color: #a5a5a5;
-}
-
-.clearSearch {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    background-color: #f5ebfb;
-    color: #f0618e79;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    margin-top: 2px;
-    right: 0px;
-    margin-right: 2px;
-    height: 32px;
-    width: 32px;
-    transition: opacity 0.1s ease-in-out;
-}
-
-.clearSearch.show {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.clearSearch:hover {
-    background-color: #00000000;
-}
-
-.clearSearch:focus {
-    outline: none;
-}
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -614,10 +619,10 @@ h1, h2 {
     pointer-events: all;
 }
 
-.manageCategories .addItemInput,
+/* .manageCategories .addItemInput,
 .manageCategories .selectCateg {
     background-color: #f5ebfb;
-}
+} */
 
 .manageCategories h2 {
     margin-top: 10px;
@@ -691,12 +696,16 @@ h1, h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
     border-radius: 8px;
-    background-color: #f5ebfb;
+    box-shadow: 0 0 10px 1px #caaec7;
+    background-color: #39145c;
     overflow-y: scroll;
+}
+
+.addItemForm label {
+    color: #caaec7;
 }
 
 .addItemForm::-webkit-scrollbar {
@@ -723,8 +732,8 @@ h1, h2 {
     border: 1px solid #edb4f5;
     border-radius: 4px;
     box-sizing: border-box;
-    color: #303030;
-    background-color: #fbd5ff;
+    color: #dac7d8;
+    background-color: #19012eb5;
 }
 
 
@@ -770,16 +779,20 @@ h1, h2 {
     max-height: 330px;
     width: 70%;
     max-width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: box-shadow 0.3s, opacity 0.3s;
-    background-color: #f5ebfb;
     border-radius: 8px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     overflow-y: scroll;
     z-index: 6;
+    box-shadow: 0 0 10px 1px #caaec7;
+    background-color: #39145c;
+}
+
+.FilterForm label {
+    color: #caaec7;
 }
 
 .FilterForm::-webkit-scrollbar {
@@ -888,8 +901,8 @@ h1, h2 {
 
 li {
     margin-top: 6px;
-    background-color: #f5ebfb;
-    border: 3px solid #f0618e79;
+    background-color: #19012e;
+    border: 3px solid #f0618e4f;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -898,8 +911,12 @@ li {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    box-shadow: 0 0 15px #10002b;
+    box-shadow: 0 0 10px -1px #10002b;
 
+}
+
+li:hover {
+    background-color: #10002b;
 }
 
 
@@ -927,19 +944,17 @@ button.details:focus {
 }
 
 .item-name {
-    color: #303030;
-    font-size: 17px;
+    color: #dac7d8;
+    font-size: 16px;
     font-weight: bold;
 }
 
 .sale-price {
-    font-size: 14px;
-    color: #303030;
+    font-size: 13px;
+    margin-top: 3px;
+    color: #caaec7;
 }
 
-li:hover {
-    background-color: #e7c3fc;
-}
 
 .details-container {
     display: flex;
@@ -953,8 +968,8 @@ li:hover {
     box-sizing: border-box;
     padding: 20px;
     border-radius: 8px;
-    background-color: #10002b;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    background-color: #752a6e29;
+    box-shadow: 0 0 10px -1px #752a6e29;
     transition: max-height 0.5s ease-in-out;
     max-width: 100%;
     width: 95%;
@@ -963,7 +978,7 @@ li:hover {
 }
 
 .item-details table {
-    color: #f5ebfb;
+    color: #caaec7;
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
@@ -971,7 +986,7 @@ li:hover {
 
 .item-details td {
     border: 0.5px solid;
-    border-color: #f0618e50;
+    border-color: #f0618e4f;
     padding: 5px;
     text-align: center;
     font-size: 14px;
