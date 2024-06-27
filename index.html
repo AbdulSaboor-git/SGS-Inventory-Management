@@ -24,40 +24,48 @@
         </div>
         <form class="header_dropdown_list" action="">
             <input type="button" class="dropdown-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
-            <input type="button" class="dropdown-btns" value="Preferences" onclick="togglePreferences()">
             <input type="button" class="dropdown-btns" value="Load Inventory Data"
                 onclick="document.getElementById('csvFileInput').click()">
             <input type="button" class="dropdown-btns" value="Export Inventory Data" onclick="downloadCSV()">
-            <input type="button" class="dropdown-btns" value="Clear Inventory" onclick="clearInventoryList()">
+            <input type="button" class="dropdown-btns clear_inv" value="Clear Inventory" onclick="clearInventoryList()">
+            <input type="button" class="dropdown-btns" value="Preferences" onclick="togglePreferences()">
             <!-- <input type="reset" class="dropdown-btns logout_btn" value="Logout"> -->
         </form>
     </div>
 
     <div class="preferences" id="preferences">
-        <h3>
+        <h2>
             Preferences
-        </h3>
+        </h2>
         <div class="pref_options">
+            <h5>General</h5>
+            <div class="option">
+                <label for="edit_delete_pref" class="title">Allow Editing & Deleting Items</label>
+                <input type="checkbox" id="edit_delete_pref" name="edit_delete_pref">
+            </div>
+            <div class="option">
+                <label for="clear_inv_pref" class="title">Allow Clearing Inventory</label>
+                <input type="checkbox" id="clear_inv_pref" name="clear_inv_pref">
+            </div>
+            <hr>
+            <h5>Product Details</h5>
             <div class="option">
                 <label for="purchasePrice_pref" class="title">Show Purchase Price</label>
                 <input type="checkbox" id="purchasePrice_pref" name="purchasePrice_pref">
             </div>
-            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
             <div class="option">
                 <label for="category_pref" class="title">Show Category</label>
                 <input type="checkbox" id="category_pref" name="category_pref">
             </div>
-            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
             <div class="option">
                 <label for="date_added_pref" class="title">Show Date Addded</label>
                 <input type="checkbox" id="date_added_pref" name="date_added_pref">
             </div>
-            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
             <div class="option">
                 <label for="date_updated_pref" class="title">Show Date Updated</label>
                 <input type="checkbox" id="date_updated_pref" name="date_updated_pref">
             </div>
-            <hr style="border: none; height: 1px; background-color: rgb(199, 199, 199); width: 100%;">
+            <hr>
         </div>
         <div class="pref_buttons">
             <button class="Greenbutton" onclick="savePreferences()">Save</button>
@@ -119,31 +127,15 @@
                 <form class="left_buttons_list" action="">
                     <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
                     <input type="button" class="left-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
-                    <input type="button" class="left-btns" value="Preferences" onclick="togglePreferences()">
                     <input type="button" class="left-btns" value="Load Inventory Data"
                         onclick="document.getElementById('csvFileInput').click()">
                     <input type="button" class="left-btns" value="Export Inventory Data" onclick="downloadCSV()">
-                    <input type="button" class="left-btns" value="Clear Inventory" onclick="clearInventoryList()">
+                    <input type="button" class="left-btns clear_inv" value="Clear Inventory"
+                        onclick="clearInventoryList()">
+                    <input type="button" class="left-btns" value="Preferences" onclick="togglePreferences()">
                     <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
                 </form>
             </div>
-            <!-- <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
-                <h3>Filter Products</h3>
-                <label for="filterCategory">Category:</label>
-                <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
-                </select>
-
-                <label for="minPrice">Min. Price:</label>
-                <input type="number" class="addItemInput" id="minPrice" name="minPrice">
-
-                <label for="maxPrice">Max. Price:</label>
-                <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
-
-                <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
-                    name="filter">Apply</button>
-                <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
-                <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
-            </form> -->
         </div>
         <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -266,7 +258,15 @@
 
     var products = JSON.parse(localStorage.getItem('products')) || [];
     var categories = JSON.parse(localStorage.getItem('categories')) || [];
-    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1, 1];
+    var preferences = JSON.parse(localStorage.getItem('preferences')) || {
+        edit_delete_pref: true,
+        clear_inv_pref: true,
+        purchasePrice_pref: true,
+        category_pref: true,
+        date_added_pref: true,
+        date_updated_pref: true,
+    };
+
     var filtered_products = [];
     var editingItemId = null;
 

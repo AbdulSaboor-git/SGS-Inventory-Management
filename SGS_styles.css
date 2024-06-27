@@ -259,21 +259,15 @@ h1, h2 {
     flex-direction: column;
     z-index: 6;
     width: 70%;
-    max-height: 350px;
     max-width: 350px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 30px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
     background-color: #f5ebfb;
     border-radius: 8px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow-y: scroll;
-}
-
-.preferences::-webkit-scrollbar {
-    display: none;
 }
 
 .preferences.show {
@@ -281,8 +275,14 @@ h1, h2 {
     pointer-events: all;
 }
 
-.preferences h3 {
+.preferences h2 {
     margin-top: 5px;
+}
+
+.preferences h5 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #7540a3;
 }
 
 .preferences .pref_options {
@@ -290,9 +290,25 @@ h1, h2 {
     flex-direction: column;
     justify-content: flex-start;
     gap: 5px;
+    max-height: 450px;
+    overflow-y: scroll;
     /* background-color: #007ef3; */
-
 }
+
+.pref_options::-webkit-scrollbar {
+    width: 5px;
+    background-color: #cdb5f600;
+}
+
+.pref_options::-webkit-scrollbar:horizontal {
+    display: none;
+}
+
+.pref_options::-webkit-scrollbar-thumb {
+    background-color: #ad75df;
+    border-radius: 50px;
+}
+
 
 .pref_options .option {
     display: grid;
@@ -304,6 +320,13 @@ h1, h2 {
     padding-top: 5px;
     /* height: 50px; */
     /* background-color: #0d8205; */
+}
+
+.pref_options hr {
+    border: none;
+    height: 1px;
+    background-color: #d0d0d0;
+    width: 100%;
 }
 
 .option .title {
@@ -322,7 +345,7 @@ h1, h2 {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .preferences .Greenbutton {

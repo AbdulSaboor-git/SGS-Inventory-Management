@@ -57,7 +57,6 @@ function togglePreferences() {
     showOverlay();
 }
 
-//-----------------------------------------------------------------------------
 
 function closePreferences() {
     var Form = document.getElementById('preferences');
@@ -67,25 +66,44 @@ function closePreferences() {
 }
 
 function savePreferences() {
-    var option0 = document.getElementById('date_added_pref').checked;
-    var option1 = document.getElementById('date_updated_pref').checked;
+    var option0 = document.getElementById('edit_delete_pref').checked;
+    var option1 = document.getElementById('clear_inv_pref').checked;
     var option2 = document.getElementById('purchasePrice_pref').checked;
     var option3 = document.getElementById('category_pref').checked;
+    var option4 = document.getElementById('date_added_pref').checked;
+    var option5 = document.getElementById('date_updated_pref').checked;
 
-    preferences[0] = option0 ? 1 : 0;
-    preferences[1] = option1 ? 1 : 0;
-    preferences[2] = option2 ? 1 : 0;
-    preferences[3] = option3 ? 1 : 0;
+    preferences.edit_delete_pref = option0;
+    preferences.clear_inv_pref = option1;
+    preferences.purchasePrice_pref = option2;
+    preferences.category_pref = option3;
+    preferences.date_added_pref = option4;
+    preferences.date_updated_pref = option5;
 
     localStorage.setItem('preferences', JSON.stringify(preferences));
+    displayFeedbackPopup('Preferences saved!', true);
     closePreferences();
 }
 
 function checkPreferences() {
-    document.getElementById('date_added_pref').checked = preferences[0] === 1;
-    document.getElementById('date_updated_pref').checked = preferences[1] === 1;
-    document.getElementById('purchasePrice_pref').checked = preferences[2] === 1;
-    document.getElementById('category_pref').checked = preferences[3] === 1;
+    document.getElementById('edit_delete_pref').checked = preferences.edit_delete_pref;
+    document.getElementById('clear_inv_pref').checked = preferences.clear_inv_pref;
+    document.getElementById('purchasePrice_pref').checked = preferences.purchasePrice_pref;
+    document.getElementById('category_pref').checked = preferences.category_pref;
+    document.getElementById('date_added_pref').checked = preferences.date_added_pref;
+    document.getElementById('date_updated_pref').checked = preferences.date_updated_pref;
+
+    var clear_inv_btns = document.querySelectorAll('.clear_inv')
+    if (!preferences.clear_inv_pref) {
+        clear_inv_btns.forEach(function (button) {
+            button.style.display = 'none';
+        });
+    }
+    else {
+        clear_inv_btns.forEach(function (button) {
+            button.style.display = 'block';
+        });
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -771,8 +789,6 @@ function toggleItemDetails(product) {
     var detailsDiv = document.createElement('div');
     detailsDiv.className = 'item-details';
 
-    var preferences = JSON.parse(localStorage.getItem('preferences')) || [1, 1, 1];
-
     let govtSalePriceRow = '';
     if (product.govt_sale_price != 0) {
         govtSalePriceRow = `
@@ -784,7 +800,7 @@ function toggleItemDetails(product) {
     }
 
     let PurchasePriceRow = '';
-    if (preferences[2] == 1) {
+    if (preferences.purchasePrice_pref) {
         PurchasePriceRow = `
             <tr>
                 <td class="m">Purchase Price</td>
@@ -794,7 +810,7 @@ function toggleItemDetails(product) {
     }
 
     let dateAddedRow = '';
-    if (preferences[0] == 1) {
+    if (preferences.date_added_pref) {
         dateAddedRow = `
             <tr>
                 <td class="m">Date Added</td>
@@ -804,7 +820,7 @@ function toggleItemDetails(product) {
     }
 
     let dateUpdatedRow = '';
-    if (preferences[1] == 1) {
+    if (preferences.date_updated_pref) {
         dateUpdatedRow = `
             <tr>
                 <td class="m">Last Updated</td>
@@ -814,7 +830,7 @@ function toggleItemDetails(product) {
     }
 
     let categoryRow = '';
-    if (preferences[3] == 1) {
+    if (preferences.category_pref) {
         categoryRow = `
             <tr>
                 <td class="m">Category</td>
@@ -851,7 +867,6 @@ function toggleItemDetails(product) {
         event.stopPropagation();
         editItem(product.prod_id);
     });
-    detailsDiv.appendChild(editButton);
 
     var deleteButton = document.createElement('button');
     deleteButton.className = 'delete-button';
@@ -860,7 +875,11 @@ function toggleItemDetails(product) {
         event.stopPropagation();
         deleteItem(product.prod_id, product.prod_name);
     });
-    detailsDiv.appendChild(deleteButton);
+
+    if (preferences.edit_delete_pref == true) {
+        detailsDiv.appendChild(editButton);
+        detailsDiv.appendChild(deleteButton);
+    }
 
     var clickedItem = event.target;
     clickedItem.parentNode.insertBefore(detailsDiv, clickedItem.nextSibling);
