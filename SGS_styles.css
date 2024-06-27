@@ -645,7 +645,7 @@ h1, h2 {
 .categFormBackground {
     margin-top: -53px;
     min-height: 200px;
-    background-color: #39145b;
+    background-color: #8640c3;
     padding: 20px;
     padding-top: 50px;
     border: solid 4px #edb4f5;
@@ -682,7 +682,8 @@ h1, h2 {
 
 .categFormHeaderButton.focused {
     transition: background-color 0.3s ease-in-out;
-    background-color: #39145b;
+    background-color: #8640c3;
+    color: #caaec7;
 }
 
 
