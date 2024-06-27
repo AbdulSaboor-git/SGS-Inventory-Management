@@ -160,11 +160,11 @@ h1, h2 {
 
 .footer {
     position: relative;
-    background-color: #7b2cbf;
+    background-color: #4a2072;
     height: 100px;
     margin: -20px;
     margin-top: 30px;
-    border-top: solid 20px #4a1974;
+    border-top: solid 20px #2b0d45;
 }
 
 .footerText {
@@ -455,11 +455,11 @@ h1, h2 {
     padding: 8px;
     width: 100%;
     font-size: 14px;
-    border: 2px solid #f0618e4f;
+    border: 2px solid #88304c77;
     border-radius: 8px;
     box-sizing: border-box;
     color: #dac7d8;
-    background-color: #2907489c;
+    background-color: #2b094a8e;
 }
 
 .search-bar::placeholder {
@@ -908,7 +908,7 @@ h1, h2 {
 li {
     margin-top: 6px;
     background-color: #300a53;
-    border: 3px solid #f0618e4f;
+    border: 3px solid #88304c77;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
