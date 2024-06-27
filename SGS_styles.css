@@ -32,7 +32,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 input:focus, select:focus {
-    outline: solid 1.5px #f0618e;
+    outline: solid 1.5px #f0618e81;
 }
 
 button:focus,
@@ -144,7 +144,6 @@ h1, h2 {
     border: none;
     display: block;
     text-align: center;
-    color: #f9f2ff;
     padding: 0px;
     transition: padding 0.3s, font-size 0.3s;
     border-radius: 100px;
@@ -152,7 +151,7 @@ h1, h2 {
 
 .title {
     margin-top: 17px;
-    color: #f9f2ff;
+    color: #e2cdf1;
     font-size: 30px;
 }
 
@@ -501,7 +500,7 @@ h1, h2 {
     flex-direction: row;
     position: absolute;
     right: 0;
-    margin-right: 30px;
+    margin-right: 20px;
     margin-top: -40px;
     z-index: 3;
 }
@@ -568,7 +567,7 @@ h1, h2 {
     pointer-events: none;
     position: absolute;
     right: 0;
-    margin-right: 45px;
+    margin-right: 35px;
     margin-top: -5px;
     display: flex;
     flex-direction: column;
