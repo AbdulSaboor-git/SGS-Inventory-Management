@@ -11,6 +11,11 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     justify-content: center;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+body.lth {
+    background-color: #ded9e7;
 }
 
 a {
@@ -22,12 +27,16 @@ body::-webkit-scrollbar {
     background-color: #10002b;
 }
 
+body.lth::-webkit-scrollbar {
+    background-color: #ded9e7;
+}
+
 body::-webkit-scrollbar:horizontal {
     display: none;
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: #10002b;
+    background-color: #f0618e;
     border-radius: 50px;
 }
 
@@ -136,6 +145,10 @@ h1, h2 {
     z-index: 5;
 }
 
+body.lth .header {
+    background-color: ded9e7;
+}
+
 .heading {
     flex: 1;
     height: 70px;
@@ -149,10 +162,18 @@ h1, h2 {
     border-radius: 100px;
 }
 
+body.lth .heading {
+    background-color: #6d26b0;
+}
+
 .title {
-    margin-top: 17px;
+    margin-top: 14px;
     color: #e2cdf1;
     font-size: 30px;
+}
+
+body.lth .title {
+    color: #ede4f3;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -164,6 +185,11 @@ h1, h2 {
     margin: -20px;
     margin-top: 30px;
     border-top: solid 20px #2b0d45;
+}
+
+body.lth .footer {
+    background-color: #6d26b0;
+    border-top: solid 20px #542b77;
 }
 
 .footerText {
@@ -216,6 +242,11 @@ h1, h2 {
     transition: opacity 0.1s;
 }
 
+body.lth .header_dropdown_list {
+    background-color: #d6c8ef;
+    box-shadow: 0 0 10px -3px #10002b;
+}
+
 .header_dropdown_list.show {
     opacity: 1;
     pointer-events: all;
@@ -234,12 +265,22 @@ h1, h2 {
     font-size: 13.8px;
 }
 
+body.lth .dropdown-btns {
+    background-color: #d6c8ef;
+    border-bottom: solid 1px #a9a9a9;
+    color: #242424;
+}
+
 .logout_btn {
     color: rgb(216, 2, 2);
 }
 
 .dropdown-btns:hover {
     background-color: #a687e0
+}
+
+body.lth .dropdown-btns:hover {
+    background-color: #C7A9FF
 }
 
 .logout_btn:hover {
@@ -268,6 +309,11 @@ h1, h2 {
     transform: translate(-50%, -50%);
 }
 
+body.lth .preferences {
+    background-color: #ded9e7;
+    box-shadow: 0 0 15px -1px #100623;
+}
+
 .preferences.show {
     opacity: 1;
     pointer-events: all;
@@ -281,6 +327,10 @@ h1, h2 {
     margin-top: 5px;
     margin-bottom: 10px;
     color: #d5ccd4;
+}
+
+body.lth .preferences h5 {
+    color: #51445d;
 }
 
 .preferences .pref_options {
@@ -307,6 +357,10 @@ h1, h2 {
     border-radius: 50px;
 }
 
+body.lth .pref_options::-webkit-scrollbar-thumb {
+    background-color: #f0618e;
+}
+
 
 .pref_options .option {
     display: grid;
@@ -327,10 +381,19 @@ h1, h2 {
     width: 100%;
 }
 
+body.lth .pref_options hr {
+    background-color: #b6b6b6;
+}
+
 .option .title {
     margin: 0px;
     font-size: 15px;
     color: #caaec7;
+    /* background-color: #007ef3; */
+}
+
+body.lth .option .title {
+    color: #414141;
     /* background-color: #007ef3; */
 }
 
@@ -408,7 +471,7 @@ h1, h2 {
 }
 
 .move_to_top_btn:hover {
-    background-color: #4a1974;
+    background-color: #ee4379;
 }
 
 .move_to_top_btn.move {
@@ -441,6 +504,11 @@ h1, h2 {
     box-shadow: 0 10px 10px 1px #10002b;
 }
 
+body.lth .searchBar {
+    background-color: #ded9e7;
+    box-shadow: 0 10px 10px 1px #ded9e7;
+}
+
 .search_h3 {
     position: relative;
     margin-bottom: 5px;
@@ -461,8 +529,19 @@ h1, h2 {
     background-color: #2b094a8e;
 }
 
+body.lth .search-bar {
+    border: 1px solid #ff5d90;
+    background-color: #f0618e61;
+    color: #4b4b4b;
+}
+
 .search-bar::placeholder {
     color: #caaec7;
+}
+
+body.lth .search-bar::placeholder {
+    color: #6d6d6d;
+    font-weight: 300;
 }
 
 .clearSearch {
@@ -474,12 +553,16 @@ h1, h2 {
     border: none;
     border-radius: 8px;
     font-size: 15px;
-    margin-top: 2px;
+    margin-top: 1px;
     right: 0px;
-    margin-right: 37px;
+    margin-right: 10px;
     height: 32px;
     width: 32px;
     transition: opacity 0.1s ease-in-out;
+}
+
+body.lth .clearSearch {
+    color: #6d26b0;
 }
 
 .clearSearch.show {
@@ -525,8 +608,8 @@ h1, h2 {
     display: inline;
     right: 0;
     top: 0;
-    margin-top: -11px;
-    margin-right: 24px;
+    margin-top: -8px;
+    margin-right: 25px;
     z-index: 3;
     transition: opacity 0.2s;
 }
@@ -577,7 +660,11 @@ h1, h2 {
     box-shadow: 0 0 10px 1px #10002b;
     z-index: 4;
     transition: opacity 0.1s;
+}
 
+body.lth .sort-dropdown {
+    background-color: #d6c8ef;
+    box-shadow: 0 0 10px -3px #10002b;
 }
 
 .sort-dropdown.show {
@@ -609,6 +696,11 @@ h1, h2 {
     overflow-y: scroll;
 }
 
+body.lth .manageCategories {
+    background-color: #ded9e7;
+    box-shadow: 0 0 15px -1px #100623;
+}
+
 .manageCategories::-webkit-scrollbar {
     display: none;
 }
@@ -624,6 +716,11 @@ h1, h2 {
     color: #4b4b4b;
 }
 
+body.lth .manageCategories .addItemInput,
+body.lth .manageCategories .selectCateg {
+    background-color: #f5ebfb;
+}
+
 .manageCategories h2 {
     margin-top: 10px;
     margin-bottom: 15px;
@@ -631,6 +728,10 @@ h1, h2 {
 
 .manageCategories label {
     color: #f3e8f2;
+}
+
+body.lth .manageCategories label {
+    color: #414141;
 }
 
 .categFormHeader {
@@ -642,6 +743,10 @@ h1, h2 {
     border-bottom-right-radius: 0px;
 }
 
+body.lth .manageCategories .categFormHeader {
+    background-color: #edb4f5;
+}
+
 .categFormBackground {
     margin-top: -53px;
     min-height: 200px;
@@ -650,6 +755,11 @@ h1, h2 {
     padding-top: 50px;
     border: solid 4px #4a2072;
     border-radius: 8px;
+}
+
+body.lth .manageCategories .categFormBackground {
+    background-color: #fbd5ff;
+    border: solid 4px #edb4f5;
 }
 
 .categFormHeaderAllButtons {
@@ -669,11 +779,20 @@ h1, h2 {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     color: #caaec7;
+    transition: background-color 0.3s ease-in-out;
+}
+
+body.lth .manageCategories .categFormHeaderButton {
+    background-color: #edb4f5;
+    color: #424242;
 }
 
 .categFormHeaderButton:hover {
     background-color: #3d1364;
-    transition: background-color 0.3s ease-in-out;
+}
+
+.categFormHeaderButton:hover {
+    background-color: #f5c0fc;
 }
 
 .categFormHeader input[type="button"]:focus {
@@ -681,9 +800,13 @@ h1, h2 {
 }
 
 .categFormHeaderButton.focused {
-    transition: background-color 0.3s ease-in-out;
     background-color: #682e9a;
     color: #f3e8f2;
+}
+
+body.lth .manageCategories .categFormHeaderButton.focused {
+    background-color: #fbd5ff;
+    color: #424242;
 }
 
 
@@ -709,8 +832,17 @@ h1, h2 {
     overflow-y: scroll;
 }
 
+body.lth .addItemForm {
+    background-color: #ded9e7;
+    box-shadow: 0 0 15px -1px #100623;
+}
+
 .addItemForm label {
     color: #caaec7;
+}
+
+body.lth .addItemForm label {
+    color: #424242;
 }
 
 .addItemForm::-webkit-scrollbar {
@@ -741,6 +873,11 @@ h1, h2 {
     background-color: #1e0f38;
 }
 
+body.lth .selectCateg,
+body.lth .addItemInput {
+    background-color: #f5ebfb;
+    color: #4b4b4b;
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -758,6 +895,12 @@ h1, h2 {
     background-color: #16002396;
     backdrop-filter: blur(1.5px);
     z-index: 6;
+}
+
+body.lth #filter_overlay,
+body.lth #overlay,
+body.lth #overlay2 {
+    background-color: #00000062;
 }
 
 #overlay2 {
@@ -796,8 +939,17 @@ h1, h2 {
     background-color: #100623;
 }
 
+body.lth .FilterForm {
+    background-color: #ded9e7;
+    box-shadow: 0 0 15px -1px #100623;
+}
+
 .FilterForm label {
     color: #caaec7;
+}
+
+body.lth .FilterForm label {
+    color: #424242;
 }
 
 .FilterForm::-webkit-scrollbar {
@@ -920,8 +1072,18 @@ li {
 
 }
 
+body.lth li {
+    background-color: #ac61f1;
+    border: 3px solid #c76d89;
+    box-shadow: none;
+}
+
 li:hover {
     background-color: #260842;
+}
+
+body.lth li:hover {
+    background-color: #8245ba;
 }
 
 
@@ -954,10 +1116,18 @@ button.details:focus {
     font-weight: bold;
 }
 
+body.lth .item-name {
+    color: #290031;
+}
+
 .sale-price {
     font-size: 13px;
     margin-top: 3px;
     color: #caaec7;
+}
+
+body.lth .sale-price {
+    color: #270423;
 }
 
 
@@ -982,11 +1152,20 @@ button.details:focus {
     overflow: auto;
 }
 
+body.lth .item-details {
+    background-color: #460f79;
+
+}
+
 .item-details table {
     color: #caaec7;
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+}
+
+body.lth .item-details table {
+    color: #f4ebf3;
 }
 
 .item-details td {
@@ -995,6 +1174,10 @@ button.details:focus {
     padding: 5px;
     text-align: center;
     font-size: 14px;
+}
+
+body.lth .item-details td {
+    border-color: #f0618e9a;
 }
 
 .item-details td.m {

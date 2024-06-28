@@ -66,6 +66,15 @@
                 <input type="checkbox" id="date_updated_pref" name="date_updated_pref">
             </div>
             <hr>
+            <h5>Theme</h5>
+            <div class="option theme">
+                <label for="lighttheme" class="title">Light Theme</label>
+                <input type="checkbox" id="light-theme" name="light-theme"
+                    onclick="toggleCheckbox('light-theme', 'dark-theme')">
+                <label for="dark-theme" class="title">Dark Theme</label>
+                <input type="checkbox" id="dark-theme" name="dark-theme"
+                    onclick="toggleCheckbox('dark-theme', 'light-theme')">
+            </div>
         </div>
         <div class="pref_buttons">
             <button class="Greenbutton" onclick="savePreferences()">Save</button>
@@ -265,6 +274,8 @@
         category_pref: true,
         date_added_pref: true,
         date_updated_pref: true,
+        light_theme: false,
+        dark_theme: true
     };
 
     var filtered_products = [];
@@ -274,5 +285,6 @@
     AddCategoriesToDropdowns();
     displayInventoryList();
     checkScreenWidthforOverlay();
+
 
 </script>

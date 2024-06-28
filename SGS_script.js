@@ -72,6 +72,8 @@ function savePreferences() {
     var option3 = document.getElementById('category_pref').checked;
     var option4 = document.getElementById('date_added_pref').checked;
     var option5 = document.getElementById('date_updated_pref').checked;
+    var option6 = document.getElementById('light-theme').checked;
+    var option7 = document.getElementById('dark-theme').checked;
 
     preferences.edit_delete_pref = option0;
     preferences.clear_inv_pref = option1;
@@ -79,10 +81,18 @@ function savePreferences() {
     preferences.category_pref = option3;
     preferences.date_added_pref = option4;
     preferences.date_updated_pref = option5;
+    preferences.light_theme = option6;
+    preferences.dark_theme = option7;
 
     localStorage.setItem('preferences', JSON.stringify(preferences));
     displayFeedbackPopup('Preferences saved!', true);
     closePreferences();
+
+    if (preferences.light_theme) {
+        document.querySelector('body').classList.add('lth');
+    }
+    else
+        document.querySelector('body').classList.remove('lth');
 }
 
 function checkPreferences() {
@@ -92,6 +102,8 @@ function checkPreferences() {
     document.getElementById('category_pref').checked = preferences.category_pref;
     document.getElementById('date_added_pref').checked = preferences.date_added_pref;
     document.getElementById('date_updated_pref').checked = preferences.date_updated_pref;
+    document.getElementById('light-theme').checked = preferences.light_theme;
+    document.getElementById('dark-theme').checked = preferences.dark_theme;
 
     var clear_inv_btns = document.querySelectorAll('.clear_inv')
     if (!preferences.clear_inv_pref) {
@@ -106,6 +118,14 @@ function checkPreferences() {
     }
 }
 
+function toggleCheckbox(checkedId, uncheckedId) {
+    const checkedCheckbox = document.getElementById(checkedId);
+    const uncheckedCheckbox = document.getElementById(uncheckedId);
+
+    if (checkedCheckbox.checked) {
+        uncheckedCheckbox.checked = false;
+    }
+}
 //-----------------------------------------------------------------------------
 
 function toggleCategoriesForm() {
