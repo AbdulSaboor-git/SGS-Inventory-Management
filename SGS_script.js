@@ -131,6 +131,9 @@ function toggleCheckbox(checkedId, uncheckedId) {
     if (checkedCheckbox.checked) {
         uncheckedCheckbox.checked = false;
     }
+    else {
+        uncheckedCheckbox.checked = true;
+    }
 }
 //-----------------------------------------------------------------------------
 

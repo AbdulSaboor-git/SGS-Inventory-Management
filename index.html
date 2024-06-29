@@ -17,11 +17,8 @@
     <div id="overlay2"></div>
     <div id="filter_overlay"></div>
     <div class="header">
-        <div class="heading">
-            <h1 class="title">SGS - INVENTORY</h1>
-
-            <button class="header_dropdown_btn" onclick="toggle_Header_dropdown()">&#8285;</button>
-        </div>
+        <h1> SGS - INVENTORY</h1>
+        <button class="header_dropdown_btn" onclick="toggle_Header_dropdown()">&#8285;</button>
         <form class="header_dropdown_list" action="">
             <input type="button" class="dropdown-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
             <input type="button" class="dropdown-btns" value="Load Inventory Data"
@@ -274,8 +271,8 @@
         category_pref: true,
         date_added_pref: true,
         date_updated_pref: true,
-        light_theme: false,
-        dark_theme: true
+        light_theme: true,
+        dark_theme: false
     };
 
     var filtered_products = [];
