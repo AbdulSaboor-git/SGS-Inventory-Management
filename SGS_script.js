@@ -105,6 +105,12 @@ function checkPreferences() {
     document.getElementById('light-theme').checked = preferences.light_theme;
     document.getElementById('dark-theme').checked = preferences.dark_theme;
 
+    if (preferences.light_theme) {
+        document.querySelector('body').classList.add('lth');
+    }
+    else
+        document.querySelector('body').classList.remove('lth');
+
     var clear_inv_btns = document.querySelectorAll('.clear_inv')
     if (!preferences.clear_inv_pref) {
         clear_inv_btns.forEach(function (button) {
