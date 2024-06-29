@@ -49,6 +49,7 @@ input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus {
     outline: solid 1.3px #62626246;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button,
@@ -59,7 +60,7 @@ input[type="submit"],
 input[type="reset"] {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button,
@@ -73,7 +74,7 @@ button.Greenbutton {
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     margin-top: 10px;
     width: 80px;
     padding: 8px;
@@ -140,6 +141,7 @@ h1, h2 {
     padding-bottom: 1px;
     padding-top: 1px;
     z-index: 5;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .header {
@@ -158,6 +160,7 @@ body.lth .header {
     border-radius: 100px;
     color: #E6E6FA;
     font-size: 30px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .header h1 {
@@ -175,6 +178,8 @@ body.lth .header h1 {
     margin: -20px;
     margin-top: 30px;
     border-top: solid 20px #310c59;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
 }
 
 body.lth .footer {
@@ -209,6 +214,7 @@ body.lth .footer {
     background-color: transparent;
     border: none;
     color: #f9f2ff;
+
 }
 
 .header_dropdown_btn:focus {
@@ -230,6 +236,8 @@ body.lth .footer {
     box-shadow: 0 0 10px 1px #1C1C2B;
     z-index: 5;
     transition: opacity 0.1s;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
 }
 
 body.lth .header_dropdown_list {
@@ -253,6 +261,8 @@ body.lth .header_dropdown_list {
     color: #252525;
     transition: background-color 0.3s;
     font-size: 13.8px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
 }
 
 body.lth .dropdown-btns {
@@ -297,6 +307,7 @@ body.lth .dropdown-btns:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .preferences {
@@ -492,6 +503,7 @@ body.lth .option .title {
     margin-left: -10px;
     padding-bottom: 5px;
     background-color: #1C1C2B;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 10px 10px 1px #1C1C2B;
 }
 
@@ -517,6 +529,7 @@ body.lth .searchBar {
     border-radius: 8px;
     box-sizing: border-box;
     color: #dac7d8;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
     background-color: #4a148c9a;
 }
 
@@ -549,6 +562,7 @@ body.lth .search-bar::placeholder {
     margin-right: 10px;
     height: 32px;
     width: 32px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     transition: opacity 0.1s ease-in-out;
 }
 
@@ -599,7 +613,7 @@ body.lth .clearSearch {
     display: inline;
     right: 0;
     top: 0;
-    margin-top: -8px;
+    margin-top: -12px;
     margin-right: 25px;
     z-index: 3;
     transition: opacity 0.2s;
@@ -650,6 +664,7 @@ body.lth .clearSearch {
     background-color: #C7A9FF;
     box-shadow: 0 0 10px 1px #1C1C2B;
     z-index: 4;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     transition: opacity 0.1s;
 }
 
@@ -684,6 +699,7 @@ body.lth .sort-dropdown {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     overflow-y: scroll;
 }
 
@@ -731,6 +747,7 @@ body.lth .manageCategories label {
     background-color: #3B0D6B;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     border-bottom-right-radius: 0px;
 }
 
@@ -745,6 +762,7 @@ body.lth .manageCategories .categFormHeader {
     padding: 20px;
     padding-top: 50px;
     border: solid 4px #3B0D6B;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     border-radius: 8px;
 }
 
@@ -770,7 +788,8 @@ body.lth .manageCategories .categFormBackground {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     color: #caaec7;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
 }
 
 body.lth .manageCategories .categFormHeaderButton {
@@ -820,6 +839,7 @@ body.lth .manageCategories .categFormHeaderButton.focused {
     border-radius: 8px;
     box-shadow: 0 0 10px 0px #C7A9FF;
     background-color: #100623;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     overflow-y: scroll;
 }
 
@@ -862,6 +882,7 @@ body.lth .addItemForm label {
     box-sizing: border-box;
     color: #dac7d8;
     background-color: #1e0f38;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
 body.lth .selectCateg,
@@ -887,6 +908,7 @@ body.lth .addItemInput {
     background-color: #16002396;
     backdrop-filter: blur(1.5px);
     z-index: 6;
+    transition: background-color 0.3s ease-in-out;
 }
 
 body.lth #filter_overlay,
@@ -929,6 +951,7 @@ body.lth #overlay2 {
     z-index: 6;
     box-shadow: 0 0 10px 1px #C7A9FF;
     background-color: #100623;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .FilterForm {
@@ -1061,6 +1084,7 @@ li {
     align-items: flex-start;
     position: relative;
     box-shadow: 0 0 10px -1px #1C1C2B;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 
 }
 
@@ -1106,6 +1130,7 @@ button.details:focus {
     color: #E6E6FA;
     font-size: 16px;
     font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .item-name {
@@ -1116,6 +1141,7 @@ body.lth .item-name {
     font-size: 13px;
     margin-top: 3px;
     color: #d5d5ea;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .sale-price {
@@ -1142,6 +1168,7 @@ body.lth .sale-price {
     width: 95%;
     text-align: left;
     overflow: auto;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .item-details {
@@ -1154,6 +1181,7 @@ body.lth .item-details {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .item-details table {
@@ -1181,6 +1209,7 @@ body.lth .item-details td {
     margin-top: 5px;
     margin-bottom: 15px;
     color: #f0618e;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 body.lth .item-details h3 {
@@ -1368,6 +1397,7 @@ button.edit-button:hover {
         padding-left: 5px;
         box-shadow: 0 8px 15px 5px#1c1c2b;
         z-index: 1;
+        transition: box-shadow 0.3s ease-in-out;
     }
 
     body.lth .InventoryList .invHeading {
