@@ -1072,7 +1072,7 @@ body.lth .FilterForm label {
 li {
     margin-top: 6px;
     background-color: #300a53;
-    border: 3px solid #4f1e56;
+    border: 3px solid #551f5c;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -1088,7 +1088,7 @@ li {
 
 body.lth li {
     background-color: #DAB6E0;
-    border: 3px solid #c76d89;
+    border: 3px solid #ef57ad5a;
     box-shadow: none;
 }
 
