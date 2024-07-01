@@ -345,6 +345,7 @@ function closeAddItemForm() {
     document.getElementById('addEditHeader').textContent = 'Add Product';
     document.getElementById('saveButton').onclick = saveItem;
     addItemForm.classList.remove('show');
+    editingItemId = null;
     clearAddItemForm();
     hideOverlay();
 

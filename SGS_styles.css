@@ -40,11 +40,11 @@ body::-webkit-scrollbar-thumb {
     border-radius: 50px;
 }
 
-body.lth input:focus, body.lth select:focus {
+body.lth input[type="text"]:focus, body.lth select:focus {
     outline: solid 1px #edb4f5;
 }
 
-input:focus, select:focus {
+input[type="text"]:focus, select:focus {
     outline: solid 1px #4f1e56;
 }
 
@@ -54,6 +54,10 @@ input[type="reset"]:focus,
 input[type="submit"]:focus {
     outline: solid 1.3px #62626246;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+input[type='checkbox']:focus {
+    outline: none;
 }
 
 button,
@@ -68,7 +72,8 @@ input[type="reset"] {
 }
 
 button,
-input[type="button"] {
+input[type="button"],
+input[type='checkbox'] {
     cursor: pointer;
 }
 
@@ -402,10 +407,6 @@ body.lth .option .title {
     /* background-color: #007ef3; */
 }
 
-.option input:focus {
-    outline: none;
-}
-
 .preferences .pref_buttons {
     display: flex;
     flex-direction: row;
@@ -531,14 +532,14 @@ body.lth .searchBar {
     border: 2px solid #4f1e56;
     border-radius: 8px;
     box-sizing: border-box;
-    color: #dac7d8;
+    color: #dfcfde;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
     background-color: #4a148c9a;
 }
 
 body.lth .search-bar {
     border: 1px solid #edb4f5;
-    background-color: #ffc1f5;
+    background-color: #ebcad4;
     color: #4b4b4b;
 }
 
@@ -690,7 +691,7 @@ body.lth .sort-dropdown {
     z-index: 6;
     width: 70%;
     height: 70%;
-    max-height: 350px;
+    max-height: 355px;
     max-width: 350px;
     padding: 20px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
@@ -702,6 +703,17 @@ body.lth .sort-dropdown {
     transform: translate(-50%, -50%);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     overflow-y: scroll;
+}
+
+.categ_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.categ_buttons button {
+    width: 100%;
 }
 
 body.lth .manageCategories {
@@ -720,8 +732,9 @@ body.lth .manageCategories {
 
 .manageCategories .addItemInput,
 .manageCategories .selectCateg {
-    background-color: #C7A9FF;
+    background-color: #F3E8FF;
     color: #4b4b4b;
+    margin-bottom: 12px;
 }
 
 body.lth .manageCategories .addItemInput,
@@ -735,7 +748,8 @@ body.lth .manageCategories .selectCateg {
 }
 
 .manageCategories label {
-    color: #f3e8f2;
+    color: #E6E6FA;
+    font-size: 15px;
 }
 
 body.lth .manageCategories label {
@@ -745,7 +759,7 @@ body.lth .manageCategories label {
 .categFormHeader {
     padding: 7.5px;
     padding-left: 8.34px;
-    background-color: #3B0D6B;
+    background-color: #682e9a;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -759,10 +773,10 @@ body.lth .manageCategories .categFormHeader {
 .categFormBackground {
     margin-top: -53px;
     min-height: 200px;
-    background-color: #682e9a;
-    padding: 20px;
+    background-color: #3B0D6B;
+    padding: 25px;
     padding-top: 50px;
-    border: solid 4px #3B0D6B;
+    border: solid 4px #682e9a;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     border-radius: 8px;
 }
@@ -782,13 +796,13 @@ body.lth .manageCategories .categFormBackground {
 .categFormHeaderButton {
     width: 98%;
     padding: 8px;
-    background-color: #3B0D6B;
+    background-color: #682e9a;
     border: none;
     margin-bottom: 20px;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    color: #caaec7;
+    color: #e5d5e3;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
 }
@@ -799,7 +813,7 @@ body.lth .manageCategories .categFormHeaderButton {
 }
 
 .categFormHeaderButton:hover {
-    background-color: #4f2478;
+    background-color: #572187;
 }
 
 body.lth .categFormHeaderButton:hover {
@@ -811,7 +825,7 @@ body.lth .categFormHeaderButton:hover {
 }
 
 .categFormHeaderButton.focused {
-    background-color: #682e9a;
+    background-color: #3B0D6B;
     color: #f3e8f2;
 }
 
@@ -835,7 +849,7 @@ body.lth .manageCategories .categFormHeaderButton.focused {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 25px;
     transition: transform 0.5s ease-in-out, box-shadow 0.3s, opacity 0.3s;
     border-radius: 8px;
     box-shadow: 0 0 10px 0px #C7A9FF;
@@ -844,13 +858,32 @@ body.lth .manageCategories .categFormHeaderButton.focused {
     overflow-y: scroll;
 }
 
+.add_item_body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+.add_item_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.add_item_buttons button {
+    width: 100%;
+}
+
 body.lth .addItemForm {
     background-color: #F3E8FF;
     box-shadow: 0 0 15px -1px #100623;
 }
 
 .addItemForm label {
-    color: #caaec7;
+    color: #e1cddf;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 body.lth .addItemForm label {
@@ -869,7 +902,7 @@ body.lth .addItemForm label {
 
 
 .addItemForm h2 {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     margin-top: 10px;
 }
 
@@ -877,7 +910,6 @@ body.lth .addItemForm label {
 .addItemInput {
     width: 100%;
     padding: 10px;
-    margin-bottom: 12px;
     border: 1px solid #4f1e56;
     border-radius: 4px;
     box-sizing: border-box;
@@ -939,7 +971,7 @@ body.lth #overlay2 {
     align-items: center;
     position: fixed;
     height: 75%;
-    max-height: 330px;
+    max-height: 335px;
     width: 70%;
     max-width: 300px;
     padding: 20px;
@@ -962,6 +994,9 @@ body.lth .FilterForm {
 
 .FilterForm label {
     color: #caaec7;
+    font-size: 15px;
+    padding-left: 1px;
+    margin-top: 12px;
 }
 
 body.lth .FilterForm label {
@@ -979,9 +1014,20 @@ body.lth .FilterForm label {
 
 .FilterForm h3 {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
+.FilterForm .filter_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.filter_buttons button {
+    width: 100%;
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -1179,7 +1225,7 @@ body.lth .item-details {
 }
 
 .item-details table {
-    color: #d5d5ea;
+    color: #e4e4ed;
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
@@ -1394,7 +1440,7 @@ button.edit-button:hover {
         padding-top: 15px;
         width: 100%;
         height: 80vh;
-        min-height: 760px;
+        min-height: 750px;
         overflow-x: hidden;
         overflow-y: scroll;
         scroll-behavior: smooth;

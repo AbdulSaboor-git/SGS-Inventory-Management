@@ -169,10 +169,12 @@
         <label for="maxPrice">Max. Price:</label>
         <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
 
-        <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
-            name="filter">Apply</button>
-        <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
-        <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
+        <div class="filter_buttons">
+            <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
+                name="filter">Apply</button>
+            <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
+            <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
+        </div>
     </form>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -204,13 +206,15 @@
             <input name="categNewName" type="text" class="addItemInput" id="categNewName" oninput="enableCategButtons()"
                 disabled="true" required>
 
-            <button type="button" class="Greenbutton" id="addCategButton" onclick="addCategory()"
-                disabled="true">Add</button>
-            <button type="button" class="Greenbutton" id="renameCategButton" onclick="renameCategory()"
-                disabled="true">Rename</button>
-            <button type="button" class="Greenbutton clear" id="removeCategButton" onclick="removeCategory()"
-                disabled="true">Remove</button>
-            <button type="reset" class="Greenbutton cancel" onclick="closeCategoriesForm()">Cancel</button>
+            <div class="categ_buttons">
+                <button type="button" class="Greenbutton" id="addCategButton" onclick="addCategory()"
+                    disabled="true">Add</button>
+                <button type="button" class="Greenbutton" id="renameCategButton" onclick="renameCategory()"
+                    disabled="true">Rename</button>
+                <button type="button" class="Greenbutton clear" id="removeCategButton" onclick="removeCategory()"
+                    disabled="true">Remove</button>
+                <button type="reset" class="Greenbutton cancel" onclick="closeCategoriesForm()">Cancel</button>
+            </div>
         </div>
 
     </form>
@@ -219,25 +223,31 @@
 
     <form id="addItemForm" class="addItemForm" autocomplete="off" spellcheck="false">
         <h2 id="addEditHeader" class="addEditHeader">Add Product</h2>
-        <label for="itemName">Product Name</label>
-        <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
+        <div class="add_item_body">
 
-        <label for="category">Category</label>
-        <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
-            disabled="true" required></select>
+            <label for="itemName">Product Name</label>
+            <input type="text" class="addItemInput" id="itemName" name="itemName" oninput="enable()" required>
 
-        <label for="purchasePrice">Purchase Price</label>
-        <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice" oninput="setText(), enable()"
-            disabled="true" required>
+            <label for="category">Category</label>
+            <select name="category" id="category" class="selectCateg" title="Select a category" oninput="enable()"
+                disabled="true" required></select>
 
-        <label for="salePrice">Sale Price</label>
-        <input type="number" class="addItemInput" id="salePrice" name="salePrice" disabled="true" required>
+            <label for="purchasePrice">Purchase Price</label>
+            <input type="number" class="addItemInput" id="purchasePrice" name="purchasePrice"
+                oninput="setText(), enable()" disabled="true" required>
 
-        <label for="governmentSalePrice">Govt. Sale Price <a style="color: #979797;">(optional)</a></label>
-        <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice" disabled="true">
+            <label for="salePrice">Sale Price</label>
+            <input type="number" class="addItemInput" id="salePrice" name="salePrice" disabled="true" required>
 
-        <button type="button" class="Greenbutton" id="saveButton" disabled="true" onclick="saveItem()">Save</button>
-        <button type="reset" class="Greenbutton cancel" onclick="closeAddItemForm()">Cancel</button>
+            <label for="governmentSalePrice">Govt. Sale Price <a style="color: #979797;">(optional)</a></label>
+            <input type="number" class="addItemInput" id="governmentSalePrice" name="governmentSalePrice"
+                disabled="true">
+            <div class="add_item_buttons">
+                <button type="button" class="Greenbutton" id="saveButton" disabled="true"
+                    onclick="saveItem()">Save</button>
+                <button type="reset" class="Greenbutton cancel" onclick="closeAddItemForm()">Cancel</button>
+            </div>
+        </div>
     </form>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
