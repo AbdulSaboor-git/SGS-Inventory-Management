@@ -1396,6 +1396,14 @@ button.edit-button:hover {
         overflow-x: hidden;
     }
 
+    .header {
+        box-shadow: 0 10px 10px #1c1c2b;
+    }
+
+    body.lth .header {
+        box-shadow: 0 10px 10px#f3e8ff;
+    }
+
     .header_dropdown_btn {
         display: none;
     }
