@@ -1495,6 +1495,12 @@ button.edit-button:hover {
         margin-right: 3px;
     }
 
+    #sort-btn span {
+        padding: 0px;
+        margin: 0px;
+
+    }
+
     #filter-btn {
         display: none;
     }
