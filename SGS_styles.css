@@ -1310,6 +1310,86 @@ button.edit-button:hover {
 
 @media only screen and (min-width: 800px) {
 
+    .main {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 400px auto;
+        grid-template-rows: 1fr 1fr;
+        /* background-color: #007ef3; */
+        gap: 40px;
+    }
+
+    .InventoryList {
+        grid-row: span 2;
+        height: 80vh;
+        padding-top: 20px;
+        min-height: 750px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+    }
+
+    .left_components {
+        /* background-color: #d60f0f; */
+        height: fit-content;
+        position: relative;
+        top: 0;
+    }
+
+    .searchBar {
+        position: relative;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-top: 10px;
+        margin-left: 0px;
+        padding-bottom: 0px;
+        background-color: #1C1C2B00;
+        box-shadow: none;
+    }
+
+    body.lth .searchBar {
+        background-color: #1C1C2B00;
+        box-shadow: none;
+    }
+
+    .filter_section {
+        /* background-color: #10b304; */
+        margin-top: -47px;
+    }
+
+    .FilterForm {
+        opacity: 1;
+        position: relative;
+        pointer-events: all;
+        display: block;
+        border-radius: 8px;
+        height: auto;
+        width: auto;
+        max-width: 900px;
+        max-height: 900px;
+        background-color: #100623;
+        border: solid 1px #edb4f5;
+        padding: 30px;
+        top: 0px;
+        box-shadow: 0 0 10px -1px #edb4f5;
+        left: 0;
+        z-index: 4;
+        transform: translate(0, 0);
+    }
+
+    .FilterForm h3 {
+        font-size: 23;
+    }
+
+    .FilterForm label {
+        color: #f0618e;
+    }
+
+    .FilterForm .cancel {
+        display: none;
+    }
+
     body {
         display: flex;
         flex-direction: column;
@@ -1344,15 +1424,6 @@ button.edit-button:hover {
         display: none;
     }
 
-    .container {
-        display: flex;
-
-    }
-
-    .left_components {
-        margin-top: 37px;
-    }
-
     .left_buttons_list {
         display: flex;
         flex-direction: column;
@@ -1361,7 +1432,6 @@ button.edit-button:hover {
         position: relative;
         background-color: transparent;
         left: 0;
-        width: 400px;
         border-radius: 10px;
         z-index: 1;
         box-shadow: none;
@@ -1395,15 +1465,9 @@ button.edit-button:hover {
     }
 
     .search_h3 {
-        position: absolute;
         margin-bottom: 10px;
         margin-left: 2px;
-        margin-top: 55px;
-    }
-
-    .search-bar {
-        margin-top: 50px;
-        width: 400px;
+        margin-top: 45px;
     }
 
     .clearSearch {
@@ -1419,7 +1483,7 @@ button.edit-button:hover {
     #sort-btn {
         display: block;
         right: 0;
-        margin-top: 85px;
+        margin-top: 0px;
         margin-right: 3px;
     }
 
@@ -1434,17 +1498,7 @@ button.edit-button:hover {
         margin-top: 155px;
     }
 
-    .InventoryList {
-        margin-left: 40px;
-        margin-top: 82px;
-        padding-top: 15px;
-        width: 100%;
-        height: 80vh;
-        min-height: 750px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        scroll-behavior: smooth;
-    }
+
 
     .InventoryList::-webkit-scrollbar {
         display: none;
@@ -1455,8 +1509,8 @@ button.edit-button:hover {
         background-color: #37106100;
         width: -webkit-fill-available;
         top: 0;
-        margin-top: 135px;
-        margin-left: -2px;
+        margin-top: 125px;
+        margin-left: -4px;
         padding-left: 5px;
         box-shadow: 0 8px 15px 5px#1c1c2b;
         z-index: 1;
@@ -1473,47 +1527,4 @@ button.edit-button:hover {
         overflow: auto;
     }
 
-    .FilterForm {
-        opacity: 1;
-        pointer-events: all;
-        position: absolute;
-        display: block;
-        border-radius: 8px;
-        height: auto;
-        width: 320px;
-        max-width: 900px;
-        max-height: 900px;
-        margin-left: 30px;
-        margin-top: 200px;
-        background-color: #100623;
-        border: solid 1px #edb4f5;
-        padding: 30px;
-        padding-top: 70px;
-        top: 345px;
-        box-shadow: 0 0 10px -1px #edb4f5;
-        left: 0;
-        z-index: 4;
-        transform: translate(0, 0);
-    }
-
-
-
-    .FilterForm h3 {
-        position: absolute;
-        font-size: 23;
-        margin-top: -45px;
-    }
-
-    .FilterForm label {
-        color: #f0618e;
-    }
-
-    .FilterForm button {
-        width: 47.7%;
-        margin-left: 2px;
-    }
-
-    .FilterForm .cancel {
-        display: none;
-    }
 }

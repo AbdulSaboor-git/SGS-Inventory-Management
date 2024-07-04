@@ -121,61 +121,66 @@
         </div>
 
         <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        <div class="left_components">
+        <div class="main">
 
-            <div class="SearchBar">
-                <button id="clearSearch" class="clearSearch" onclick="clearSearch()">&#x2715;</button>
-                <input type="text" id="search-bar" class="search-bar" placeholder="Enter text here ..."
-                    oninput="toggleClearSearch(), displayInventoryList()">
+            <div class="left_components">
+                <div class="SearchBar">
+                    <button id="clearSearch" class="clearSearch" onclick="clearSearch()">&#x2715;</button>
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Enter search text ..."
+                        oninput="toggleClearSearch(), displayInventoryList()">
 
-                <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-                <form class="left_buttons_list" action="">
-                    <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
-                    <input type="button" class="left-btns" value="Manage Categories" onclick="toggleCategoriesForm()">
-                    <input type="button" class="left-btns" value="Load Inventory Data"
-                        onclick="document.getElementById('csvFileInput').click()">
-                    <input type="button" class="left-btns" value="Export Inventory Data" onclick="downloadCSV()">
-                    <input type="button" class="left-btns clear_inv" value="Clear Inventory"
-                        onclick="clearInventoryList()">
-                    <input type="button" class="left-btns" value="Preferences" onclick="togglePreferences()">
-                    <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
+                    <form class="left_buttons_list" action="">
+                        <input type="button" class="left-btns" value="Add Product" onclick="toggleAddItemForm()">
+                        <input type="button" class="left-btns" value="Manage Categories"
+                            onclick="toggleCategoriesForm()">
+                        <input type="button" class="left-btns" value="Load Inventory Data"
+                            onclick="document.getElementById('csvFileInput').click()">
+                        <input type="button" class="left-btns" value="Export Inventory Data" onclick="downloadCSV()">
+                        <input type="button" class="left-btns clear_inv" value="Clear Inventory"
+                            onclick="clearInventoryList()">
+                        <input type="button" class="left-btns" value="Preferences" onclick="togglePreferences()">
+                        <!-- <input type="reset" class="left-btns logout_btn" value="Logout"> -->
+                    </form>
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+            <div class="InventoryList">
+                <h3 class="invHeading">INVENTORY</h3>
+                <ul id="inventoryList">
+                </ul>
+                <div class="details-container" id="itemDetails"></div>
+            </div>
+
+
+
+            <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div class="filter_section">
+
+                <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
+                    <h3>Filter Products</h3>
+                    <label for="filterCategory">Category:</label>
+                    <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
+                    </select>
+
+                    <label for="minPrice">Min. Price:</label>
+                    <input type="number" class="addItemInput" id="minPrice" name="minPrice">
+
+                    <label for="maxPrice">Max. Price:</label>
+                    <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
+
+                    <div class="filter_buttons">
+                        <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
+                            name="filter">Apply</button>
+                        <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
+                        <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
-        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-        <div class="InventoryList">
-            <h3 class="invHeading">INVENTORY</h3>
-            <ul id="inventoryList">
-            </ul>
-        </div>
-        <div class="details-container" id="itemDetails"></div>
-
-
     </div>
-
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <form id="FilterForm" class="FilterForm" autocomplete="off" spellcheck="false">
-        <h3>Filter Products</h3>
-        <label for="filterCategory">Category:</label>
-        <select name="filterCategory" id="filterCategory" class="selectCateg" title="Select a category">
-        </select>
-
-        <label for="minPrice">Min. Price:</label>
-        <input type="number" class="addItemInput" id="minPrice" name="minPrice">
-
-        <label for="maxPrice">Max. Price:</label>
-        <input type="number" class="addItemInput" id="maxPrice" name="maxPrice">
-
-        <div class="filter_buttons">
-            <button type="button" id="FilterButton" class="FilterButton Greenbutton" onclick="filterItems()"
-                name="filter">Apply</button>
-            <button type="reset" class="Greenbutton clear" onclick="clearFilter()">Clear</button>
-            <button type="button" class="Greenbutton cancel" onclick="closeFilterForm()">Cancel</button>
-        </div>
-    </form>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
