@@ -65,7 +65,8 @@ a,
 li,
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
+input[type="reset"],
+input[type="checkbox"] {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
